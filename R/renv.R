@@ -32,6 +32,10 @@ init_renv <- function(snapshot_id = NULL,
                       local_packages = NULL,
                       exclude_local = NULL) {
 
+  # clean any leftover renv artifacts (and .RProfile)
+  unlink(c(".RProfile", "renv.lock"))
+  unlink("renv/", recursive = TRUE)
+
   # FIXME: scrape from upstream JSON file
   # - for every R version short after release: snapshot
   # if (is.null(snapshot_id)) {
