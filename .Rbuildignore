@@ -1,0 +1,8 @@
+^renv$
+^renv\.lock$
+^intern\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+^README\.Rmd$
+^cran-comments\.md$
+^\.github$
