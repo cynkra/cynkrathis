@@ -4,7 +4,12 @@
 \alias{init_renv}
 \title{Init renv infrastructure for cynkra client packages}
 \usage{
-init_renv(snapshot_id = NULL, additional_repos = NULL, local_packages = NULL)
+init_renv(
+  snapshot_id = NULL,
+  additional_repos = NULL,
+  local_packages = NULL,
+  exclude_local = NULL
+)
 }
 \arguments{
 \item{snapshot_id}{\verb{[integer]}\cr
@@ -17,6 +22,11 @@ from local sources.
 Needs the package name and an explicit version.
 This is useful for local package sources used in the project which are not
 available in one of the repos configured in the project.}
+
+\item{exclude_local}{\verb{[named character]}\cr
+Local packages to exclude from \code{renv::install()}.
+Required if the package is only available locally.
+If \code{local_packages} was set, this argument can be ignored.}
 
 \item{additonal_repos}{\verb{[named character]}\cr
 Additional repos besides the RSPM one.

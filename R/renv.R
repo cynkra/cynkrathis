@@ -12,6 +12,11 @@
 #'   Needs the package name and an explicit version.
 #'   This is useful for local package sources used in the project which are not
 #'   available in one of the repos configured in the project.
+#'
+#' @param exclude_local `[named character]`\cr
+#'   Local packages to exclude from `renv::install()`.
+#'   Required if the package is only available locally.
+#'   If `local_packages` was set, this argument can be ignored.
 #' @details
 #' During the process, the latest CRAN version of {renv} will be installed,
 #' regardless of the chose snapshot ID.
@@ -24,7 +29,8 @@
 #' @export
 init_renv <- function(snapshot_id = NULL,
                       additional_repos = NULL,
-                      local_packages = NULL) {
+                      local_packages = NULL,
+                      exclude_local = NULL) {
 
   # FIXME: scrape from upstream JSON file
   # - for every R version short after release: snapshot
@@ -38,7 +44,7 @@ init_renv <- function(snapshot_id = NULL,
     checkmate::assert_character(additional_repos, names = "named")
   }
   checkmate::assert_double(snapshot_id)
-  checkmate::assert_list(local_packages, len = 2)
+  checkmate::assert_list(local_packages, len = 2, null.ok = TRUE)
 
   renv::init(
     bare = TRUE,
@@ -98,6 +104,9 @@ init_renv <- function(snapshot_id = NULL,
   if (!is.null(local_packages)) {
     deps <- setdiff(deps, local_packages[[1]])
   }
+  if (!is.null(exclude_local)) {
+    deps <- setdiff(deps, exclude_local)
+  }
   renv::install(deps)
 
   # update renv
@@ -116,7 +125,6 @@ init_renv <- function(snapshot_id = NULL,
   }
 
   renv::upgrade(version = renv_latest, prompt = FALSE)
-  # renv::record(glue::glue("renv@{renv_latest}"))
 
   renv::restore(prompt = FALSE)
   renv::rehash(prompt = FALSE)
@@ -124,6 +132,5 @@ init_renv <- function(snapshot_id = NULL,
   if (Sys.getenv("RSTUDIO") == 1) {
     rstudioapi::restartSession()
   }
-
 
 }
