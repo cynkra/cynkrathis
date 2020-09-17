@@ -4,12 +4,19 @@
 \alias{init_renv}
 \title{Init renv infrastructure for cynkra client packages}
 \usage{
-init_renv(snapshot_id = NULL, additional_repos = NULL)
+init_renv(snapshot_id = NULL, additional_repos = NULL, local_packages = NULL)
 }
 \arguments{
 \item{snapshot_id}{\verb{[integer]}\cr
 A valid RSPM snapshot ID. By default the latest valid ID is chosen.
 List of valid IDs: TBD.}
+
+\item{local_packages}{\verb{[list]}\cr
+Packages to exclude from the \code{renv::install()} call and to install
+from local sources.
+Needs the package name and an explicit version.
+This is useful for local package sources used in the project which are not
+available in one of the repos configured in the project.}
 
 \item{additonal_repos}{\verb{[named character]}\cr
 Additional repos besides the RSPM one.
@@ -25,6 +32,7 @@ regardless of the chose snapshot ID.
 \examples{
 init_renv(
   snapshot_id = 301,
-  additonal_repos = c(e360 = "https://analytics.energie360.ch/drat")
+  additonal_repos = c(e360 = "https://analytics.energie360.ch/drat"),
+  local_packages = list("foo", "0.1.0")
 )
 }

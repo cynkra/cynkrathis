@@ -6,17 +6,25 @@
 #' @param additonal_repos `[named character]`\cr
 #'   Additional repos besides the RSPM one.
 #'   Must be a named character vector.
-#'
+#' @param local_packages `[list]`\cr
+#'   Packages to exclude from the `renv::install()` call and to install
+#'   from local sources.
+#'   Needs the package name and an explicit version.
+#'   This is useful for local package sources used in the project which are not
+#'   available in one of the repos configured in the project.
 #' @details
 #' During the process, the latest CRAN version of {renv} will be installed,
 #' regardless of the chose snapshot ID.
 #' @examples
 #' init_renv(
 #'   snapshot_id = 301,
-#'   additonal_repos = c(e360 = "https://analytics.energie360.ch/drat")
+#'   additonal_repos = c(e360 = "https://analytics.energie360.ch/drat"),
+#'   local_packages = list("foo", "0.1.0")
 #' )
 #' @export
-init_renv <- function(snapshot_id = NULL, additional_repos = NULL) {
+init_renv <- function(snapshot_id = NULL,
+                      additional_repos = NULL,
+                      local_packages = NULL) {
 
   # FIXME: scrape from upstream JSON file
   # - for every R version short after release: snapshot
@@ -30,6 +38,7 @@ init_renv <- function(snapshot_id = NULL, additional_repos = NULL) {
     checkmate::assert_character(additional_repos, names = "named")
   }
   checkmate::assert_double(snapshot_id)
+  checkmate::assert_list(local_packages, len = 2)
 
   renv::init(
     bare = TRUE,
@@ -59,7 +68,8 @@ init_renv <- function(snapshot_id = NULL, additional_repos = NULL) {
 ))', .trim = FALSE)
   } else {
     txt <- glue::glue('options(repos = c(
-    CRAN = "https://packagemanager.rstudio.com/cran/{snapshot_id}))"')
+    CRAN = "https://packagemanager.rstudio.com/cran/{snapshot_id}"
+))')
   }
   cat(txt, file = ".Rprofile", append = TRUE)
 
@@ -84,18 +94,36 @@ init_renv <- function(snapshot_id = NULL, additional_repos = NULL) {
 
   # scrape dependencies of project and install them
   deps <- unique(renv::dependencies(progress = FALSE)$Package)
+
+  if (!is.null(local_packages)) {
+    deps <- setdiff(deps, local_packages[[1]])
+  }
   renv::install(deps)
 
   # update renv
-  av_pkgs = available.packages(repos = "https://packagemanager.rstudio.com/cran/latest")
-  renv_latest = av_pkgs[rownames(av_pkgs) == "renv",  "Version"]
-
-  renv::upgrade(version = renv_latest, prompt = FALSE)
-  renv::record(glue::glue("renv@{renv_latest}"))
+  av_pkgs <- available.packages(repos = "https://packagemanager.rstudio.com/cran/latest")
+  renv_latest <- av_pkgs[rownames(av_pkgs) == "renv", "Version"]
 
   renv::snapshot(prompt = FALSE)
+
+  if (!is.null(local_packages)) {
+    pkgs <- local_packages[[1]]
+    versions <- local_packages[[2]]
+    purrr::walk2(pkgs, versions, ~ {
+      renv::install(glue::glue("{.x}@{.y}"))
+      renv::record(glue::glue("{.x}@{.y}"))
+    })
+  }
+
+  renv::upgrade(version = renv_latest, prompt = FALSE)
+  # renv::record(glue::glue("renv@{renv_latest}"))
+
+  renv::restore(prompt = FALSE)
+  renv::rehash(prompt = FALSE)
 
   if (Sys.getenv("RSTUDIO") == 1) {
     rstudioapi::restartSession()
   }
+
+
 }
