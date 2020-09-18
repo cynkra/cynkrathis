@@ -1,3 +1,9 @@
+# cynkrathis 0.0.0.9004 (2020-09-18)
+
+- add `init_tic()`
+- add `init_gitignore()`
+- add `init_precommit()`
+
 # cynkrathis 0.0.0.9003 (2020-09-18)
 
 - assert valid snapshot ids from upstream JSON file
