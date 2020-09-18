@@ -2,6 +2,9 @@
 #'
 #' @description
 #'  A list of valid snapshot IDs and their corresponding data and R version.
+#' @importFrom utils download.file
+#' @importFrom gh gh
+#' @importFrom jsonlite read_json
 #' @export
 get_valid_snapshots <- function() {
 
@@ -13,7 +16,7 @@ get_valid_snapshots <- function() {
   )$download_url
 
   tmp <- tempfile()
-  download.file(resp, destfile = tmp, quiet = TRUE)
+  utils::download.file(resp, destfile = tmp, quiet = TRUE)
   tbl <- jsonlite::read_json(tmp,
     simplifyVector = TRUE
   )
