@@ -3,7 +3,7 @@
 #' @param snapshot_id `[integer]`\cr
 #'   A valid RSPM snapshot ID. By default the latest valid ID is chosen.
 #'   List of valid IDs: TBD.
-#' @param additonal_repos `[named character]`\cr
+#' @param additional_repos `[named character]`\cr
 #'   Additional repos besides the RSPM one.
 #'   Must be a named character vector.
 #' @param local_packages `[list]`\cr
@@ -20,12 +20,16 @@
 #' @details
 #' During the process, the latest CRAN version of {renv} will be installed,
 #' regardless of the chose snapshot ID.
+#' @importFrom utils tail available.packages
+#' @importFrom rstudioapi restartSession
 #' @examples
+#' \dontrun{
 #' init_renv(
 #'   snapshot_id = 301,
-#'   additonal_repos = c(e360 = "https://analytics.energie360.ch/drat"),
+#'   additional_repos = c(e360 = "https://analytics.energie360.ch/drat"),
 #'   local_packages = list("foo", "0.1.0")
 #' )
+#' }
 #' @export
 init_renv <- function(snapshot_id = NULL,
                       additional_repos = NULL,
@@ -41,7 +45,7 @@ init_renv <- function(snapshot_id = NULL,
   valid_ids <- as.numeric(id_list$id)
   if (is.null(snapshot_id)) {
     # take latest snapshot ID
-    snapshot_id <- tail(id_list, n = 1)$id
+    snapshot_id <- utils::tail(id_list, n = 1)$id
   }
 
   # assertions -----------------------------------------------------------------
@@ -58,7 +62,7 @@ init_renv <- function(snapshot_id = NULL,
     restart = FALSE,
     settings = list(
       repos = c(
-        CRAN = glue::glue("https://packagemanager.rstudio.com/cran/{snapshot_id}"),
+        CRAN = glue::glue("https://packagemanager.rstudio.com/cran/{snapshot_id}"), # nolint
         additional_repos
       )
     )
@@ -97,7 +101,7 @@ RENV_CONFIG_MRAN_ENABLED = FALSE",
 
   # check if any .Rmd files exist to detect dependencies in .Rmd files via renv
   if (length(list.files(pattern = ".Rmd", recursive = TRUE) > 0)) {
-    cli::cli_alert_info("Installing {.pkg rmarkdown} to scrape dependencies in .Rmd files.")
+    cli::cli_alert_info("Installing {.pkg rmarkdown} to scrape dependencies in .Rmd files.") # nolint
     renv::install("rmarkdown")
   }
 
@@ -120,7 +124,7 @@ RENV_CONFIG_MRAN_ENABLED = FALSE",
   renv::install(deps)
 
   # update renv
-  av_pkgs <- available.packages(repos = "https://packagemanager.rstudio.com/cran/latest")
+  av_pkgs <- utils::available.packages(repos = "https://packagemanager.rstudio.com/cran/latest") # nolint
   renv_latest <- av_pkgs[rownames(av_pkgs) == "renv", "Version"]
 
   renv::snapshot(prompt = FALSE)

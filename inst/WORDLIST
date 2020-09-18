@@ -1,3 +1,4 @@
+analytics
 aut
 BugReports
 cli
@@ -5,6 +6,8 @@ cr
 cre
 cynkra
 cynkrathis
+dontrun
+energie
 gert
 gh
 github
@@ -20,9 +23,12 @@ patrick
 precommit
 purrr
 renv
+repos
 roxygen
 RoxygenNote
+RSPM
 rstudioapi
 schratz
 Schratz
+TBD
 testthat
