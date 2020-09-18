@@ -1,6 +1,6 @@
 ^renv$
 ^renv\.lock$
-^intern\.Rproj$
+^cynkrathis\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
 ^README\.Rmd$
@@ -9,3 +9,4 @@
 ^snapshots$
 ^\.ccache$
 ^tic\.R$
+^\.pre-commit-config\.yaml$

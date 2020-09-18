@@ -14,12 +14,16 @@ BugReports: https://github.com/cynkra/cynkrathis/issues
 Imports: 
     checkmate,
     cli,
+    gert,
     gh,
+    gitignore,
     glue,
     jsonlite,
+    precommit,
     purrr,
     renv,
-    rstudioapi
+    rstudioapi,
+    utils
 Suggests: 
     testthat
 Encoding: UTF-8
