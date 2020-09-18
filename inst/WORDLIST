@@ -24,6 +24,7 @@ precommit
 purrr
 renv
 repos
+ropensci
 roxygen
 RoxygenNote
 RSPM
