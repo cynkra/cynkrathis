@@ -43,15 +43,16 @@ init_renv <- function(snapshot_id = NULL,
     # take latest snapshot ID
     snapshot_id <- tail(id_list, n = 1)$id
   }
-  checkmate::assert_subset(snapshot_id, valid_ids)
 
-  # some checks
+  # assertions -----------------------------------------------------------------
   if (!is.null(additional_repos)) {
     checkmate::assert_character(additional_repos, names = "named")
   }
-  checkmate::assert_double(snapshot_id)
+  checkmate::assert_subset(snapshot_id, valid_ids)
+  checkmate::assert_double(snapshot_id, len = 1)
   checkmate::assert_list(local_packages, len = 2, null.ok = TRUE)
 
+  # renv init ------------------------------------------------------------------
   renv::init(
     bare = TRUE,
     restart = FALSE,
