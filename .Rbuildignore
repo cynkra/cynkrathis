@@ -6,3 +6,6 @@
 ^README\.Rmd$
 ^cran-comments\.md$
 ^\.github$
+^snapshots$
+^\.ccache$
+^tic\.R$
