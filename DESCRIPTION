@@ -17,6 +17,7 @@ Imports:
     gh,
     glue,
     jsonlite,
+    purrr,
     renv,
     rstudioapi
 Suggests: 
