@@ -9,17 +9,19 @@ Authors@R:
            comment = c(ORCID = "0000-0003-0748-6624"))
 Description: What the package does (one paragraph).
 License: MIT + file LICENSE
+URL: https://github.com/cynkra/cynkrathis
+BugReports: https://github.com/cynkra/cynkrathis/issues
 Imports: 
     checkmate,
     cli,
+    gh,
+    glue,
+    jsonlite,
     renv,
-    rstudioapi,
-    glue
+    rstudioapi
 Suggests: 
     testthat
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
-URL: https://github.com/cynkra/cynkrathis
-BugReports: https://github.com/cynkra/cynkrathis/issues

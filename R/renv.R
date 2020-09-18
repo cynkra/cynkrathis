@@ -36,12 +36,14 @@ init_renv <- function(snapshot_id = NULL,
   unlink(c(".RProfile", "renv.lock", ".Renviron"))
   unlink("renv/", recursive = TRUE)
 
-  # FIXME: scrape from upstream JSON file
-  # - for every R version short after release: snapshot
-  # if (is.null(snapshot_id)) {
-  #   # take latest snapshot ID
-  #   snapshot_id =
-  # }
+  # valid R versions are stored in snapshots/
+  id_list <- get_valid_snapshots()
+  valid_ids <- as.numeric(id_list$id)
+  if (is.null(snapshot_id)) {
+    # take latest snapshot ID
+    snapshot_id <- tail(id_list, n = 1)$id
+  }
+  checkmate::assert_subset(snapshot_id, valid_ids)
 
   # some checks
   if (!is.null(additional_repos)) {
@@ -61,9 +63,10 @@ init_renv <- function(snapshot_id = NULL,
     )
   )
 
-  cat('RENV_CONFIG_AUTO_SNAPSHOT = TRUE
-RENV_CONFIG_MRAN_ENABLED = FALSE',
-      file = ".Renviron")
+  cat("RENV_CONFIG_AUTO_SNAPSHOT = TRUE
+RENV_CONFIG_MRAN_ENABLED = FALSE",
+    file = ".Renviron"
+  )
 
   options(repos = c(
     CRAN = glue::glue("https://packagemanager.rstudio.com/cran/{snapshot_id}"),
