@@ -33,7 +33,7 @@ init_renv <- function(snapshot_id = NULL,
                       exclude_local = NULL) {
 
   # clean any leftover renv artifacts (and .RProfile)
-  unlink(c(".RProfile", "renv.lock"))
+  unlink(c(".RProfile", "renv.lock", ".Renviron"))
   unlink("renv/", recursive = TRUE)
 
   # FIXME: scrape from upstream JSON file
@@ -54,14 +54,16 @@ init_renv <- function(snapshot_id = NULL,
     bare = TRUE,
     restart = FALSE,
     settings = list(
-      renv.config.auto.snapshot = TRUE,
-      renv.config.mran.enabled = FALSE,
       repos = c(
         CRAN = glue::glue("https://packagemanager.rstudio.com/cran/{snapshot_id}"),
         additional_repos
       )
     )
   )
+
+  cat('RENV_CONFIG_AUTO_SNAPSHOT = TRUE
+RENV_CONFIG_MRAN_ENABLED = FALSE',
+      file = ".Renviron")
 
   options(repos = c(
     CRAN = glue::glue("https://packagemanager.rstudio.com/cran/{snapshot_id}"),
@@ -81,7 +83,7 @@ init_renv <- function(snapshot_id = NULL,
     CRAN = "https://packagemanager.rstudio.com/cran/{snapshot_id}"
 ))')
   }
-  cat(txt, file = ".Rprofile", append = TRUE)
+  cat(txt, file = ".Rprofile")
 
   # print projects renv path: Problem: The library needs to be empty, otherwise
   # the wrong versions are stored in it (from previous renv inits)
