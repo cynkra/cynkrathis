@@ -81,7 +81,11 @@ jobs:
 
       - name: "[Stage] [Linux] Install curl"
         if: runner.os == 'Linux'
-        run: sudo apt install libcurl4-openssl-dev
+        run: sudo apt install libcurl4-openssl-dev libgit2-dev
+
+      - name: "[Custom block] [Linux] Install libgit2"
+        if: runner.os == 'Linux'
+        run: sudo apt install libgit2-dev
 
       - name: "[Stage] Install"
         if: matrix.config.os != 'macOS-latest' || matrix.config.r != 'devel'
