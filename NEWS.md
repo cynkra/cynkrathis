@@ -1,3 +1,8 @@
+# cynkrathis 0.0.0.9005 (2020-09-29)
+
+- `init_renv()`: add newline when writing .Rprofile and .Renviron
+
+
 # cynkrathis 0.0.0.9004 (2020-09-18)
 
 - add `init_tic()`
