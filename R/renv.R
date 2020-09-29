@@ -45,7 +45,7 @@ init_renv <- function(snapshot_id = NULL,
   valid_ids <- as.numeric(id_list$id)
   if (is.null(snapshot_id)) {
     # take latest snapshot ID
-    snapshot_id <- utils::tail(id_list, n = 1)$id
+    snapshot_id <- utils::tail(id_list$id[id_list$type == "recommended"], n = 1)
   }
 
   # assertions -----------------------------------------------------------------
@@ -53,7 +53,7 @@ init_renv <- function(snapshot_id = NULL,
     checkmate::assert_character(additional_repos, names = "named")
   }
   checkmate::assert_subset(snapshot_id, valid_ids)
-  checkmate::assert_double(snapshot_id, len = 1)
+  checkmate::assert_integerish(snapshot_id, len = 1)
   checkmate::assert_list(local_packages, len = 2, null.ok = TRUE)
 
   # renv init ------------------------------------------------------------------
