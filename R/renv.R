@@ -69,7 +69,7 @@ init_renv <- function(snapshot_id = NULL,
   )
 
   cat("RENV_CONFIG_AUTO_SNAPSHOT = TRUE
-RENV_CONFIG_MRAN_ENABLED = FALSE",
+RENV_CONFIG_MRAN_ENABLED = FALSE\n",
     file = ".Renviron"
   )
 
@@ -89,7 +89,7 @@ RENV_CONFIG_MRAN_ENABLED = FALSE",
   } else {
     txt <- glue::glue('options(repos = c(
     CRAN = "https://packagemanager.rstudio.com/cran/{snapshot_id}"
-))')
+))\n')
   }
   cat(txt, file = ".Rprofile")
 
