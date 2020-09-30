@@ -26,6 +26,7 @@ jsonlite
 LazyData
 libcurl
 libsodium
+lintr
 Ncpus
 noreply
 openssl
@@ -49,6 +50,7 @@ sudo
 TBD
 testthat
 ubuntu
+usethis
 YAML
 YAMLs
 yml
