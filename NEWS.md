@@ -1,3 +1,9 @@
+# cynkrathis 0.0.0.9006 (2020-09-30)
+
+- `init_renv(local_packages = )` now requires a named vector instead of a list
+- Fix `init_renv()` without arguments (#4).
+
+
 # cynkrathis 0.0.0.9005 (2020-09-29)
 
 - `init_renv()`: add newline when writing .Rprofile and .Renviron
