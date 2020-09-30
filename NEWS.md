@@ -1,3 +1,8 @@
+# cynkrathis 0.0.0.9007 (2020-09-30)
+
+- add `init_lintr()`
+
+
 # cynkrathis 0.0.0.9006 (2020-09-30)
 
 - `init_renv(local_packages = )` now requires a named vector instead of a list
