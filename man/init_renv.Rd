@@ -44,7 +44,7 @@ regardless of the chose snapshot ID.
 init_renv(
   snapshot_id = 301,
   additional_repos = c(e360 = "https://analytics.energie360.ch/drat"),
-  local_packages = list("foo", "0.1.0")
+  local_packages = structure(c(foo = "0.1.0", foo2 = "0.2.1"))
 )
 }
 }

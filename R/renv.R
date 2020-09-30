@@ -12,7 +12,6 @@
 #'   Needs the package name and an explicit version.
 #'   This is useful for local package sources used in the project which are not
 #'   available in one of the repos configured in the project.
-#'
 #' @param exclude_local `[named character]`\cr
 #'   Local packages to exclude from `renv::install()`.
 #'   Required if the package is only available locally.
@@ -27,7 +26,7 @@
 #' init_renv(
 #'   snapshot_id = 301,
 #'   additional_repos = c(e360 = "https://analytics.energie360.ch/drat"),
-#'   local_packages = list("foo", "0.1.0")
+#'   local_packages = structure(c(foo = "0.1.0", foo2 = "0.2.1"))
 #' )
 #' }
 #' @export
@@ -54,7 +53,7 @@ init_renv <- function(snapshot_id = NULL,
   }
   checkmate::assert_subset(snapshot_id, valid_ids)
   checkmate::assert_integerish(snapshot_id, len = 1)
-  checkmate::assert_list(local_packages, len = 2, null.ok = TRUE)
+  checkmate::assert_named(local_packages)
 
   # renv init ------------------------------------------------------------------
   renv::init(
@@ -116,7 +115,7 @@ RENV_CONFIG_MRAN_ENABLED = FALSE\n",
   deps <- unique(renv::dependencies(progress = FALSE)$Package)
 
   if (!is.null(local_packages)) {
-    deps <- setdiff(deps, local_packages[[1]])
+    deps <- setdiff(deps, names(local_packages))
   }
   if (!is.null(exclude_local)) {
     deps <- setdiff(deps, exclude_local)
@@ -130,8 +129,8 @@ RENV_CONFIG_MRAN_ENABLED = FALSE\n",
   renv::snapshot(prompt = FALSE)
 
   if (!is.null(local_packages)) {
-    pkgs <- local_packages[[1]]
-    versions <- local_packages[[2]]
+    pkgs <- names(local_packages)
+    versions <- local_packages
     purrr::walk2(pkgs, versions, ~ {
       renv::install(glue::glue("{.x}@{.y}"))
       renv::record(glue::glue("{.x}@{.y}"))
@@ -146,5 +145,4 @@ RENV_CONFIG_MRAN_ENABLED = FALSE\n",
   if (Sys.getenv("RSTUDIO") == 1) {
     rstudioapi::restartSession()
   }
-
 }
