@@ -83,6 +83,10 @@ jobs:
         if: runner.os == 'Linux'
         run: sudo apt install libcurl4-openssl-dev libgit2-dev
 
+      - name: "[Custom} [Stage] [Linux] Install pkgdown system lib req"
+        if: runner.os == 'Linux'
+        run: sudo apt install libharfbuzz-dev libfribidi-dev
+
       - name: "[Custom block] [Linux] Install libgit2"
         if: runner.os == 'Linux'
         run: sudo apt install libgit2-dev
