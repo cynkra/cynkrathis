@@ -133,7 +133,11 @@ RENV_CONFIG_MRAN_ENABLED = FALSE\n",
     versions <- local_packages
     purrr::walk2(pkgs, versions, ~ {
       renv::install(glue::glue("{.x}@{.y}"))
-      renv::record(glue::glue("{.x}@{.y}"))
+      renv::record(rlang::list2(!!.x := list(
+        Package = .x,
+        Version = .y,
+        Source  = "Local"
+      )))
     })
   }
 
