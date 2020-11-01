@@ -1,3 +1,8 @@
+# cynkrathis 0.0.0.9008 (2020-11-01)
+
+- Write renv record of type "Local" for local packages (#8).
+
+
 # cynkrathis 0.0.0.9007 (2020-09-30)
 
 - add `init_lintr()`
