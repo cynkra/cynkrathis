@@ -1,5 +1,19 @@
 // https://packagemanager.rstudio.com/client/#/repos/2/overview
 [
+  // r release date: 2019-03-11
+  {
+    "id": 151,
+    "r_version": "3.5.3",
+    "date": "2019-03-11",
+    "type": ""
+  },
+  // r release date: 2020-02-29
+  {
+    "id": 259,
+    "r_version": "3.6.3",
+    "date": "2020-03-02",
+    "type": ""
+  },
   {
     "id": 301,
     "r_version": "4.0.2",
@@ -20,3 +34,7 @@
     "type": "recommended"
   }
 ]
+
+
+3.5.3: 151 (2019-03-11)
+3.6.3: 259 (2020-03-02)
