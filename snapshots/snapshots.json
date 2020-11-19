@@ -1,14 +1,21 @@
+// https://packagemanager.rstudio.com/client/#/repos/2/overview
 [
   {
     "id": 301,
     "r_version": "4.0.2",
     "date": "2020-07-13",
-    "type": "recommended"
   },
   {
     "id": 314,
     "r_version": "4.0.2",
     "date": "2020-08-24",
     "type": ""
+  },
+  // r release date: 2020-10-10
+  {
+    "id": 344,
+    "r_version": "4.0.3",
+    "date": "2020-10-13",
+    "type": "recommended"
   }
 ]
