@@ -32,5 +32,11 @@
     "r_version": "4.0.3",
     "date": "2020-10-13",
     "type": "recommended"
+  },
+  {
+    "id": 1033374,
+    "r_version": "4.0.3",
+    "date": "2021-01-27",
+    "type": ""
   }
 ]
