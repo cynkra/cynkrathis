@@ -1,36 +1,44 @@
 // https://packagemanager.rstudio.com/client/#/repos/2/overview
 [
-  // r release date: 2019-03-11
   {
     "id": 151,
     "r_version": "3.5.3",
+    "r_release_date": "2019-03-11",
     "date": "2019-03-11",
-    "type": ""
+    "type": "",
+    "note": ""
   },
-  // r release date: 2020-02-29
   {
     "id": 259,
     "r_version": "3.6.3",
+    "r_release_date": "2020-02-29",
     "date": "2020-03-02",
-    "type": ""
+    "type": "",
+    "note": ""
   },
   {
     "id": 301,
     "r_version": "4.0.2",
+    "r_release_date": "2020-06-22",
     "date": "2020-07-13",
-    "type": ""
+    "type": "",
+    "note": "dplyr >= 1.0.0"
   },
   {
     "id": 314,
     "r_version": "4.0.2",
+    "r_release_date": "2020-06-22",
     "date": "2020-08-24",
-    "type": ""
+    "type": "",
+    "note": "dplyr >= 1.0.0"
   },
   // r release date: 2020-10-10
   {
     "id": 351,
     "r_version": "4.0.3",
+    "r_release_date": "2020-10-10",
     "date": "2020-10-13",
-    "type": "recommended"
+    "type": "recommended",
+    "note": "dplyr >= 1.0.0"
   }
 ]
