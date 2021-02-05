@@ -40,5 +40,11 @@
     "date": "2020-10-13",
     "type": "recommended",
     "note": "dplyr >= 1.0.0"
+  },
+  {
+    "id": 1033374,
+    "r_version": "4.0.3",
+    "date": "2021-01-27",
+    "type": "dplyr >= 1.0.0, dm >= 0.1.10"
   }
 ]
