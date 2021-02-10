@@ -5,14 +5,14 @@
 \title{Init renv infrastructure for cynkra client packages}
 \usage{
 init_renv(
-  snapshot_id = NULL,
+  snapshot_date = NULL,
   additional_repos = NULL,
   local_packages = NULL,
   exclude_local = NULL
 )
 }
 \arguments{
-\item{snapshot_id}{\verb{[integer]}\cr
+\item{snapshot_date}{\verb{[integer]}\cr
 A valid RSPM snapshot ID. By default the latest valid ID is chosen.
 List of valid IDs: TBD.}
 
@@ -42,7 +42,7 @@ regardless of the chose snapshot ID.
 \examples{
 \dontrun{
 init_renv(
-  snapshot_id = 301,
+  snapshot_date = "2020-10-13",
   additional_repos = c(e360 = "https://analytics.energie360.ch/drat"),
   local_packages = structure(c(foo = "0.1.0", foo2 = "0.2.1"))
 )
