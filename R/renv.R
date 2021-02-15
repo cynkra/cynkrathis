@@ -1,6 +1,6 @@
 #' Init renv infrastructure for cynkra client packages
 #'
-#' @param snapshot_id `[integer]`\cr
+#' @param snapshot_date `[integer]`\cr
 #'   A valid RSPM snapshot ID. By default the latest valid ID is chosen.
 #'   List of valid IDs: TBD.
 #' @param additional_repos `[named character]`\cr
@@ -24,13 +24,13 @@
 #' @examples
 #' \dontrun{
 #' init_renv(
-#'   snapshot_id = 301,
+#'   snapshot_date = "2020-10-13",
 #'   additional_repos = c(e360 = "https://analytics.energie360.ch/drat"),
 #'   local_packages = structure(c(foo = "0.1.0", foo2 = "0.2.1"))
 #' )
 #' }
 #' @export
-init_renv <- function(snapshot_id = NULL,
+init_renv <- function(snapshot_date = NULL,
                       additional_repos = NULL,
                       local_packages = NULL,
                       exclude_local = NULL) {
@@ -40,19 +40,21 @@ init_renv <- function(snapshot_id = NULL,
   unlink("renv/", recursive = TRUE)
 
   # valid R versions are stored in snapshots/
-  id_list <- get_valid_snapshots()
-  valid_ids <- as.numeric(id_list$id)
-  if (is.null(snapshot_id)) {
+  snapshots <- get_valid_snapshots()
+  valid_dates <- as.character(snapshots$date)
+  if (is.null(valid_dates)) {
     # take latest snapshot ID
-    snapshot_id <- utils::tail(id_list$id[id_list$type == "recommended"], n = 1)
+    snapshot_date <- utils::tail(snapshots$date[snapshots$type == "recommended"],
+      n = 1
+    )
   }
 
   # assertions -----------------------------------------------------------------
   if (!is.null(additional_repos)) {
     checkmate::assert_character(additional_repos, names = "named")
   }
-  checkmate::assert_subset(snapshot_id, valid_ids)
-  checkmate::assert_integerish(snapshot_id, len = 1)
+  checkmate::assert_subset(snapshot_date, valid_dates)
+  checkmate::assert_integerish(snapshot_date, len = 1)
   checkmate::assert_named(local_packages)
 
   # renv init ------------------------------------------------------------------
@@ -61,19 +63,19 @@ init_renv <- function(snapshot_id = NULL,
     restart = FALSE,
     settings = list(
       repos = c(
-        CRAN = glue::glue("https://packagemanager.rstudio.com/cran/{snapshot_id}"), # nolint
+        CRAN = glue::glue("https://packagemanager.rstudio.com/cran/{snapshot_date}"), # nolint
         additional_repos
       )
     )
   )
 
-  cat("RENV_CONFIG_AUTO_SNAPSHOT = TRUE
+  cat("RENV_CONFIG_AUTO_SNAPSHOT = FALSE
 RENV_CONFIG_MRAN_ENABLED = FALSE\n",
     file = ".Renviron"
   )
 
   options(repos = c(
-    CRAN = glue::glue("https://packagemanager.rstudio.com/cran/{snapshot_id}"),
+    CRAN = glue::glue("https://packagemanager.rstudio.com/cran/{snapshot_date}"), # nolint
     additional_repos
   ))
 
@@ -82,12 +84,12 @@ RENV_CONFIG_MRAN_ENABLED = FALSE\n",
   # write repos to .Rprofile
   if (!is.null(additional_repos)) {
     txt <- glue::glue('options(repos = c(
-    CRAN = "https://packagemanager.rstudio.com/cran/{snapshot_id}",
+    CRAN = "https://packagemanager.rstudio.com/cran/{snapshot_date}",
     {names(additional_repos)} = "{additional_repos}"
 ))', .trim = FALSE)
   } else {
     txt <- glue::glue('options(repos = c(
-    CRAN = "https://packagemanager.rstudio.com/cran/{snapshot_id}"
+    CRAN = "https://packagemanager.rstudio.com/cran/{snapshot_date}"
 ))\n')
   }
   cat(txt, file = ".Rprofile")
@@ -136,7 +138,7 @@ RENV_CONFIG_MRAN_ENABLED = FALSE\n",
       renv::record(rlang::list2(!!.x := list(
         Package = .x,
         Version = .y,
-        Source  = "Local"
+        Source = "Local"
       )))
     })
   }
