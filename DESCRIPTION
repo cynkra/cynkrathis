@@ -1,7 +1,7 @@
 Package: cynkrathis
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9008
-Authors@R: 
+Authors@R:
     person(given = "Patrick",
            family = "Schratz",
            role = c("aut", "cre"),
@@ -11,25 +11,25 @@ Description: What the package does (one paragraph).
 License: MIT + file LICENSE
 URL: https://github.com/cynkra/cynkrathis
 BugReports: https://github.com/cynkra/cynkrathis/issues
-Imports: 
+Imports:
     checkmate,
     cli,
     gert,
     gh,
-    gitignore,
     glue,
     jsonlite,
-    precommit,
     purrr,
     renv,
     rlang,
     rstudioapi,
-    tic (>= 0.9.0.9005),
     usethis,
     utils
-Suggests: 
-    testthat
-Remotes: 
+Suggests:
+    gitignore,
+    precommit,
+    testthat,
+    tic (>= 0.9.0.9005)
+Remotes:
     ropensci/tic
 Encoding: UTF-8
 LazyData: true
