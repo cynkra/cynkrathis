@@ -215,6 +215,8 @@ renv_switch_r_version <- function(version = NULL,
     )
   )
 
+  writeLines(renvlock, "renv.lock")
+
   if (requireNamespace("rstudioapi", quietly = TRUE)) {
     cli::cli_alert("Restarting R session.")
     rstudioapi::restartSession()
