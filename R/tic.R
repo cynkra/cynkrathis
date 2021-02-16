@@ -4,6 +4,13 @@
 #' @export
 init_tic <- function(commit = TRUE) {
 
+  if (!requireNamespace("tic", quietly = TRUE)) {
+    stop("Please install 'ropensci/tic'.")
+  }
+  if (!requireNamespace("gert", quietly = TRUE)) {
+    stop("Please install 'gert'.")
+  }
+
   if (Sys.getenv("TIC_UPDATE") == "") {
     stop("Env var 'TIC_UPDATE' must be set to init `tic::use_update_tic()`.")
   }

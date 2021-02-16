@@ -4,6 +4,13 @@
 #' @export
 init_precommit <- function(commit = TRUE) {
 
+  if (!requireNamespace("precommit", quietly = TRUE)) {
+    stop("Please install 'precommit'.")
+  }
+  if (!requireNamespace("gert", quietly = TRUE)) {
+    stop("Please install 'gert'.")
+  }
+
   precommit::use_precommit()
 
   if (commit == TRUE) {

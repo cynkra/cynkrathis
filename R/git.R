@@ -5,6 +5,13 @@
 #' @export
 init_gitignore <- function(commit = TRUE) {
 
+  if (!requireNamespace("gitignore", quietly = TRUE)) {
+    stop("Please install 'gitignore'.")
+  }
+  if (!requireNamespace("gert", quietly = TRUE)) {
+    stop("Please install 'gert'.")
+  }
+
   gitignore::gi_fetch_templates("r", append_gitignore = TRUE)
   # docs/ not included in the used backends of gitignore
   write("docs/", ".gitignore", append = TRUE)
