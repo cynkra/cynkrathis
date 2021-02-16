@@ -60,7 +60,10 @@ init_renv <- function(snapshot_date = NULL,
     checkmate::assert_character(additional_repos, names = "named")
   }
   checkmate::assert_subset(snapshot_date, valid_dates)
-  checkmate::assert_integerish(snapshot_date, len = 1)
+  checkmate::assert_character(snapshot_date,
+    len = 1,
+    pattern = "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+  )
   checkmate::assert_named(local_packages)
 
   # renv init ------------------------------------------------------------------
