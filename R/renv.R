@@ -47,19 +47,12 @@ init_renv <- function(snapshot_date = NULL,
 
   # valid R versions are stored in snapshots/
   snapshots <- get_valid_snapshots()
+  valid_dates <- as.character(snapshots$date)
 
   if (is.null(snapshot_date)) {
     # get R version from current session
     r_version <- paste(R.Version()$major, R.Version()$minor, sep = ".")
     snapshot_date <- snapshots[snapshots$r_version == r_version, "date"]
-  } else {
-    valid_dates <- as.character(snapshots$date)
-    if (is.null(valid_dates)) {
-      # take latest snapshot ID
-      snapshot_date <- utils::tail(snapshots$date[snapshots$type == "recommended"],
-        n = 1
-      )
-    }
   }
 
   # assertions -----------------------------------------------------------------
