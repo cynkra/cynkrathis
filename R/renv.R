@@ -152,3 +152,70 @@ RENV_CONFIG_MRAN_ENABLED = FALSE\n",
     rstudioapi::restartSession()
   }
 }
+
+#' Switch between R versions in renv projects
+#' @importFrom checkmate assert_character
+#' @importFrom rstudioapi restartSession
+#' @importFrom cli cli_alert
+#' @description This function switches between R versions in renv projects
+#' which follow the 'cynkra RSPM snapshot' logic.
+#' This is done by replacing the respective entries in `renv.lock`.
+#'
+#' The following tasks are executed
+#'
+#' - Replace the R Version in `renv.lock`
+#' - Replace the RSPM snapshot in `renv.lock` with the one associated with the
+#'   selected R Version
+#' - (optional) execution of `renv::update()`
+#' - (optional) execution of `renv::snapshot()`
+#'
+#' @seealso get_valid_snapshots
+#'
+#' @examples
+#' renv_switch_r_version("4.0.4")
+renv_switch_r_version <- function(version = NULL,
+                                  update_packages = TRUE,
+                                  snapshot = TRUE) {
+
+  # assertions
+  checkmate::assert_character(version,
+    len = 1,
+    pattern = "[0-9][.][0-9][.][0-9]"
+  )
+
+  cli::cli_alert("Replacing R Version and RSPM snapshot in {.file renv.lock}.")
+
+  renvlock <- readLines("renv.lock")
+
+  # replace R version
+  renvlock[3] <- sprintf("    \"Version\": \"%s\",", version)
+
+  snapshots <- get_valid_snapshots()
+  new_snapshot <- snapshots[snapshots$r_version == version, c("date")]
+  # replace RSPM snapshot
+  renvlock[6:7] <- c(
+    "        \"Name\": \"CRAN\",",
+    sprintf(
+      "        \"URL\": \"https://packagemanager.rstudio.com/cran/%s\"",
+      new_snapshot
+    )
+  )
+
+  if (requireNamespace("rstudioapi", quietly = TRUE)) {
+    cli::cli_alert("Restarting R session.")
+    rstudioapi::restartSession()
+  }
+
+  if (update_packages) {
+    cli::cli_alert("Calling {.fun renv::update} to update/downgrade all packages
+    to the new snapshot.", wrap = TRUE)
+    renv::update(prompt = FALSE)
+  }
+
+  if (snapshot) {
+    cli::cli_alert("Calling {.fun renv::snapshot} to record the changed packages
+    in {.file renv.lock}.", wrap = TRUE)
+    renv::snapshot(prompt = FALSE)
+  }
+
+}
