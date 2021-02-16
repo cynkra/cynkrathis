@@ -78,11 +78,6 @@ init_renv <- function(snapshot_date = NULL,
     )
   )
 
-  cat("RENV_CONFIG_AUTO_SNAPSHOT = FALSE
-RENV_CONFIG_MRAN_ENABLED = FALSE\n",
-    file = ".Renviron"
-  )
-
   options(repos = c(
     CRAN = glue::glue("https://packagemanager.rstudio.com/cran/{snapshot_date}"), # nolint
     additional_repos
@@ -179,7 +174,7 @@ RENV_CONFIG_MRAN_ENABLED = FALSE\n",
 #' - (optional) execution of `renv::snapshot()`
 #'
 #' @seealso get_valid_snapshots
-#'
+#' @export
 #' @examples
 #' renv_switch_r_version("4.0.4")
 renv_switch_r_version <- function(version = NULL,
