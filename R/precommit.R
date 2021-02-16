@@ -1,7 +1,6 @@
 #' Use precommit with that project
 #'
 #' @template commit
-#' @importFrom precommit use_precommit
 #' @export
 init_precommit <- function(commit = TRUE) {
 

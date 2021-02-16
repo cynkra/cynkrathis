@@ -14,7 +14,6 @@ BugReports: https://github.com/cynkra/cynkrathis/issues
 Imports:
     checkmate,
     cli,
-    gert,
     gh,
     glue,
     jsonlite,
@@ -25,6 +24,7 @@ Imports:
     usethis,
     utils
 Suggests:
+    gert,
     gitignore,
     precommit,
     testthat,

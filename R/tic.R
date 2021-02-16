@@ -1,7 +1,6 @@
 #' Initialize tic CI structure
 #'
 #' @template commit
-#' @importFrom tic use_tic use_tic_badge use_update_tic gha_add_secret
 #' @export
 init_tic <- function(commit = TRUE) {
 

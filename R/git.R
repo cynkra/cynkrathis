@@ -1,8 +1,6 @@
 #' Write fully equipped gitignore files
 #'
 #' @template commit
-#' @importFrom gitignore gi_fetch_templates
-#' @importFrom gert git_add git_commit
 #' @description By making use of the gitignore.io API.
 #' @export
 init_gitignore <- function(commit = TRUE) {
