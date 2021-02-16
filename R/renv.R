@@ -1,4 +1,10 @@
-#' Init renv infrastructure for cynkra client packages
+#' Init renv infrastructure (cynkra way)
+#'
+#' @description Initializes {renv} setup by setting a predefined RStudio Package
+#' Manager (RSPM) snapshot.
+#' Optionally more 'minicran' repositories can be configured via argument
+#' `additional_repos`.
+#' Custom RSPM Snapshots can be configured via `snapshot_date`.
 #'
 #' @param snapshot_date `[integer]`\cr
 #'   A valid RSPM snapshot ID. By default the latest valid ID is chosen.
@@ -41,12 +47,19 @@ init_renv <- function(snapshot_date = NULL,
 
   # valid R versions are stored in snapshots/
   snapshots <- get_valid_snapshots()
-  valid_dates <- as.character(snapshots$date)
-  if (is.null(valid_dates)) {
-    # take latest snapshot ID
-    snapshot_date <- utils::tail(snapshots$date[snapshots$type == "recommended"],
-      n = 1
-    )
+
+  if (is.null(snapshot_date)) {
+    # get R version from current session
+    r_version <- paste(R.Version()$major, R.Version()$minor, sep = ".")
+    snapshot_date <- snapshots[snapshots$r_version == r_version, "date"]
+  } else {
+    valid_dates <- as.character(snapshots$date)
+    if (is.null(valid_dates)) {
+      # take latest snapshot ID
+      snapshot_date <- utils::tail(snapshots$date[snapshots$type == "recommended"],
+        n = 1
+      )
+    }
   }
 
   # assertions -----------------------------------------------------------------
@@ -182,6 +195,16 @@ renv_switch_r_version <- function(version = NULL,
     len = 1,
     pattern = "[0-9][.][0-9][.][0-9]"
   )
+
+  # check if renv.lock exists
+  if (!file.exists("renv.lock")) {
+    cli::cli_alert_danger("We could not find an {.file renv.lock} file in the current working directory:
+
+    {.file {getwd()}}
+
+    Is this project using 'renv'?", wrap = TRUE)
+    stop("No renv.lock found.")
+  }
 
   cli::cli_alert("Replacing R Version and RSPM snapshot in {.file renv.lock}.")
 

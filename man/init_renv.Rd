@@ -2,7 +2,7 @@
 % Please edit documentation in R/renv.R
 \name{init_renv}
 \alias{init_renv}
-\title{Init renv infrastructure for cynkra client packages}
+\title{Init renv infrastructure (cynkra way)}
 \usage{
 init_renv(
   snapshot_date = NULL,
@@ -33,7 +33,11 @@ Required if the package is only available locally.
 If \code{local_packages} was set, this argument can be ignored.}
 }
 \description{
-Init renv infrastructure for cynkra client packages
+Initializes {renv} setup by setting a predefined RStudio Package
+Manager (RSPM) snapshot.
+Optionally more 'minicran' repositories can be configured via argument
+\code{additional_repos}.
+Custom RSPM Snapshots can be configured via \code{snapshot_date}.
 }
 \details{
 During the process, the latest CRAN version of {renv} will be installed,
