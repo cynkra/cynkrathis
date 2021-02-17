@@ -6,6 +6,20 @@
 \usage{
 renv_switch_r_version(version = NULL, update_packages = TRUE, snapshot = TRUE)
 }
+\arguments{
+\item{version}{\verb{[character]}\cr
+The R version to upgrade to.}
+
+\item{update_packages}{\verb{[logical]}\cr
+Whether to update all packages to the new RSPM snapshot via
+\code{renv::update()}.}
+
+\item{snapshot}{\verb{[logical]}\cr
+Whether to call \code{renv::snapshot()} after all packages have been updated.}
+}
+\value{
+TRUE (invisibly)
+}
 \description{
 This function switches between R versions in renv projects
 which follow the 'cynkra RSPM snapshot' logic.
@@ -19,6 +33,10 @@ selected R Version
 \item (optional) execution of \code{renv::update()}
 \item (optional) execution of \code{renv::snapshot()}
 }
+}
+\details{
+Currently only R version upgrades are supported, i.e. going from R 4.0.3 to
+R 4.0.4 (or higher).
 }
 \examples{
 renv_switch_r_version("4.0.4")

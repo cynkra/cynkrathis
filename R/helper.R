@@ -1,12 +1,13 @@
-#' Return metadata for RSPM snapshots
+#' Return metadata for cynkra RSPM snapshots
 #'
 #' @description
-#'  A list of valid snapshot IDs and their corresponding data and R version.
+#'  A list of curated cynkra RStudio Package Manager snapshot IDs and their
+#'  metadata.
 #' @importFrom utils download.file
 #' @importFrom gh gh
 #' @importFrom jsonlite read_json
 #' @export
-get_valid_snapshots <- function() {
+get_snapshots <- function() {
 
   # uses a valid GITHUB_PAT from the user with access to the org
   resp <- gh::gh("/repos/:owner/:repo/contents/:path",
@@ -20,5 +21,13 @@ get_valid_snapshots <- function() {
   tbl <- jsonlite::read_json(tmp,
     simplifyVector = TRUE
   )
+
+  tbl$date <- as.Date(tbl$date)
+  tbl$r_release_date <- as.Date(tbl$r_release_date)
+  tbl <- tbl[order(tbl$r_release_date, decreasing = TRUE), ]
+
   return(tbl)
 }
+
+
+# foo[order(foo$r_release_date, decreasing = FALSE),]

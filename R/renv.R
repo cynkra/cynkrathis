@@ -173,7 +173,19 @@ init_renv <- function(snapshot_date = NULL,
 #' - (optional) execution of `renv::update()`
 #' - (optional) execution of `renv::snapshot()`
 #'
+#' @param version `[character]`\cr
+#'   The R version to upgrade to.
+#' @param update_packages `[logical]`\cr
+#'   Whether to update all packages to the new RSPM snapshot via
+#'  `renv::update()`.
+#' @param snapshot `[logical]`\cr
+#'   Whether to call `renv::snapshot()` after all packages have been updated.
+#' @details
+#'  Currently only R version upgrades are supported, i.e. going from R 4.0.3 to
+#'  R 4.0.4 (or higher).
+#'
 #' @seealso get_valid_snapshots
+#' @return TRUE (invisibly)
 #' @export
 #' @examples
 #' renv_switch_r_version("4.0.4")
@@ -189,7 +201,8 @@ renv_switch_r_version <- function(version = NULL,
 
   # check if renv.lock exists
   if (!file.exists("renv.lock")) {
-    cli::cli_alert_danger("We could not find an {.file renv.lock} file in the current working directory:
+    cli::cli_alert_danger("We could not find an {.file renv.lock} file in the
+    current working directory:
 
     {.file {getwd()}}
 
@@ -204,7 +217,7 @@ renv_switch_r_version <- function(version = NULL,
   # replace R version
   renvlock[3] <- sprintf("    \"Version\": \"%s\",", version)
 
-  snapshots <- get_valid_snapshots()
+  snapshots <- get_snapshots()
   new_snapshot <- snapshots[snapshots$r_version == version, c("date")]
   # replace RSPM snapshot
   renvlock[6:7] <- c(
@@ -234,4 +247,5 @@ renv_switch_r_version <- function(version = NULL,
     renv::snapshot(prompt = FALSE)
   }
 
+  return(invisible(TRUE))
 }

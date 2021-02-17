@@ -19,12 +19,16 @@ knitr::opts_chunk$set(
 
 # cynkrathis
 
-Internal package to bootstrap R package infrastructure for client projects.
+Package to simplify project scaffolding and common {renv} related tasks.
 
-## Get snapshots and some metadata information
+## cynkra RSPM snapshots
+
+cynkra makes use of certain RStudio Package Manager (RSPM) snapshots across projects.
+Usually each R Version is tied to a snapshot near it's release date.
+If a snapshot is considered unstable due to certain R package version clashes, additional snapshots for specific R versions can be listed.
 
 ```{r }
-cynkrathis::get_valid_snapshots()
+cynkrathis::get_snapshots()
 ```
 
 ## Initialize {renv} with a given RSPM snapshot
@@ -33,5 +37,5 @@ Choose the `"date"` column that is returned by `get_valid_snapshots()`.
 For example, for R 3.6.3 this would be "2020-02-29".
 
 ```{r, eval=FALSE}
-cynkrathis::init_renv(snapshot_date = "2020-02-29")
+cynkrathis::init_renv()
 ```
