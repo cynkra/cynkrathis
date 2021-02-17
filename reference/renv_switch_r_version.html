@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • cynkrathis</title>
+<title>Switch between R versions in renv projects — renv_switch_r_version • cynkrathis</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,7 +47,18 @@
 
 
 
-<meta property="og:title" content="Changelog" />
+<meta property="og:title" content="Switch between R versions in renv projects — renv_switch_r_version" />
+<meta property="og:description" content="This function switches between R versions in renv projects
+which follow the 'cynkra RSPM snapshot' logic.
+This is done by replacing the respective entries in renv.lock.
+The following tasks are executed
+Replace the R Version in renv.lock
+Replace the RSPM snapshot in renv.lock with the one associated with the
+selected R Version
+(optional) execution of renv::update()
+(optional) execution of renv::snapshot()
+
+" />
 <meta property="og:image" content="/logo.svg" />
 <meta name="twitter:card" content="summary" />
 
@@ -68,7 +79,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -121,88 +132,70 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1 data-toc-skip>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/cynkra/cynkrathis/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+    <h1>Switch between R versions in renv projects</h1>
+    <small class="dont-index">Source: <a href='https://github.com/cynkra/cynkrathis/blob/master/R/renv.R'><code>R/renv.R</code></a></small>
+    <div class="hidden name"><code>renv_switch_r_version.Rd</code></div>
     </div>
 
-    <div id="cynkrathis-0009008-2020-11-01" class="section level1">
-<h1 class="page-header" data-toc-text="0.0.0.9008">
-<a href="#cynkrathis-0009008-2020-11-01" class="anchor"></a>cynkrathis 0.0.0.9008 (2020-11-01)</h1>
-<ul>
-<li>Write renv record of type “Local” for local packages (<a href='https://github.com/cynkra/cynkrathis/issues/8'>#8</a>).</li>
+    <div class="ref-description">
+    <p>This function switches between R versions in renv projects
+which follow the 'cynkra RSPM snapshot' logic.
+This is done by replacing the respective entries in <code>renv.lock</code>.</p>
+<p>The following tasks are executed</p><ul>
+<li><p>Replace the R Version in <code>renv.lock</code></p></li>
+<li><p>Replace the RSPM snapshot in <code>renv.lock</code> with the one associated with the
+selected R Version</p></li>
+<li><p>(optional) execution of <code><a href='https://rstudio.github.io/renv//reference/update.html'>renv::update()</a></code></p></li>
+<li><p>(optional) execution of <code><a href='https://rstudio.github.io/renv//reference/snapshot.html'>renv::snapshot()</a></code></p></li>
 </ul>
-</div>
-    <div id="cynkrathis-0009007-2020-09-30" class="section level1">
-<h1 class="page-header" data-toc-text="0.0.0.9007">
-<a href="#cynkrathis-0009007-2020-09-30" class="anchor"></a>cynkrathis 0.0.0.9007 (2020-09-30)</h1>
-<ul>
-<li>add <code><a href="../reference/init_lintr.html">init_lintr()</a></code>
-</li>
-</ul>
-</div>
-    <div id="cynkrathis-0009006-2020-09-30" class="section level1">
-<h1 class="page-header" data-toc-text="0.0.0.9006">
-<a href="#cynkrathis-0009006-2020-09-30" class="anchor"></a>cynkrathis 0.0.0.9006 (2020-09-30)</h1>
-<ul>
-<li>
-<code><a href="../reference/init_renv.html">init_renv(local_packages = )</a></code> now requires a named vector instead of a list</li>
-<li>Fix <code><a href="../reference/init_renv.html">init_renv()</a></code> without arguments (<a href='https://github.com/cynkra/cynkrathis/issues/4'>#4</a>).</li>
-</ul>
-</div>
-    <div id="cynkrathis-0009005-2020-09-29" class="section level1">
-<h1 class="page-header" data-toc-text="0.0.0.9005">
-<a href="#cynkrathis-0009005-2020-09-29" class="anchor"></a>cynkrathis 0.0.0.9005 (2020-09-29)</h1>
-<ul>
-<li>
-<code><a href="../reference/init_renv.html">init_renv()</a></code>: add newline when writing .Rprofile and .Renviron</li>
-</ul>
-</div>
-    <div id="cynkrathis-0009004-2020-09-18" class="section level1">
-<h1 class="page-header" data-toc-text="0.0.0.9004">
-<a href="#cynkrathis-0009004-2020-09-18" class="anchor"></a>cynkrathis 0.0.0.9004 (2020-09-18)</h1>
-<ul>
-<li>add <code><a href="../reference/init_tic.html">init_tic()</a></code>
-</li>
-<li>add <code><a href="../reference/init_gitignore.html">init_gitignore()</a></code>
-</li>
-<li>add <code><a href="../reference/init_precommit.html">init_precommit()</a></code>
-</li>
-</ul>
-</div>
-    <div id="cynkrathis-0009003-2020-09-18" class="section level1">
-<h1 class="page-header" data-toc-text="0.0.0.9003">
-<a href="#cynkrathis-0009003-2020-09-18" class="anchor"></a>cynkrathis 0.0.0.9003 (2020-09-18)</h1>
-<ul>
-<li>assert valid snapshot ids from upstream JSON file</li>
-<li>
-<code><a href="../reference/init_renv.html">init_renv()</a></code>: write renv settings as env vars instead of passing them via renv::init()</li>
-</ul>
-</div>
-    <div id="cynkrathis-0009002-2020-09-17" class="section level1">
-<h1 class="page-header" data-toc-text="0.0.0.9002">
-<a href="#cynkrathis-0009002-2020-09-17" class="anchor"></a>cynkrathis 0.0.0.9002 (2020-09-17)</h1>
-<ul>
-<li>
-<code><a href="../reference/init_renv.html">init_renv()</a></code>: Add <code>exclude_local()</code> argument</li>
-</ul>
-</div>
-    <div id="cynkrathis-0009001-2020-09-17" class="section level1">
-<h1 class="page-header" data-toc-text="0.0.0.9001">
-<a href="#cynkrathis-0009001-2020-09-17" class="anchor"></a>cynkrathis 0.0.0.9001 (2020-09-17)</h1>
-<ul>
-<li>
-<code><a href="../reference/init_renv.html">init_renv()</a></code>: add param <code>local_packages()</code>
-</li>
-</ul>
-</div>
-  </div>
 
+    </div>
+
+    <pre class="usage"><span class='fu'>renv_switch_r_version</span><span class='op'>(</span>version <span class='op'>=</span> <span class='cn'>NULL</span>, update_packages <span class='op'>=</span> <span class='cn'>TRUE</span>, snapshot <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>version</th>
+      <td><p><code>[character]</code><br />
+The R version to upgrade to.</p></td>
+    </tr>
+    <tr>
+      <th>update_packages</th>
+      <td><p><code>[logical]</code><br />
+Whether to update all packages to the new RSPM snapshot via
+<code><a href='https://rstudio.github.io/renv//reference/update.html'>renv::update()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>snapshot</th>
+      <td><p><code>[logical]</code><br />
+Whether to call <code><a href='https://rstudio.github.io/renv//reference/snapshot.html'>renv::snapshot()</a></code> after all packages have been updated.</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>TRUE (invisibly)</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Currently only R version upgrades are supported, i.e. going from R 4.0.3 to
+R 4.0.4 (or higher).</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>get_snapshots</p></div>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'>renv_switch_r_version</span><span class='op'>(</span><span class='st'>"4.0.4"</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
-
 </div>
 
 
