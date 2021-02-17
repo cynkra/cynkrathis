@@ -208,6 +208,8 @@ renv_switch_r_version <- function(version = NULL,
   r_version_new <- as.numeric(gsub("[.]", "", version))
   if (r_version_new < r_version_local) {
     downgrade <- TRUE
+  } else {
+    downgrade <- FALSE
   }
 
   # check if renv.lock exists
