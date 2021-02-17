@@ -11,3 +11,4 @@
 ^tic\.R$
 ^\.pre-commit-config\.yaml$
 ^man-roxygen$
+^pkgdown$
