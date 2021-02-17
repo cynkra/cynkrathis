@@ -1,0 +1,39 @@
+template:
+  package: cynkratemplate
+  default_assets: false
+
+destination: docs
+
+navbar:
+  structure:
+    right: [reference, articles, projects, consulting, github]
+  components:
+    home: ~
+    reference:
+      text: REFERENCE
+      href: reference/index.html
+    projects:
+      text: PROJECTS
+      href: https://www.cynkra.com/projects.html
+    consulting:
+      text: CONSULTING
+      href: https://www.cynkra.com/consulting.html
+
+authors:
+  Patrick Schratz:
+    href: https://pat-s.me
+  Kirill Müller:
+    href: http://krlmlr.info
+
+
+reference:
+  - title: renv
+    contents:
+      - contains("renv")
+  - title: Miscellaneous
+    desc: Optional project scaffolding helpers
+    contents:
+      - init_precommit
+      - init_tic
+      - init_gitignore
+      - init_lintr
