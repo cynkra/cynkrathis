@@ -27,20 +27,27 @@ TRUE (invisibly)
 \description{
 This function switches between R versions in renv projects
 which follow the 'cynkra RSPM snapshot' logic.
-This is done by replacing the respective entries in \code{renv.lock}.
+This means that each R version is tied to a specific RSPM snapshot.
 
-The following tasks are executed
+The function executes the following tasks:
 \itemize{
-\item Replace the R Version in \code{renv.lock}
+\item Replace the R Version in \code{renv.lock}.
 \item Replace the RSPM snapshot in \code{renv.lock} with the one associated with the
-selected R Version
-\item (optional) execution of \code{renv::update()}
-\item (optional) execution of \code{renv::snapshot()}
+selected R Version.
+\item (optional) execution of \code{renv::update()}.
+\item (optional) execution of \code{renv::snapshot()}.
 }
 }
 \details{
-Currently only R version upgrades are supported, i.e. going from R 4.0.3 to
-R 4.0.4 (or higher).
+When downgrading, the optional calls to \code{renv::update()} and
+\code{renv::snapshot()} will not be executed
+(even if specified via their arguments.)
+Currently there is no easy way to downgrade all packages in renv projects
+to a specific RSPM snapshot.
+This should be a niche case anyhow and it is unclear if this will ever be
+supported.
+Note that this is different from restoring packages with {renv} per se for
+which \code{renv::restore()} should be used.
 }
 \examples{
 \dontrun{
