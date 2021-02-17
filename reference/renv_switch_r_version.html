@@ -50,13 +50,13 @@
 <meta property="og:title" content="Switch between R versions in renv projects — renv_switch_r_version" />
 <meta property="og:description" content="This function switches between R versions in renv projects
 which follow the 'cynkra RSPM snapshot' logic.
-This is done by replacing the respective entries in renv.lock.
-The following tasks are executed
-Replace the R Version in renv.lock
+This means that each R version is tied to a specific RSPM snapshot.
+The function executes the following tasks:
+Replace the R Version in renv.lock.
 Replace the RSPM snapshot in renv.lock with the one associated with the
-selected R Version
-(optional) execution of renv::update()
-(optional) execution of renv::snapshot()
+selected R Version.
+(optional) execution of renv::update().
+(optional) execution of renv::snapshot().
 
 " />
 <meta property="og:image" content="/logo.svg" />
@@ -94,7 +94,7 @@ selected R Version
       <div class="navbar-brand-container">
         <a class="cynkra-logo-font" href="https://www.cynkra.com">cynkra</a>
         <a class="cynkra-logo" href="https://www.cynkra.com">&#9632;</a>
-        <a class="navbar-brand" href="../index.html">cynkrathis <small>v0.0.0.9008</small></a>
+        <a class="navbar-brand" href="../index.html">cynkrathis <small>v0.1.0</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -140,13 +140,13 @@ selected R Version
     <div class="ref-description">
     <p>This function switches between R versions in renv projects
 which follow the 'cynkra RSPM snapshot' logic.
-This is done by replacing the respective entries in <code>renv.lock</code>.</p>
-<p>The following tasks are executed</p><ul>
-<li><p>Replace the R Version in <code>renv.lock</code></p></li>
+This means that each R version is tied to a specific RSPM snapshot.</p>
+<p>The function executes the following tasks:</p><ul>
+<li><p>Replace the R Version in <code>renv.lock</code>.</p></li>
 <li><p>Replace the RSPM snapshot in <code>renv.lock</code> with the one associated with the
-selected R Version</p></li>
-<li><p>(optional) execution of <code><a href='https://rstudio.github.io/renv//reference/update.html'>renv::update()</a></code></p></li>
-<li><p>(optional) execution of <code><a href='https://rstudio.github.io/renv//reference/snapshot.html'>renv::snapshot()</a></code></p></li>
+selected R Version.</p></li>
+<li><p>(optional) execution of <code><a href='https://rstudio.github.io/renv//reference/update.html'>renv::update()</a></code>.</p></li>
+<li><p>(optional) execution of <code><a href='https://rstudio.github.io/renv//reference/snapshot.html'>renv::snapshot()</a></code>.</p></li>
 </ul>
 
     </div>
@@ -183,8 +183,15 @@ Whether to call <code><a href='https://rstudio.github.io/renv//reference/snapsho
     <p>TRUE (invisibly)</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Currently only R version upgrades are supported, i.e. going from R 4.0.3 to
-R 4.0.4 (or higher).</p>
+    <p>When downgrading, the optional calls to <code><a href='https://rstudio.github.io/renv//reference/update.html'>renv::update()</a></code> and
+<code><a href='https://rstudio.github.io/renv//reference/snapshot.html'>renv::snapshot()</a></code> will not be executed
+(even if specified via their arguments.)
+Currently there is no easy way to downgrade all packages in renv projects
+to a specific RSPM snapshot.
+This should be a niche case anyhow and it is unclear if this will ever be
+supported.
+Note that this is different from restoring packages with renv per se for
+which <code><a href='https://rstudio.github.io/renv//reference/restore.html'>renv::restore()</a></code> should be used.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>get_snapshots</p></div>
