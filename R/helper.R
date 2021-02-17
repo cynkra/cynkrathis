@@ -24,10 +24,9 @@ get_snapshots <- function() {
 
   tbl$date <- as.Date(tbl$date)
   tbl$r_release_date <- as.Date(tbl$r_release_date)
-  tbl <- tbl[order(tbl$r_release_date, decreasing = TRUE), ]
+
+  # sort
+  tbl <- tbl[order(tbl$date, decreasing = TRUE), ]
 
   return(tbl)
 }
-
-
-# foo[order(foo$r_release_date, decreasing = FALSE),]
