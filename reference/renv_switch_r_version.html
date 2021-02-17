@@ -151,7 +151,11 @@ selected R Version</p></li>
 
     </div>
 
-    <pre class="usage"><span class='fu'>renv_switch_r_version</span><span class='op'>(</span>version <span class='op'>=</span> <span class='cn'>NULL</span>, update_packages <span class='op'>=</span> <span class='cn'>TRUE</span>, snapshot <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>renv_switch_r_version</span><span class='op'>(</span>
+  version <span class='op'>=</span> <span class='cn'>NULL</span>,
+  update_packages <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  snapshot <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -187,7 +191,7 @@ R 4.0.4 (or higher).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='fu'>renv_switch_r_version</span><span class='op'>(</span><span class='st'>"4.0.4"</span><span class='op'>)</span>
+<span class='fu'>renv_switch_r_version</span><span class='op'>(</span><span class='st'>"4.0.4"</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>
