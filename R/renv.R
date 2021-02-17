@@ -225,6 +225,8 @@ renv_switch_r_version <- function(version = NULL,
 
   cli::cli_alert("Replacing R Version and RSPM snapshot in {.file renv.lock}.")
 
+
+
   renvlock <- readLines("renv.lock")
 
   # replace R version
@@ -240,6 +242,9 @@ renv_switch_r_version <- function(version = NULL,
       new_snapshot
     )
   )
+
+  cli::cli_alert_success("New R Version: {.field {r_version_new}}.")
+  cli::cli_alert_success("New RSPM snapshot: {.field {new_snapshot}}.")
 
   writeLines(renvlock, "renv.lock")
 
@@ -261,7 +266,7 @@ renv_switch_r_version <- function(version = NULL,
       renv::update(prompt = FALSE)
     } else {
       cli::cli_alert_info("Don't forget to lift update your packages to the
-      new RSPM snapshot via {.fun renv::update}.")
+      new RSPM snapshot via {.fun renv::update}.", wrap = TRUE)
     }
 
     if (snapshot) {
