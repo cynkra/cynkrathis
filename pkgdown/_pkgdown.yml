@@ -25,9 +25,9 @@ authors:
   Kirill Müller:
     href: http://krlmlr.info
 
-
 reference:
   - title: renv
+    desc: renv helpers
     contents:
       - contains("renv")
   - title: Miscellaneous
