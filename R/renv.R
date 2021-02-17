@@ -30,8 +30,7 @@
 #' @examples
 #' \dontrun{
 #' init_renv(
-#'   snapshot_date = "2020-10-13",
-#'   additional_repos = c(e360 = "https://analytics.energie360.ch/drat"),
+#'   additional_repos = c(e360 = "https://$DOMAIN/drat"),
 #'   local_packages = structure(c(foo = "0.1.0", foo2 = "0.2.1"))
 #' )
 #' }
@@ -46,7 +45,7 @@ init_renv <- function(snapshot_date = NULL,
   unlink("renv/", recursive = TRUE)
 
   # valid R versions are stored in snapshots/
-  snapshots <- get_valid_snapshots()
+  snapshots <- get_snapshots()
   valid_dates <- as.character(snapshots$date)
 
   if (is.null(snapshot_date)) {
@@ -184,11 +183,13 @@ init_renv <- function(snapshot_date = NULL,
 #'  Currently only R version upgrades are supported, i.e. going from R 4.0.3 to
 #'  R 4.0.4 (or higher).
 #'
-#' @seealso get_valid_snapshots
+#' @seealso get_snapshots
 #' @return TRUE (invisibly)
 #' @export
 #' @examples
-#' renv_switch_r_version("4.0.4")
+#' \dontrun{
+#'   renv_switch_r_version("4.0.4")
+#' }
 renv_switch_r_version <- function(version = NULL,
                                   update_packages = TRUE,
                                   snapshot = TRUE) {

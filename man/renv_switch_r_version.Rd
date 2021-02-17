@@ -39,8 +39,10 @@ Currently only R version upgrades are supported, i.e. going from R 4.0.3 to
 R 4.0.4 (or higher).
 }
 \examples{
+\dontrun{
 renv_switch_r_version("4.0.4")
 }
+}
 \seealso{
-get_valid_snapshots
+get_snapshots
 }

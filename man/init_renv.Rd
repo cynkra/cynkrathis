@@ -46,8 +46,7 @@ regardless of the chose snapshot ID.
 \examples{
 \dontrun{
 init_renv(
-  snapshot_date = "2020-10-13",
-  additional_repos = c(e360 = "https://analytics.energie360.ch/drat"),
+  additional_repos = c(e360 = "https://$DOMAIN/drat"),
   local_packages = structure(c(foo = "0.1.0", foo2 = "0.2.1"))
 )
 }
