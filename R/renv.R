@@ -188,7 +188,7 @@ init_renv <- function(snapshot_date = NULL,
 #' @export
 #' @examples
 #' \dontrun{
-#'   renv_switch_r_version("4.0.4")
+#' renv_switch_r_version("4.0.4")
 #' }
 renv_switch_r_version <- function(version = NULL,
                                   update_packages = TRUE,
@@ -199,6 +199,16 @@ renv_switch_r_version <- function(version = NULL,
     len = 1,
     pattern = "[0-9][.][0-9][.][0-9]"
   )
+
+  # check if we downgrade
+  r_version_local <- as.numeric(gsub(
+    "[.]", "",
+    paste(R.Version()$major, R.Version()$minor, sep = ".")
+  ))
+  r_version_new <- as.numeric(gsub("[.]", "", version))
+  if (r_version_new < r_version_local) {
+    stop("Downgrading R Versions is currently not supported.")
+  }
 
   # check if renv.lock exists
   if (!file.exists("renv.lock")) {
