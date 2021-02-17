@@ -33,6 +33,7 @@ reference:
   - title: Miscellaneous
     desc: Optional project scaffolding helpers
     contents:
+      - get_snapshots
       - init_precommit
       - init_tic
       - init_gitignore
