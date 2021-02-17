@@ -12,3 +12,6 @@
 ^\.pre-commit-config\.yaml$
 ^man-roxygen$
 ^pkgdown$
+^docs$
+README.html
+^logo\.svg$

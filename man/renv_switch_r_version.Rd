@@ -40,7 +40,7 @@ R 4.0.4 (or higher).
 }
 \examples{
 \dontrun{
-renv_switch_r_version("4.0.4")
+  renv_switch_r_version("4.0.4")
 }
 }
 \seealso{
