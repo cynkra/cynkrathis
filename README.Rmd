@@ -33,9 +33,12 @@ cynkrathis::get_snapshots()
 
 ## Initialize {renv} with a given RSPM snapshot
 
-Choose the `"date"` column that is returned by `get_valid_snapshots()`.
-For example, for R 3.6.3 this would be "2020-02-29".
+By default `init_renv()` will select the `"recommended"` snapshot of the R version which is currently used.
 
 ```{r, eval=FALSE}
 cynkrathis::init_renv()
 ```
+
+## Miscellaneous helpers
+
+See the grouped [pkgdown reference]().
