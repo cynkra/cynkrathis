@@ -41,4 +41,4 @@ cynkrathis::init_renv()
 
 ## Miscellaneous helpers
 
-See the grouped [pkgdown reference]().
+See the grouped [pkgdown reference](https://cynkra.github.io/cynkrathis/reference/index.html).

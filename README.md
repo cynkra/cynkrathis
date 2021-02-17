@@ -20,20 +20,18 @@ can be listed.
 ``` r
 cynkrathis::get_snapshots()
 #>        id r_version r_release_date       date        type
-#> 7 1390593     4.0.4     2021-02-16 2021-02-16 recommended
-#> 6 1033374     4.0.3           <NA> 2021-01-27            
-#> 5     351     4.0.3     2020-10-10 2020-10-13 recommended
-#> 4     314     4.0.2     2020-06-22 2020-08-24            
-#> 3     301     4.0.2     2020-06-22 2020-07-13            
-#> 2     259     3.6.3     2020-02-29 2020-03-02            
-#> 1     151     3.5.3     2019-03-11 2019-03-11            
+#> 6 1390593     4.0.4     2021-02-16 2021-02-16 recommended
+#> 5 1033374     4.0.3           <NA> 2021-01-27            
+#> 4     351     4.0.3     2020-10-10 2020-10-13 recommended
+#> 3     314     4.0.2     2020-06-22 2020-08-24            
+#> 2     301     4.0.2     2020-06-22 2020-07-13            
+#> 1     259     3.6.3     2020-02-29 2020-03-02            
 #>                                                                note
-#> 7 dm 0.1.12, odbc 1.3.0, testthat 3.0.2, lifecycle 1.0.0, no hexbin
-#> 6                            dm >= 0.1.10, no hexbin, odbc >= 1.3.0
-#> 5                                                  rmarkdown >= 2.5
-#> 4                                                    dplyr >= 1.0.0
+#> 6 dm 0.1.12, odbc 1.3.0, testthat 3.0.2, lifecycle 1.0.0, no hexbin
+#> 5                            dm >= 0.1.10, no hexbin, odbc >= 1.3.0
+#> 4                                                  rmarkdown >= 2.5
 #> 3                                                    dplyr >= 1.0.0
-#> 2                                                                  
+#> 2                                                    dplyr >= 1.0.0
 #> 1
 ```
 
@@ -48,4 +46,5 @@ cynkrathis::init_renv()
 
 ## Miscellaneous helpers
 
-See the grouped [pkgdown reference]().
+See the grouped [pkgdown
+reference](https://cynkra.github.io/cynkrathis/reference/index.html).
