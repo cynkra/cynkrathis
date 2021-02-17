@@ -243,13 +243,12 @@ renv_switch_r_version <- function(version = NULL,
     )
   )
 
-  cli::cli_alert_success("New R Version: {.field {r_version_new}}.")
+  cli::cli_alert_success("New R Version: {.field {version}}.")
   cli::cli_alert_success("New RSPM snapshot: {.field {new_snapshot}}.")
 
   writeLines(renvlock, "renv.lock")
 
   if (requireNamespace("rstudioapi", quietly = TRUE)) {
-    cli::cli_alert("Restarting R session.")
     rstudioapi::restartSession()
   }
 
