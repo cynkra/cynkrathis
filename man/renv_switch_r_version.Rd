@@ -4,7 +4,11 @@
 \alias{renv_switch_r_version}
 \title{Switch between R versions in renv projects}
 \usage{
-renv_switch_r_version(version = NULL, update_packages = TRUE, snapshot = TRUE)
+renv_switch_r_version(
+  version = NULL,
+  update_packages = FALSE,
+  snapshot = FALSE
+)
 }
 \arguments{
 \item{version}{\verb{[character]}\cr
@@ -40,7 +44,7 @@ R 4.0.4 (or higher).
 }
 \examples{
 \dontrun{
-  renv_switch_r_version("4.0.4")
+renv_switch_r_version("4.0.4")
 }
 }
 \seealso{

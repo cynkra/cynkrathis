@@ -191,8 +191,8 @@ init_renv <- function(snapshot_date = NULL,
 #' renv_switch_r_version("4.0.4")
 #' }
 renv_switch_r_version <- function(version = NULL,
-                                  update_packages = TRUE,
-                                  snapshot = TRUE) {
+                                  update_packages = FALSE,
+                                  snapshot = FALSE) {
 
   # assertions
   checkmate::assert_character(version,
@@ -207,7 +207,7 @@ renv_switch_r_version <- function(version = NULL,
   ))
   r_version_new <- as.numeric(gsub("[.]", "", version))
   if (r_version_new < r_version_local) {
-    stop("Downgrading R Versions is currently not supported.")
+    downgrade <- TRUE
   }
 
   # check if renv.lock exists
@@ -246,16 +246,30 @@ renv_switch_r_version <- function(version = NULL,
     rstudioapi::restartSession()
   }
 
-  if (update_packages) {
-    cli::cli_alert("Calling {.fun renv::update} to update/downgrade all packages
-    to the new snapshot.", wrap = TRUE)
-    renv::update(prompt = FALSE)
-  }
+  # when downgrading we do not call renv::update() or renv::snapshot()
+  if (downgrade) {
+    cli::cli_alert_info("Detected a version downgrade.
+    When downgrading, automatic package updates and snapshotting are not
+    available.
+    R packages need to be re-installed manually.", wrap = TRUE)
+  } else {
+    if (update_packages) {
+      cli::cli_alert("Calling {.fun renv::update} to update/downgrade all
+      packages to the new RSPM snapshot.", wrap = TRUE)
+      renv::update(prompt = FALSE)
+    } else {
+      cli::cli_alert_info("Don't forget to lift update your packages to the
+      new RSPM snapshot via {.fun renv::update}.")
+    }
 
-  if (snapshot) {
-    cli::cli_alert("Calling {.fun renv::snapshot} to record the changed packages
-    in {.file renv.lock}.", wrap = TRUE)
-    renv::snapshot(prompt = FALSE)
+    if (snapshot) {
+      cli::cli_alert("Calling {.fun renv::snapshot} to record the changed
+      packages in {.file renv.lock}.", wrap = TRUE)
+      renv::snapshot(prompt = FALSE)
+    } else {
+      cli::cli_alert_info("Don't forget to snapshot your recent changes
+      by calling {.fun renv::snapshot}.", wrap = TRUE)
+    }
   }
 
   return(invisible(TRUE))
