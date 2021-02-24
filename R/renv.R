@@ -51,7 +51,8 @@ init_renv <- function(snapshot_date = NULL,
   if (is.null(snapshot_date)) {
     # get R version from current session
     r_version <- paste(R.Version()$major, R.Version()$minor, sep = ".")
-    snapshot_date <- snapshots[snapshots$r_version == r_version, "date"]
+    snapshot_date <- snapshots[snapshots$r_version == r_version &
+      snapshots$type == "recommended", "date"]
   }
 
   # assertions -----------------------------------------------------------------
