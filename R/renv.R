@@ -86,17 +86,17 @@ init_renv <- function(snapshot_date = NULL,
   # FIXME: check if we can make this better
   # otherwise new installations won't use the configured snapshot
   # write repos to .Rprofile
-  if (!is.null(additional_repos)) {
-    txt <- glue::glue('options(repos = c(
-    CRAN = "https://packagemanager.rstudio.com/cran/{snapshot_date}",
-    {names(additional_repos)} = "{additional_repos}"
-))', .trim = FALSE)
-  } else {
-    txt <- glue::glue('options(repos = c(
-    CRAN = "https://packagemanager.rstudio.com/cran/{snapshot_date}"
-))\n')
-  }
-  cat(txt, file = ".Rprofile")
+  # if (!is.null(additional_repos)) {
+#     txt <- glue::glue('options(repos = c(
+#     CRAN = "https://packagemanager.rstudio.com/cran/{snapshot_date}",
+#     {names(additional_repos)} = "{additional_repos}"
+# ))', .trim = FALSE)
+#   } else {
+#     txt <- glue::glue('options(repos = c(
+#     CRAN = "https://packagemanager.rstudio.com/cran/{snapshot_date}"
+# ))\n')
+#   }
+#   cat(txt, file = ".Rprofile")
 
   # print projects renv path: Problem: The library needs to be empty, otherwise
   # the wrong versions are stored in it (from previous renv inits)
