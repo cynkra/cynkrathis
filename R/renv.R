@@ -261,9 +261,10 @@ renv_switch_r_version <- function(version = NULL,
 
   writeLines(renvlock, "renv.lock")
 
-  if (requireNamespace("rstudioapi", quietly = TRUE)) {
-    rstudioapi::restartSession()
-  }
+  # FIXME this somehow causes "error occured during transmission" errors
+  # if (requireNamespace("rstudioapi", quietly = TRUE)) {
+  #   rstudioapi::restartSession()
+  # }
 
   # when downgrading we do not call renv::update() or renv::snapshot()
   if (downgrade) {
