@@ -117,7 +117,8 @@ init_renv <- function(snapshot_date = NULL,
   # - gert
 
   # scrape dependencies of project and install them
-  deps <- unique(renv::dependencies(progress = FALSE)$Package)
+  # FIXME this can be done better
+  deps <- ""
 
   if (!is.null(local_packages)) {
     deps <- setdiff(deps, names(local_packages))
@@ -125,7 +126,12 @@ init_renv <- function(snapshot_date = NULL,
   if (!is.null(exclude_local)) {
     deps <- setdiff(deps, exclude_local)
   }
-  renv::install(deps)
+  if (deps != "") {
+    renv::install(deps)
+  }
+  # installs deps from DESCRIPTION file. This is save then relying on
+  # renv::dependencies() because the latter cannot resolve GH deps
+  renv::install()
 
   # update renv
   av_pkgs <- utils::available.packages(repos = "https://packagemanager.rstudio.com/cran/latest") # nolint
