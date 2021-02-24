@@ -58,8 +58,8 @@ init_renv <- function(snapshot_date = NULL,
   if (!is.null(additional_repos)) {
     checkmate::assert_character(additional_repos, names = "named")
   }
-  checkmate::assert_subset(snapshot_date, valid_dates)
-  checkmate::assert_character(snapshot_date,
+  checkmate::assert_subset(as.character(snapshot_date), valid_dates)
+  checkmate::assert_character(as.character(snapshot_date),
     len = 1,
     pattern = "[0-9]{4}-[0-9]{2}-[0-9]{2}"
   )
