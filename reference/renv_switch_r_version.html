@@ -145,8 +145,8 @@ This means that each R version is tied to a specific RSPM snapshot.</p>
 <li><p>Replace the R Version in <code>renv.lock</code>.</p></li>
 <li><p>Replace the RSPM snapshot in <code>renv.lock</code> with the one associated with the
 selected R Version.</p></li>
-<li><p>(optional) execution of <code><a href='https://rstudio.github.io/renv//reference/update.html'>renv::update()</a></code>.</p></li>
-<li><p>(optional) execution of <code><a href='https://rstudio.github.io/renv//reference/snapshot.html'>renv::snapshot()</a></code>.</p></li>
+<li><p>(optional) execution of <code><a href='https://rstudio.github.io/renv/reference/update.html'>renv::update()</a></code>.</p></li>
+<li><p>(optional) execution of <code><a href='https://rstudio.github.io/renv/reference/snapshot.html'>renv::snapshot()</a></code>.</p></li>
 </ul>
 
     </div>
@@ -169,12 +169,12 @@ The R version to upgrade to.</p></td>
       <th>update_packages</th>
       <td><p><code>[logical]</code><br />
 Whether to update all packages to the new RSPM snapshot via
-<code><a href='https://rstudio.github.io/renv//reference/update.html'>renv::update()</a></code>.</p></td>
+<code><a href='https://rstudio.github.io/renv/reference/update.html'>renv::update()</a></code>.</p></td>
     </tr>
     <tr>
       <th>snapshot</th>
       <td><p><code>[logical]</code><br />
-Whether to call <code><a href='https://rstudio.github.io/renv//reference/snapshot.html'>renv::snapshot()</a></code> after all packages have been updated.</p></td>
+Whether to call <code><a href='https://rstudio.github.io/renv/reference/snapshot.html'>renv::snapshot()</a></code> after all packages have been updated.</p></td>
     </tr>
     </table>
 
@@ -183,15 +183,15 @@ Whether to call <code><a href='https://rstudio.github.io/renv//reference/snapsho
     <p>TRUE (invisibly)</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>When downgrading, the optional calls to <code><a href='https://rstudio.github.io/renv//reference/update.html'>renv::update()</a></code> and
-<code><a href='https://rstudio.github.io/renv//reference/snapshot.html'>renv::snapshot()</a></code> will not be executed
+    <p>When downgrading, the optional calls to <code><a href='https://rstudio.github.io/renv/reference/update.html'>renv::update()</a></code> and
+<code><a href='https://rstudio.github.io/renv/reference/snapshot.html'>renv::snapshot()</a></code> will not be executed
 (even if specified via their arguments.)
 Currently there is no easy way to downgrade all packages in renv projects
 to a specific RSPM snapshot.
 This should be a niche case anyhow and it is unclear if this will ever be
 supported.
 Note that this is different from restoring packages with renv per se for
-which <code><a href='https://rstudio.github.io/renv//reference/restore.html'>renv::restore()</a></code> should be used.</p>
+which <code><a href='https://rstudio.github.io/renv/reference/restore.html'>renv::restore()</a></code> should be used.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>get_snapshots</p></div>
