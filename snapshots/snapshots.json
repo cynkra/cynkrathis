@@ -47,5 +47,13 @@
     "date": "2021-02-16",
     "type": "recommended",
     "note": "dm 0.1.12, odbc 1.3.0, testthat 3.0.2, lifecycle 1.0.0, no hexbin"
+  },
+  {
+    "id": 1570705,
+    "r_version": "4.0.4",
+    "r_release_date": "2021-02-26",
+    "date": "2021-02-26",
+    "type": "",
+    "note": "renv 0.13.0"
   }
 ]
