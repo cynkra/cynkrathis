@@ -83,7 +83,7 @@
       <div class="navbar-brand-container">
         <a class="cynkra-logo-font" href="https://www.cynkra.com">cynkra</a>
         <a class="cynkra-logo" href="https://www.cynkra.com">&#9632;</a>
-        <a class="navbar-brand" href="../index.html">cynkrathis <small>v0.1.0</small></a>
+        <a class="navbar-brand" href="../index.html">cynkrathis <small>v0.2.0</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -125,6 +125,31 @@
       <small>Source: <a href='https://github.com/cynkra/cynkrathis/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="cynkrathis-020-2021-03-04" class="section level1">
+<h1 class="page-header" data-toc-text="0.2.0">
+<a href="#cynkrathis-020-2021-03-04" class="anchor"></a>cynkrathis 0.2.0 (2021-03-04)</h1>
+<ul>
+<li>
+<code><a href="../reference/init_renv.html">init_renv()</a></code>: rewrite function:
+<ul>
+<li>Remove arguments <code>local_packages</code> and <code>additional_repos</code>
+</li>
+<li>Rename argument <code>exclude_local</code> to <code>exclude</code>
+</li>
+<li>Add argument <code>convenience_packages</code>
+</li>
+<li>Use <code><a href="https://rstudio.github.io/renv/reference/scaffold.html">renv::scaffold()</a></code> instead of <code><a href="https://rstudio.github.io/renv/reference/init.html">renv::init()</a></code>
+</li>
+</ul>
+</li>
+<li>
+<code><a href="../reference/renv_switch_r_version.html">renv_switch_r_version()</a></code>:
+<ul>
+<li>remove arguments <code>snapshot</code> and <code>update</code> because these do not play well when changing an R version in the same session and are also troublesome after automatic restarts</li>
+</ul>
+</li>
+</ul>
+</div>
     <div id="cynkrathis-010-2021-02-17" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.0">
 <a href="#cynkrathis-010-2021-02-17" class="anchor"></a>cynkrathis 0.1.0 (2021-02-17)</h1>

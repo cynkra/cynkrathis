@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Init renv infrastructure (cynkra way) — init_renv • cynkrathis</title>
+<title>Initialize renv infrastructure (cynkra way) — init_renv • cynkrathis</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,11 +47,9 @@
 
 
 
-<meta property="og:title" content="Init renv infrastructure (cynkra way) — init_renv" />
+<meta property="og:title" content="Initialize renv infrastructure (cynkra way) — init_renv" />
 <meta property="og:description" content="Initializes renv setup by setting a predefined RStudio Package
 Manager (RSPM) snapshot.
-Optionally more 'minicran' repositories can be configured via argument
-additional_repos.
 Custom RSPM Snapshots can be configured via snapshot_date." />
 <meta property="og:image" content="/logo.svg" />
 <meta name="twitter:card" content="summary" />
@@ -88,7 +86,7 @@ Custom RSPM Snapshots can be configured via snapshot_date." />
       <div class="navbar-brand-container">
         <a class="cynkra-logo-font" href="https://www.cynkra.com">cynkra</a>
         <a class="cynkra-logo" href="https://www.cynkra.com">&#9632;</a>
-        <a class="navbar-brand" href="../index.html">cynkrathis <small>v0.1.0</small></a>
+        <a class="navbar-brand" href="../index.html">cynkrathis <small>v0.2.0</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -126,7 +124,7 @@ Custom RSPM Snapshots can be configured via snapshot_date." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Init renv infrastructure (cynkra way)</h1>
+    <h1>Initialize renv infrastructure (cynkra way)</h1>
     <small class="dont-index">Source: <a href='https://github.com/cynkra/cynkrathis/blob/master/R/renv.R'><code>R/renv.R</code></a></small>
     <div class="hidden name"><code>init_renv.Rd</code></div>
     </div>
@@ -134,17 +132,10 @@ Custom RSPM Snapshots can be configured via snapshot_date." />
     <div class="ref-description">
     <p>Initializes renv setup by setting a predefined RStudio Package
 Manager (RSPM) snapshot.
-Optionally more 'minicran' repositories can be configured via argument
-<code>additional_repos</code>.
 Custom RSPM Snapshots can be configured via <code>snapshot_date</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>init_renv</span><span class='op'>(</span>
-  snapshot_date <span class='op'>=</span> <span class='cn'>NULL</span>,
-  additional_repos <span class='op'>=</span> <span class='cn'>NULL</span>,
-  local_packages <span class='op'>=</span> <span class='cn'>NULL</span>,
-  exclude_local <span class='op'>=</span> <span class='cn'>NULL</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>init_renv</span><span class='op'>(</span>snapshot_date <span class='op'>=</span> <span class='cn'>NULL</span>, exclude <span class='op'>=</span> <span class='cn'>NULL</span>, convenience_pkgs <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -152,30 +143,28 @@ Custom RSPM Snapshots can be configured via <code>snapshot_date</code>.</p>
     <tr>
       <th>snapshot_date</th>
       <td><p><code>[integer]</code><br />
-A valid RSPM snapshot ID. By default the latest valid ID is chosen.
-List of valid IDs: TBD.</p></td>
+A valid RSPM snapshot date. By default the "recommended" date from
+<code><a href='get_snapshots.html'>get_snapshots()</a></code> for the respective R version is chosen.</p></td>
     </tr>
     <tr>
-      <th>additional_repos</th>
+      <th>exclude</th>
       <td><p><code>[named character]</code><br />
-Additional repos besides the RSPM one.
-Must be a named character vector.</p></td>
+Packages to exclude from <code><a href='https://rstudio.github.io/renv/reference/install.html'>renv::install()</a></code>.
+Useful if a package is not available in the available repositories
+(check with <code>getOption("repos"</code>) to prevent <code>init_renv()</code> to fail.
+This should only be a temporary workaround - consider making local
+packages available in a minicran-like repository.</p></td>
     </tr>
     <tr>
-      <th>local_packages</th>
-      <td><p><code>[list]</code><br />
-Packages to exclude from the <code><a href='https://rstudio.github.io/renv/reference/install.html'>renv::install()</a></code> call and to install
-from local sources.
-Needs the package name and an explicit version.
-This is useful for local package sources used in the project which are not
-available in one of the repos configured in the project.</p></td>
-    </tr>
-    <tr>
-      <th>exclude_local</th>
-      <td><p><code>[named character]</code><br />
-Local packages to exclude from <code><a href='https://rstudio.github.io/renv/reference/install.html'>renv::install()</a></code>.
-Required if the package is only available locally.
-If <code>local_packages</code> was set, this argument can be ignored.</p></td>
+      <th>convenience_pkgs</th>
+      <td><p><code>[logical]</code><br />
+Install additional opinionated convenience packages?
+The following packages would be installed:</p><ul>
+<li><p>usethis</p></li>
+<li><p>styler</p></li>
+<li><p>gert</p></li>
+<li><p>krmlr/fledge</p></li>
+</ul></td>
     </tr>
     </table>
 
@@ -183,13 +172,12 @@ If <code>local_packages</code> was set, this argument can be ignored.</p></td>
 
     <p>During the process, the latest CRAN version of renv will be installed,
 regardless of the chose snapshot ID.</p>
+<p>The heuristic for setting the correct RSPM binary repo currently only supports
+Windows, macOS and Ubuntu 20.04.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='fu'>init_renv</span><span class='op'>(</span>
-  additional_repos <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>e360 <span class='op'>=</span> <span class='st'>"https://$DOMAIN/drat"</span><span class='op'>)</span>,
-  local_packages <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>foo <span class='op'>=</span> <span class='st'>"0.1.0"</span>, foo2 <span class='op'>=</span> <span class='st'>"0.2.1"</span><span class='op'>)</span><span class='op'>)</span>
-<span class='op'>)</span>
+<span class='fu'>init_renv</span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>
