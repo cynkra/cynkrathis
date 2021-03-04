@@ -181,21 +181,21 @@ init_renv <- function(snapshot_date = NULL,
 #'
 #' @param version `[character]`\cr
 #'   The R version to upgrade to.
-#' @param update_packages `[logical]`\cr
-#'   Whether to update all packages to the new RSPM snapshot via
-#'  `renv::update()`.
-#' @param snapshot `[logical]`\cr
-#'   Whether to call `renv::snapshot()` after all packages have been updated.
-#' @details
-#'  When downgrading, the optional calls to `renv::update()` and
-#'  `renv::snapshot()` will not be executed
-#'  (even if specified via their arguments.)
-#'  Currently there is no easy way to downgrade all packages in renv projects
-#'  to a specific RSPM snapshot.
-#'  This should be a niche case anyhow and it is unclear if this will ever be
-#'  supported.
-#'  Note that this is different from restoring packages with {renv} per se for
-#'  which `renv::restore()` should be used.
+# @param update_packages `[logical]`\cr
+#   Whether to update all packages to the new RSPM snapshot via
+#  `renv::update()`.
+# @param snapshot `[logical]`\cr
+#   Whether to call `renv::snapshot()` after all packages have been updated.
+# @details
+#  When downgrading, the optional calls to `renv::update()` and
+#  `renv::snapshot()` will not be executed
+#  (even if specified via their arguments.)
+#  Currently there is no easy way to downgrade all packages in renv projects
+#  to a specific RSPM snapshot.
+#  This should be a niche case anyhow and it is unclear if this will ever be
+#  supported.
+#  Note that this is different from restoring packages with {renv} per se for
+#  which `renv::restore()` should be used.
 #'
 #' @seealso get_snapshots
 #' @return TRUE (invisibly)
@@ -204,9 +204,10 @@ init_renv <- function(snapshot_date = NULL,
 #' \dontrun{
 #' renv_switch_r_version("4.0.4")
 #' }
-renv_switch_r_version <- function(version = NULL,
-                                  update_packages = FALSE,
-                                  snapshot = FALSE) {
+renv_switch_r_version <- function(version = NULL
+                                  # update_packages = FALSE,
+                                  # snapshot = FALSE
+                                  ) {
 
   # assertions
   checkmate::assert_character(version,
@@ -215,16 +216,16 @@ renv_switch_r_version <- function(version = NULL,
   )
 
   # check if we downgrade
-  r_version_local <- as.numeric(gsub(
-    "[.]", "",
-    paste(R.Version()$major, R.Version()$minor, sep = ".")
-  ))
-  r_version_new <- as.numeric(gsub("[.]", "", version))
-  if (r_version_new < r_version_local) {
-    downgrade <- TRUE
-  } else {
-    downgrade <- FALSE
-  }
+  # r_version_local <- as.numeric(gsub(
+  #   "[.]", "",
+  #   paste(R.Version()$major, R.Version()$minor, sep = ".")
+  # ))
+  # r_version_new <- as.numeric(gsub("[.]", "", version))
+  # if (r_version_new < r_version_local) {
+  #   downgrade <- TRUE
+  # } else {
+  #   downgrade <- FALSE
+  # }
 
   # check if renv.lock exists
   if (!file.exists("renv.lock")) {
@@ -267,30 +268,30 @@ renv_switch_r_version <- function(version = NULL,
   # }
 
   # when downgrading we do not call renv::update() or renv::snapshot()
-  if (downgrade) {
-    cli::cli_alert_info("Detected a version downgrade.
-    When downgrading, automatic package updates and snapshotting are not
-    available.
-    R packages need to be re-installed manually.", wrap = TRUE)
-  } else {
-    if (update_packages) {
-      cli::cli_alert("Calling {.fun renv::update} to update/downgrade all
-      packages to the new RSPM snapshot.", wrap = TRUE)
-      renv::update(prompt = FALSE)
-    } else {
-      cli::cli_alert_info("Don't forget to lift update your packages to the
-      new RSPM snapshot via {.fun renv::update}.", wrap = TRUE)
-    }
-
-    if (snapshot) {
-      cli::cli_alert("Calling {.fun renv::snapshot} to record the changed
-      packages in {.file renv.lock}.", wrap = TRUE)
-      renv::snapshot(prompt = FALSE)
-    } else {
-      cli::cli_alert_info("Don't forget to snapshot your recent changes
-      by calling {.fun renv::snapshot}.", wrap = TRUE)
-    }
-  }
+  # if (downgrade) {
+  #   cli::cli_alert_info("Detected a version downgrade.
+  #   When downgrading, automatic package updates and snapshotting are not
+  #   available.
+  #   R packages need to be re-installed manually.", wrap = TRUE)
+  # } else {
+  #   if (update_packages) {
+  #     cli::cli_alert("Calling {.fun renv::update} to update/downgrade all
+  #     packages to the new RSPM snapshot.", wrap = TRUE)
+  #     renv::update(prompt = FALSE)
+  #   } else {
+  #     cli::cli_alert_info("Don't forget to lift update your packages to the
+  #     new RSPM snapshot via {.fun renv::update}.", wrap = TRUE)
+  #   }
+  #
+  #   if (snapshot) {
+  #     cli::cli_alert("Calling {.fun renv::snapshot} to record the changed
+  #     packages in {.file renv.lock}.", wrap = TRUE)
+  #     renv::snapshot(prompt = FALSE)
+  #   } else {
+  #     cli::cli_alert_info("Don't forget to snapshot your recent changes
+  #     by calling {.fun renv::snapshot}.", wrap = TRUE)
+  #   }
+  # }
 
   return(invisible(TRUE))
 }

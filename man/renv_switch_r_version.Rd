@@ -4,22 +4,11 @@
 \alias{renv_switch_r_version}
 \title{Switch between R versions in renv projects}
 \usage{
-renv_switch_r_version(
-  version = NULL,
-  update_packages = FALSE,
-  snapshot = FALSE
-)
+renv_switch_r_version(version = NULL)
 }
 \arguments{
 \item{version}{\verb{[character]}\cr
 The R version to upgrade to.}
-
-\item{update_packages}{\verb{[logical]}\cr
-Whether to update all packages to the new RSPM snapshot via
-\code{renv::update()}.}
-
-\item{snapshot}{\verb{[logical]}\cr
-Whether to call \code{renv::snapshot()} after all packages have been updated.}
 }
 \value{
 TRUE (invisibly)
@@ -37,17 +26,6 @@ selected R Version.
 \item (optional) execution of \code{renv::update()}.
 \item (optional) execution of \code{renv::snapshot()}.
 }
-}
-\details{
-When downgrading, the optional calls to \code{renv::update()} and
-\code{renv::snapshot()} will not be executed
-(even if specified via their arguments.)
-Currently there is no easy way to downgrade all packages in renv projects
-to a specific RSPM snapshot.
-This should be a niche case anyhow and it is unclear if this will ever be
-supported.
-Note that this is different from restoring packages with {renv} per se for
-which \code{renv::restore()} should be used.
 }
 \examples{
 \dontrun{
