@@ -2,43 +2,42 @@
 #'
 #' @description Initializes {renv} setup by setting a predefined RStudio Package
 #' Manager (RSPM) snapshot.
-#' Optionally more 'minicran' repositories can be configured via argument
-#' `additional_repos`.
 #' Custom RSPM Snapshots can be configured via `snapshot_date`.
 #'
 #' @param snapshot_date `[integer]`\cr
 #'   A valid RSPM snapshot date. By default the "recommended" date from
 #'   `get_snapshots()` for the respective R version is chosen.
-#' @param additional_repos `[named character]`\cr
-#'   Additional repos besides the RSPM one.
-#'   Must be a named character vector.
-#' @param local_packages `[list]`\cr
-#'   Packages to exclude from the `renv::install()` call and to install
-#'   from local sources.
-#'   Needs the package name and an explicit version.
-#'   This is useful for local package sources used in the project which are not
-#'   available in one of the repos configured in the project.
-#' @param exclude_local `[named character]`\cr
-#'   Local packages to exclude from `renv::install()`.
-#'   Required if the package is only available locally.
-#'   If `local_packages` was set, this argument can be ignored.
+#' @param exclude `[named character]`\cr
+#'   Packages to exclude from `renv::install()`.
+#'   Useful if a package is not available in the available repositories
+#'   (check with `getOption("repos"`) to prevent `init_renv()` to fail.
+#'   This should only be a temporary workaround - consider making local
+#'   packages available in a minicran-like repository.
+#' @param convenience_pkgs `[logical]`\cr
+#'   Install additional opinionated convenience packages?
+#'   The following packages would be installed:
+#'
+#'   - usethis
+#'   - styler
+#'   - gert
+#'   - krmlr/fledge
+#'
 #' @details
 #' During the process, the latest CRAN version of {renv} will be installed,
 #' regardless of the chose snapshot ID.
+#'
+#' The heuristic for setting the correct RSPM binary repo currently only supports
+#' Windows, macOS and Ubuntu 20.04.
 #' @importFrom utils tail available.packages
 #' @importFrom rstudioapi restartSession
 #' @examples
 #' \dontrun{
-#' init_renv(
-#'   additional_repos = c(e360 = "https://$DOMAIN/drat"),
-#'   local_packages = structure(c(foo = "0.1.0", foo2 = "0.2.1"))
-#' )
+#' init_renv()
 #' }
 #' @export
 init_renv <- function(snapshot_date = NULL,
-                      additional_repos = NULL,
-                      local_packages = NULL,
-                      exclude_local = NULL) {
+                      exclude = NULL,
+                      convenience_pkgs = FALSE) {
 
   # clean any leftover renv artifacts (and .RProfile)
   unlink(c(".RProfile", "renv.lock", ".Renviron"))
@@ -48,6 +47,7 @@ init_renv <- function(snapshot_date = NULL,
   snapshots <- get_snapshots()
   valid_dates <- as.character(snapshots$date)
 
+  # if no snapshot is given, infer it from the used R version
   if (is.null(snapshot_date)) {
     # get R version from current session
     r_version <- paste(R.Version()$major, R.Version()$minor, sep = ".")
@@ -56,53 +56,57 @@ init_renv <- function(snapshot_date = NULL,
   }
 
   # assertions -----------------------------------------------------------------
-  if (!is.null(additional_repos)) {
-    checkmate::assert_character(additional_repos, names = "named")
-  }
+
   checkmate::assert_subset(as.character(snapshot_date), valid_dates)
   checkmate::assert_character(as.character(snapshot_date),
     len = 1,
     pattern = "[0-9]{4}-[0-9]{2}-[0-9]{2}"
   )
-  checkmate::assert_named(local_packages)
 
   # renv init ------------------------------------------------------------------
-  renv::init(
-    bare = TRUE,
-    restart = FALSE,
-    settings = list(
-      repos = c(
-        CRAN = glue::glue("https://packagemanager.rstudio.com/cran/{snapshot_date}"), # nolint
-        additional_repos
-      )
+
+  # hard to set the correct binary path for all systems
+  # on non-linux systems we default to https://packagemanager.rstudio.com/cran/
+  # and on Linux systems we assume Ubuntu 20.04
+
+  if (Sys.info()[["sysname"]] != "Linux") {
+    repos <- c(
+      CRAN = glue::glue("https://packagemanager.rstudio.com/cran/{snapshot_date}") # nolint
     )
+  } else {
+    repos <- c(
+      CRAN = glue::glue("https://packagemanager.rstudio.com/cran/__linux__/focal/{snapshot_date}") # nolint
+    )
+  }
+
+  renv::scaffold(
+    repos = repos
   )
 
-  options(repos = c(
-    CRAN = glue::glue("https://packagemanager.rstudio.com/cran/{snapshot_date}"), # nolint
-    additional_repos
-  ))
+  # set repos for current session
+  options(repos = repos)
 
   # FIXME: check if we can make this better
   # otherwise new installations won't use the configured snapshot
   # write repos to .Rprofile
   # if (!is.null(additional_repos)) {
-#     txt <- glue::glue('options(repos = c(
-#     CRAN = "https://packagemanager.rstudio.com/cran/{snapshot_date}",
-#     {names(additional_repos)} = "{additional_repos}"
-# ))', .trim = FALSE)
-#   } else {
-#     txt <- glue::glue('options(repos = c(
-#     CRAN = "https://packagemanager.rstudio.com/cran/{snapshot_date}"
-# ))\n')
-#   }
-#   cat(txt, file = ".Rprofile")
+  #     txt <- glue::glue('options(repos = c(
+  #     CRAN = "https://packagemanager.rstudio.com/cran/{snapshot_date}",
+  #     {names(additional_repos)} = "{additional_repos}"
+  # ))', .trim = FALSE)
+  #   } else {
+  #     txt <- glue::glue('options(repos = c(
+  #     CRAN = "https://packagemanager.rstudio.com/cran/{snapshot_date}"
+  # ))\n')
+  #   }
+  #   cat(txt, file = ".Rprofile")
 
   # print projects renv path: Problem: The library needs to be empty, otherwise
   # the wrong versions are stored in it (from previous renv inits)
-  renv_dir <- .libPaths()[1]
-  unlink(renv_dir, recursive = TRUE)
-  dir.create(renv_dir, recursive = TRUE, showWarnings = FALSE)
+  # renv_dir <- .libPaths()[1]
+  # unlink(renv_dir, recursive = TRUE)
+  # dir.create(renv_dir, recursive = TRUE, showWarnings = FALSE)
+
 
   # check if any .Rmd files exist to detect dependencies in .Rmd files via renv
   if (length(list.files(pattern = ".Rmd", recursive = TRUE) > 0)) {
@@ -110,57 +114,42 @@ init_renv <- function(snapshot_date = NULL,
     renv::install("rmarkdown")
   }
 
-  # FIXME:
-  # place for default packages here that we want to have in every project, even
-  # though they might not be used in scripts
-  # - usethis
-  # - styler
-  # - gert
-
   # scrape dependencies of project and install them
   # FIXME this can be done better
-  deps <- ""
+  deps <- renv::dependencies(errors = "reported", dev = TRUE)$Package
 
-  if (!is.null(local_packages)) {
-    deps <- setdiff(deps, names(local_packages))
+  if (convenience_pkgs) {
+    deps <- append(
+      deps,
+      c("usethis", "styler", "gert", "krlmlr/fledge")
+    )
   }
-  if (!is.null(exclude_local)) {
-    deps <- setdiff(deps, exclude_local)
+
+  if (!is.null(exclude)) {
+    deps <- setdiff(deps, exclude)
   }
-  if (deps != "") {
-    renv::install(deps)
-  }
-  # installs deps from DESCRIPTION file. This is save then relying on
-  # renv::dependencies() because the latter cannot resolve GH deps
+
+  # FIXME: renv::deps cannot resolve GH deps https://github.com/rstudio/renv/issues/670
+  # calling renv::install() plain for now
+  # renv::install(deps)
   renv::install()
 
-  # update renv
+  # always install latest renv version
   av_pkgs <- utils::available.packages(repos = "https://packagemanager.rstudio.com/cran/latest") # nolint
   renv_latest <- av_pkgs[rownames(av_pkgs) == "renv", "Version"]
 
-  renv::snapshot(prompt = FALSE)
-
-  if (!is.null(local_packages)) {
-    pkgs <- names(local_packages)
-    versions <- local_packages
-    purrr::walk2(pkgs, versions, ~ {
-      renv::install(glue::glue("{.x}@{.y}"))
-      renv::record(rlang::list2(!!.x := list(
-        Package = .x,
-        Version = .y,
-        Source = "Local"
-      )))
-    })
-  }
-
+  cli::cli_alert_info("Installing latest {.field renv} release version.")
   renv::upgrade(version = renv_latest, prompt = FALSE)
 
-  renv::restore(prompt = FALSE)
+  cli::cli_alert_info("Snapshotting installed packages.")
+  renv::snapshot(prompt = FALSE)
+
   renv::rehash(prompt = FALSE)
 
   if (Sys.getenv("RSTUDIO") == 1) {
     rstudioapi::restartSession()
   }
+  renv::restore()
 }
 
 #' Switch between R versions in renv projects
@@ -207,7 +196,7 @@ init_renv <- function(snapshot_date = NULL,
 renv_switch_r_version <- function(version = NULL
                                   # update_packages = FALSE,
                                   # snapshot = FALSE
-                                  ) {
+) {
 
   # assertions
   checkmate::assert_character(version,

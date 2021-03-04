@@ -4,50 +4,44 @@
 \alias{init_renv}
 \title{Initialize {renv} infrastructure (cynkra way)}
 \usage{
-init_renv(
-  snapshot_date = NULL,
-  additional_repos = NULL,
-  local_packages = NULL,
-  exclude_local = NULL
-)
+init_renv(snapshot_date = NULL, exclude = NULL, convenience_pkgs = FALSE)
 }
 \arguments{
 \item{snapshot_date}{\verb{[integer]}\cr
 A valid RSPM snapshot date. By default the "recommended" date from
 \code{get_snapshots()} for the respective R version is chosen.}
 
-\item{additional_repos}{\verb{[named character]}\cr
-Additional repos besides the RSPM one.
-Must be a named character vector.}
+\item{exclude}{\verb{[named character]}\cr
+Packages to exclude from \code{renv::install()}.
+Useful if a package is not available in the available repositories
+(check with \verb{getOption("repos"}) to prevent \code{init_renv()} to fail.
+This should only be a temporary workaround - consider making local
+packages available in a minicran-like repository.}
 
-\item{local_packages}{\verb{[list]}\cr
-Packages to exclude from the \code{renv::install()} call and to install
-from local sources.
-Needs the package name and an explicit version.
-This is useful for local package sources used in the project which are not
-available in one of the repos configured in the project.}
-
-\item{exclude_local}{\verb{[named character]}\cr
-Local packages to exclude from \code{renv::install()}.
-Required if the package is only available locally.
-If \code{local_packages} was set, this argument can be ignored.}
+\item{convenience_pkgs}{\verb{[logical]}\cr
+Install additional opinionated convenience packages?
+The following packages would be installed:
+\itemize{
+\item usethis
+\item styler
+\item gert
+\item krmlr/fledge
+}}
 }
 \description{
 Initializes {renv} setup by setting a predefined RStudio Package
 Manager (RSPM) snapshot.
-Optionally more 'minicran' repositories can be configured via argument
-\code{additional_repos}.
 Custom RSPM Snapshots can be configured via \code{snapshot_date}.
 }
 \details{
 During the process, the latest CRAN version of {renv} will be installed,
 regardless of the chose snapshot ID.
+
+The heuristic for setting the correct RSPM binary repo currently only supports
+Windows, macOS and Ubuntu 20.04.
 }
 \examples{
 \dontrun{
-init_renv(
-  additional_repos = c(e360 = "https://$DOMAIN/drat"),
-  local_packages = structure(c(foo = "0.1.0", foo2 = "0.2.1"))
-)
+init_renv()
 }
 }
