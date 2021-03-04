@@ -2,7 +2,7 @@
 % Please edit documentation in R/renv.R
 \name{init_renv}
 \alias{init_renv}
-\title{Init renv infrastructure (cynkra way)}
+\title{Initialize {renv} infrastructure (cynkra way)}
 \usage{
 init_renv(
   snapshot_date = NULL,
@@ -13,8 +13,8 @@ init_renv(
 }
 \arguments{
 \item{snapshot_date}{\verb{[integer]}\cr
-A valid RSPM snapshot ID. By default the latest valid ID is chosen.
-List of valid IDs: TBD.}
+A valid RSPM snapshot date. By default the "recommended" date from
+\code{get_snapshots()} for the respective R version is chosen.}
 
 \item{additional_repos}{\verb{[named character]}\cr
 Additional repos besides the RSPM one.

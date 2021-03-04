@@ -1,4 +1,4 @@
-#' Init renv infrastructure (cynkra way)
+#' Initialize {renv} infrastructure (cynkra way)
 #'
 #' @description Initializes {renv} setup by setting a predefined RStudio Package
 #' Manager (RSPM) snapshot.
@@ -7,8 +7,8 @@
 #' Custom RSPM Snapshots can be configured via `snapshot_date`.
 #'
 #' @param snapshot_date `[integer]`\cr
-#'   A valid RSPM snapshot ID. By default the latest valid ID is chosen.
-#'   List of valid IDs: TBD.
+#'   A valid RSPM snapshot date. By default the "recommended" date from
+#'   `get_snapshots()` for the respective R version is chosen.
 #' @param additional_repos `[named character]`\cr
 #'   Additional repos besides the RSPM one.
 #'   Must be a named character vector.
