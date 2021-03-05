@@ -11,7 +11,7 @@ init_renv(snapshot_date = NULL, exclude = NULL, convenience_pkgs = FALSE)
 A valid RSPM snapshot date. By default the "recommended" date from
 \code{get_snapshots()} for the respective R version is chosen.}
 
-\item{exclude}{\verb{[named character]}\cr
+\item{exclude}{\verb{[character]}\cr
 Packages to exclude from \code{renv::install()}.
 Useful if a package is not available in the available repositories
 (check with \verb{getOption("repos"}) to prevent \code{init_renv()} to fail.
@@ -25,7 +25,7 @@ The following packages would be installed:
 \item usethis
 \item styler
 \item gert
-\item krmlr/fledge
+\item krlmlr/fledge
 }}
 }
 \description{

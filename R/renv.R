@@ -7,7 +7,7 @@
 #' @param snapshot_date `[integer]`\cr
 #'   A valid RSPM snapshot date. By default the "recommended" date from
 #'   `get_snapshots()` for the respective R version is chosen.
-#' @param exclude `[named character]`\cr
+#' @param exclude `[character]`\cr
 #'   Packages to exclude from `renv::install()`.
 #'   Useful if a package is not available in the available repositories
 #'   (check with `getOption("repos"`) to prevent `init_renv()` to fail.
@@ -20,7 +20,7 @@
 #'   - usethis
 #'   - styler
 #'   - gert
-#'   - krmlr/fledge
+#'   - krlmlr/fledge
 #'
 #' @details
 #' During the process, the latest CRAN version of {renv} will be installed,
