@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • cynkrathis</title>
+<title>Deployment helpers for internal minicran packages — deploy • cynkrathis</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,7 +47,25 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Deployment helpers for internal minicran packages — deploy" />
+<meta property="og:description" content="Builds and deploys a local package to a git repository in a CRAN like
+structure.
+The resulting git repository can then be served via
+RStudio Connect and accessed as an
+additional repository next to the main CRAN repository (by setting it via
+options(repos = )).
+RStudio Connect can crawl the repository in a defined internal when deploying
+the git repository via &quot;Import from git&quot;.
+Changes (i.e. new package versions) are picked up automatically.
+This is an alternative to hosting and using a private instance of
+RStudio Package Manager.
+The function executes the following tasks:
+Build a tarball of the package via pkgbuild::build().
+Add the built package in a CRAN like structure to a temporary git clone of the upstream git repository via drat. ``
+Render (and create if missing) the drat package website.
+Commit and push the changes to the git repository.
+
+" />
 <meta property="og:image" content="/logo.svg" />
 <meta name="twitter:card" content="summary" />
 
@@ -68,7 +86,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -119,110 +137,67 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Deployment helpers for internal minicran packages</h1>
+    <small class="dont-index">Source: <a href='https://github.com/cynkra/cynkrathis/blob/master/R/deploy.R'><code>R/deploy.R</code></a></small>
+    <div class="hidden name"><code>deploy.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Builds and deploys a local package to a git repository in a CRAN like
+structure.</p>
+<p>The resulting git repository can then be served via
+<a href='https://rstudio.com/products/connect/'>RStudio Connect</a> and accessed as an
+additional repository next to the main CRAN repository (by setting it via
+<code><a href='https://rdrr.io/r/base/options.html'>options(repos = )</a></code>).
+RStudio Connect can crawl the repository in a defined internal when deploying
+the git repository via "Import from git".
+Changes (i.e. new package versions) are picked up automatically.</p>
+<p>This is an alternative to hosting and using a private instance of
+<a href='https://rstudio.com/products/package-manager/'>RStudio Package Manager</a>.</p>
+<p>The function executes the following tasks:</p><ul>
+<li><p>Build a tarball of the package via <code><a href='https://rdrr.io/pkg/pkgbuild/man/build.html'>pkgbuild::build()</a></code>.</p></li>
+<li><p>Add the built package in a CRAN like structure to a temporary git clone of the upstream git repository via <span class="pkg">drat</span>. ``</p></li>
+<li><p>Render (and create if missing) the <span class="pkg">drat</span> package website.</p></li>
+<li><p>Commit and push the changes to the git repository.</p></li>
+</ul>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    </div>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-renv" class="hasAnchor"><a href="#section-renv" class="anchor"></a>renv</h2>
-          <p class="section-desc"><p>renv helpers</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="init_renv.html">init_renv()</a></code> </p>
-        </td>
-        <td><p>Initialize renv infrastructure (cynkra way)</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="renv_switch_r_version.html">renv_switch_r_version()</a></code> </p>
-        </td>
-        <td><p>Switch between R versions in renv projects</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-rstudio-connect" class="hasAnchor"><a href="#section-rstudio-connect" class="anchor"></a>RStudio Connect</h2>
-          <p class="section-desc"><p>RStudio Connect helpers</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="deploy.html">deploy_minicran_package()</a></code> </p>
-        </td>
-        <td><p>Deployment helpers for internal minicran packages</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-miscellaneous" class="hasAnchor"><a href="#section-miscellaneous" class="anchor"></a>Miscellaneous</h2>
-          <p class="section-desc"><p>Optional project scaffolding helpers</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="get_snapshots.html">get_snapshots()</a></code> </p>
-        </td>
-        <td><p>Return metadata for cynkra RSPM snapshots</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="init_precommit.html">init_precommit()</a></code> </p>
-        </td>
-        <td><p>Use precommit with that project</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="init_tic.html">init_tic()</a></code> </p>
-        </td>
-        <td><p>Initialize tic CI structure</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="init_gitignore.html">init_gitignore()</a></code> </p>
-        </td>
-        <td><p>Write fully equipped gitignore files</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="init_lintr.html">init_lintr()</a></code> </p>
-        </td>
-        <td><p>Initialize lintr config</p></td>
-      </tr>
-    </tbody>
+    <pre class="usage"><span class='fu'>deploy_minicran_package</span><span class='op'>(</span><span class='va'>drat_repo</span>, commit_message <span class='op'>=</span> <span class='cn'>NULL</span>, dry_run <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>drat_repo</th>
+      <td><p><code>[character]</code><br />
+The git repository to deploy to. Can be any git vendor.</p></td>
+    </tr>
+    <tr>
+      <th>commit_message</th>
+      <td><p><code>[character]</code><br />
+An optional git commit message. If not supplied, the message will be of the
+form <code>Update &lt;pkg&gt; to version &lt;version&gt;</code> with the values inferred from the
+DESCRIPTION file.</p></td>
+    </tr>
+    <tr>
+      <th>dry_run</th>
+      <td><p><code>[logical]</code><br />
+When <code>TRUE</code>, the final git commit/push steps are skipped.</p></td>
+    </tr>
     </table>
-  </div>
 
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+
+<span class='fu'>deploy_local_package</span><span class='op'>(</span>drat_repo <span class='op'>=</span> <span class='st'>"https://github.com/myuser/mydratrepo.git"</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
