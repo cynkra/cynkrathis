@@ -1,7 +1,6 @@
-# cynkrathis 0.2.0.9000 (2021-03-04)
+# cynkrathis 0.3.0 (2021-03-17)
 
-- Internal changes only.
-
+- add `deploy_minicran_package()` (#16)
 
 # cynkrathis 0.2.0 (2021-03-04)
 
