@@ -1,15 +1,18 @@
 test_that("deploy_minicran_package()", {
-  repo_name <- "cynkrathis-drat-test"
+
+  options(usethis.quiet = TRUE)
+
+  repo_name <- "/cynkrathis-drat-test"
   dir <- paste0(tempdir(), repo_name)
   usethis::create_project(dir, open = FALSE)
 
-  withr::with_dir(dir, {
-    usethis::use_git()
-    usethis::use_github()
-  })
+  # withr::with_dir(dir, {
+  #   usethis::use_git()
+  #   usethis::use_github()
+  # })
 
-  expect_success(
-    deploy_minicran_package("https://github.com/pat-s/drat-test",
+  expect_true(
+    deploy_minicran_package(sprintf("https://github.com/pat-s%s", repo_name),
       dry_run = TRUE
     )
   )

@@ -3,14 +3,13 @@
 \name{deploy}
 \alias{deploy}
 \alias{deploy_minicran_package}
-\title{Deployment Helpers for Internal Minicran Packages}
+\title{Deployment helpers for internal minicran packages}
 \usage{
 deploy_minicran_package(drat_repo, commit_message = NULL, dry_run = FALSE)
 }
 \arguments{
 \item{drat_repo}{\verb{[character]}\cr
-The git repository to deploy to. This repository should store R packages
-in a CRAN-like structure (as done for example by \pkg{drat}).}
+The git repository to deploy to. Can be any git vendor.}
 
 \item{commit_message}{\verb{[character]}\cr
 An optional git commit message. If not supplied, the message will be of the
@@ -21,25 +20,26 @@ DESCRIPTION file.}
 When \code{TRUE}, the final git commit/push steps are skipped.}
 }
 \description{
-Builds and deploys a local package to a git repository in a cran-like
+Builds and deploys a local package to a git repository in a CRAN like
 structure.
 
-This git repository can then be served via
+The resulting git repository can then be served via
 \href{https://rstudio.com/products/connect/}{RStudio Connect} and accessed as an
-additional repository next to the main CRAN repository.
-RStudio Connect crawls the repository in a defined internal and picks up new
-changes automatically.
-This requires to a RStudio Connect App published via "Import from git".
+additional repository next to the main CRAN repository (by setting it via
+\code{options(repos = )}).
+RStudio Connect can crawl the repository in a defined internal when deploying
+the git repository via "Import from git".
+Changes (i.e. new package versions) are picked up automatically.
 
 This is an alternative to hosting and using a private instance of
 \href{https://rstudio.com/products/package-manager/}{RStudio Package Manager}.
 
-The following tasks are executed:
+The function executes the following tasks:
 \itemize{
-\item Local package building
-\item Adding the built package to temporary git clone of the upstream git repository
-\item Rendering the drat package website
-\item Committing the changes to the respective drat repo
+\item Build a tarball of the package via \code{pkgbuild::build()}.
+\item Add the built package in a CRAN like structure to a temporary git clone of the upstream git repository via \pkg{drat}. ``
+\item Render (and create if missing) the \pkg{drat} package website.
+\item Commit and push the changes to the git repository.
 }
 }
 \examples{

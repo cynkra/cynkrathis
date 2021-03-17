@@ -1,28 +1,28 @@
-#' @title Deployment Helpers for Internal Minicran Packages
+#' @title Deployment helpers for internal minicran packages
 #' @description
 #'
-#' Builds and deploys a local package to a git repository in a cran-like
+#' Builds and deploys a local package to a git repository in a CRAN like
 #' structure.
 #'
-#' This git repository can then be served via
+#' The resulting git repository can then be served via
 #' [RStudio Connect](https://rstudio.com/products/connect/) and accessed as an
-#' additional repository next to the main CRAN repository.
-#' RStudio Connect crawls the repository in a defined internal and picks up new
-#' changes automatically.
-#' This requires to a RStudio Connect App published via "Import from git".
+#' additional repository next to the main CRAN repository (by setting it via
+#' `options(repos = )`).
+#' RStudio Connect can crawl the repository in a defined internal when deploying
+#' the git repository via "Import from git".
+#' Changes (i.e. new package versions) are picked up automatically.
 #'
 #' This is an alternative to hosting and using a private instance of
 #' [RStudio Package Manager](https://rstudio.com/products/package-manager/).
 #'
-#'   The following tasks are executed:
-#'   - Local package building
-#'   - Adding the built package to temporary git clone of the upstream git repository
-#'   - Rendering the drat package website
-#'   - Committing the changes to the respective drat repo
+#'   The function executes the following tasks:
+#'   - Build a tarball of the package via `pkgbuild::build()`.
+#'   - Add the built package in a CRAN like structure to a temporary git clone of the upstream git repository via \pkg{drat}. ``
+#'   - Render (and create if missing) the \pkg{drat} package website.
+#'   - Commit and push the changes to the git repository.
 #'
 #' @param drat_repo `[character]`\cr
-#'   The git repository to deploy to. This repository should store R packages
-#'   in a CRAN-like structure (as done for example by \pkg{drat}).
+#'   The git repository to deploy to. Can be any git vendor.
 #' @param commit_message `[character]`\cr
 #'   An optional git commit message. If not supplied, the message will be of the
 #'   form `Update <pkg> to version <version>` with the values inferred from the
@@ -39,8 +39,8 @@
 #' @name deploy
 #' @export
 deploy_minicran_package <- function(drat_repo,
-                                 commit_message = NULL,
-                                 dry_run = FALSE) {
+                                    commit_message = NULL,
+                                    dry_run = FALSE) {
   requireNamespace("drat", quietly = TRUE)
   requireNamespace("withr", quietly = TRUE)
   requireNamespace("pkgbuild", quietly = TRUE)
@@ -108,7 +108,7 @@ deploy_minicran_package <- function(drat_repo,
     )
   )
 
-  invisible(available.packages(max_repo_cache_age = 0))
+  invisible(TRUE)
 }
 
 clone_drat_dir <- function(drat_repo) {
@@ -157,7 +157,7 @@ layout: post
 ```{r echo=FALSE}
 cat(readLines("src/contrib/PACKAGES"), sep = "\\n")
 ```',
-"index.Rmd"
+      "index.Rmd"
     )
   }
 

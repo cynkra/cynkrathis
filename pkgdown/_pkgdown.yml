@@ -30,6 +30,10 @@ reference:
     desc: renv helpers
     contents:
       - contains("renv")
+  - title: RStudio Connect
+    desc: RStudio Connect helpers
+    contents:
+      - contains("deploy_minicran")
   - title: Miscellaneous
     desc: Optional project scaffolding helpers
     contents:
