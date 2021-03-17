@@ -53,7 +53,7 @@ deploy_minicran_package <- function(drat_repo,
   default_branch <- gert::git_info(drat_dir)$shorthand
 
   cli::cli_alert("Building package.")
-  built <- pkgbuild::build(dest_path = tempdir(), quiet = TRUE)
+  built <- pkgbuild::build(dest_path = tempdir(check = TRUE), quiet = TRUE)
 
   pkgname <- desc::desc_get("Package")
   pkgversion <- desc::desc_get_version()
