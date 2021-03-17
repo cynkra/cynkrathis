@@ -39,6 +39,7 @@ Suggests:
     pkgbuild,
     precommit,
     rmarkdown,
+    roxygen2,
     rsconnect,
     testthat (>= 3.0.0),
     tic (>= 0.9.0.9005),
