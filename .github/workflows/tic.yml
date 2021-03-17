@@ -1,4 +1,4 @@
-## tic GitHub Actions template: linux-deploy
+## tic GitHub Actions template: custom-header
 ## revision date: 2020-12-11
 on:
   workflow_dispatch:
@@ -22,7 +22,8 @@ jobs:
       matrix:
         config:
           # use a different tic template type if you do not want to build on all listed platforms
-          - { os: ubuntu-latest, r: "release", pkgdown: "true" }
+          - { os: ubuntu-latest, r: "devel", pkgdown: "true" }
+          - { os: macOS-latest, r: "release", pkgdown: "false" }
 
     env:
       # otherwise remotes::fun() errors cause the build to fail. Example: Unavailability of binaries

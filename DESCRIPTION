@@ -13,7 +13,7 @@ Authors@R:
              role = "aut",
              email = "krlmlr+r@mailbox.org",
              comment = c(ORCID = "0000-0002-1416-3412")))
-Description: What the package does (one paragraph).
+Description: Opionionated {renv} helper package by cynkra GmbH.
 License: MIT + file LICENSE
 URL: https://github.com/cynkra/cynkrathis
 BugReports: https://github.com/cynkra/cynkrathis/issues
@@ -23,6 +23,7 @@ Imports:
     gh,
     glue,
     jsonlite,
+    lifecycle,
     purrr,
     renv,
     rlang,
@@ -30,13 +31,23 @@ Imports:
     usethis,
     utils
 Suggests:
+    covr,
+    desc,
+    drat,
     gert,
     gitignore,
+    pkgbuild,
     precommit,
-    testthat,
-    tic (>= 0.9.0.9005)
+    rmarkdown,
+    roxygen2,
+    rsconnect,
+    testthat (>= 3.0.0),
+    tic (>= 0.9.0.9005),
+    withr
 Remotes:
     ropensci/tic
+Config/testthat/edition: 3
+Config/testthat/parallel: true
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
