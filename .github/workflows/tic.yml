@@ -1,5 +1,6 @@
-## tic GitHub Actions template: custom-header
+## tic GitHub Actions template: linux-macos-deploy
 ## revision date: 2020-12-11
+# [Custom header]
 on:
   workflow_dispatch:
   push:
