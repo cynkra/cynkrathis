@@ -63,5 +63,13 @@
     "date": "2021-03-26",
     "type": "",
     "note": "dplyr 1.0.5"
+  },
+  {
+    "id": 2059270,
+    "r_version": "4.0.5",
+    "r_release_date": "2021-03-31",
+    "date": "2021-03-30",
+    "type": "recommended",
+    "note": ""
   }
 ]
