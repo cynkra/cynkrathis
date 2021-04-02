@@ -149,6 +149,7 @@ finish_init_renv <- function(exclude, convenience_pkgs, renv_latest) {
     deps <- setdiff(deps, exclude)
   }
 
+  # Avoid reinstalling renv
   deps <- setdiff(deps, "renv")
 
   renv::install(deps)
