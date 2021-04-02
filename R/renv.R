@@ -79,9 +79,7 @@ init_renv <- function(snapshot_date = NULL,
     )
   }
 
-  renv::scaffold(
-    repos = repos
-  )
+  renv::scaffold(project = ".", repos = repos)
 
   # set repos for current session
   options(repos = repos)
