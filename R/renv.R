@@ -103,12 +103,6 @@ init_renv <- function(snapshot_date = NULL,
     renv_latest = renv_latest
   ))
 
-  cli::cli_alert_info("Restoring all packages") # nolint
-  callr::r_vanilla(user_profile = FALSE, show = TRUE, function() {
-    source(".Rprofile")
-    renv::restore(clean = TRUE)
-  })
-
   if (Sys.getenv("RSTUDIO") == 1) {
     rstudioapi::restartSession()
   }
