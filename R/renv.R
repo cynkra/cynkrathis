@@ -85,11 +85,8 @@ init_renv <- function(snapshot_date = NULL,
   av_pkgs <- utils::available.packages(repos = "https://packagemanager.rstudio.com/cran/latest") # nolint
   renv_latest <- av_pkgs[rownames(av_pkgs) == "renv", "Version"]
 
-  cli::cli_alert_info("Scaffolding with {.pkg renv} {.version {renv_latest}}") # nolint
-  renv::scaffold(project = ".", version = renv_latest, repos = repos)
-
-  # Need to record manually
-  renv::record(project = ".", paste0("renv@", renv_latest))
+  cli::cli_alert_info("Scaffolding with repos = {.url {repos}}") # nolint
+  renv::scaffold(project = ".", repos = repos)
 
   # Load the packages now, we're nuking .libPaths()
   rstudioapi::restartSession
@@ -100,7 +97,9 @@ init_renv <- function(snapshot_date = NULL,
   # FIXME: This is necessary, because scaffold() doesn't seem to install
   # a usable renv. Investigate.
   cli::cli_alert_info("Starting R session to bootstrap {.package renv}") # nolint
-  callr::r(function() packageVersion("renv"), show = TRUE)
+  callr::r_vanilla(user_profile = FALSE, show = TRUE, install_github_renv, args = list(
+    renv_latest = renv_latest
+  ))
 
   cli::cli_alert_info("Finalizing initialization of renv") # nolint
   callr::r(finish_init_renv, show = TRUE, args = list(
