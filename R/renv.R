@@ -79,6 +79,7 @@ init_renv <- function(snapshot_date = NULL,
     )
   }
 
+  # Necessary if we're already in an renv session
   local_remove_renv_envvars()
 
   # always install latest renv version
