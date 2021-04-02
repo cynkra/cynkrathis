@@ -88,12 +88,6 @@ init_renv <- function(snapshot_date = NULL,
   cli::cli_alert_info("Scaffolding with repos = {.url {repos}}") # nolint
   renv::scaffold(project = ".", repos = repos)
 
-  # Load the packages now, we're nuking .libPaths()
-  rstudioapi::restartSession
-  callr::r
-
-  withr::local_libpaths()
-
   # FIXME: This is necessary, because scaffold() doesn't seem to install
   # a usable renv. Investigate.
   cli::cli_alert_info("Starting R session to bootstrap {.package renv}") # nolint
