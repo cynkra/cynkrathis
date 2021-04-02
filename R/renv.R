@@ -79,6 +79,8 @@ init_renv <- function(snapshot_date = NULL,
     )
   }
 
+  local_remove_renv_envvars()
+
   renv::scaffold(project = ".", repos = repos)
 
   # set repos for current session
@@ -148,6 +150,13 @@ init_renv <- function(snapshot_date = NULL,
     rstudioapi::restartSession()
   }
   renv::restore()
+}
+
+local_remove_renv_envvars <- function(.local_envir = parent.frame()) {
+  bad_env <- grep("^RENV_", names(Sys.getenv()), value = TRUE)
+  new <- rlang::set_names(rlang::rep_along(bad_env, NA_character_), bad_env)
+
+  withr::local_envvar(new, .local_envir = .local_envir)
 }
 
 #' Switch between R versions in renv projects
