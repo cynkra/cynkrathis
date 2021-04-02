@@ -161,7 +161,7 @@ finish_init_renv <- function(exclude, convenience_pkgs, renv_latest) {
 local_remove_renv_envvars <- function(.local_envir = parent.frame()) {
   bad_env <-
     c(
-      grep("^RENV_", names(Sys.getenv()), value = TRUE),
+      "RENV_PROJECT",
       "R_LIBS_USER"
     )
   new <- rlang::set_names(rlang::rep_along(bad_env, NA_character_), bad_env)
