@@ -88,8 +88,7 @@ init_renv <- function(snapshot_date = NULL,
   cli::cli_alert_info("Scaffolding with repos = {.url {repos}}") # nolint
   renv::scaffold(project = ".", repos = repos)
 
-  # FIXME: This is necessary, because scaffold() doesn't seem to install
-  # a usable renv. Investigate.
+  # Install the correct renv version in a new session
   cli::cli_alert_info("Starting R session to bootstrap {.package renv}") # nolint
   # https://github.com/r-lib/callr/issues/194
   callr::r_vanilla(user_profile = FALSE, show = TRUE, install_github_renv, args = list(
