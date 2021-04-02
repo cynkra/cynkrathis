@@ -102,24 +102,35 @@ init_renv <- function(snapshot_date = NULL,
   ))
 
   cli::cli_alert_info("Finalizing initialization of renv") # nolint
-  callr::r(finish_init_renv, show = TRUE, args = list(
+  callr::r_vanilla(user_profile = FALSE, show = TRUE, finish_init_renv, args = list(
     exclude = exclude,
     convenience_pkgs = convenience_pkgs,
     renv_latest = renv_latest
   ))
 
   cli::cli_alert_info("Restoring all packages") # nolint
-  callr::r(function() renv::restore(clean = TRUE), show = TRUE)
-
-  cli::cli_alert_info("Restoring all packages again") # nolint
-  callr::r(function() renv::restore(), show = TRUE)
+  callr::r_vanilla(user_profile = FALSE, show = TRUE, function() {
+    source(".Rprofile")
+    renv::restore(clean = TRUE)
+  })
 
   if (Sys.getenv("RSTUDIO") == 1) {
     rstudioapi::restartSession()
   }
 }
 
+# Called in a fresh vanilla R session
+install_github_renv <- function(renv_latest) {
+  source(".Rprofile")
+
+  renv::install(paste0("rstudio/renv@", renv_latest))
+  renv::snapshot()
+}
+
+# Called in a fresh vanilla R session
 finish_init_renv <- function(exclude, convenience_pkgs, renv_latest) {
+  source(".Rprofile")
+
   # print projects renv path: Problem: The library needs to be empty, otherwise
   # the wrong versions are stored in it (from previous renv inits)
   # renv_dir <- .libPaths()[1]
