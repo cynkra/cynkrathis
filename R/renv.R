@@ -81,26 +81,46 @@ init_renv <- function(snapshot_date = NULL,
 
   local_remove_renv_envvars()
 
-  renv::scaffold(project = ".", repos = repos)
+  # always install latest renv version
+  av_pkgs <- utils::available.packages(repos = "https://packagemanager.rstudio.com/cran/latest") # nolint
+  renv_latest <- av_pkgs[rownames(av_pkgs) == "renv", "Version"]
 
-  # set repos for current session
-  options(repos = repos)
+  cli::cli_alert_info("Scaffolding with {.pkg renv} {.version {renv_latest}}") # nolint
+  renv::scaffold(project = ".", version = renv_latest, repos = repos)
 
-  # FIXME: check if we can make this better
-  # otherwise new installations won't use the configured snapshot
-  # write repos to .Rprofile
-  # if (!is.null(additional_repos)) {
-  #     txt <- glue::glue('options(repos = c(
-  #     CRAN = "https://packagemanager.rstudio.com/cran/{snapshot_date}",
-  #     {names(additional_repos)} = "{additional_repos}"
-  # ))', .trim = FALSE)
-  #   } else {
-  #     txt <- glue::glue('options(repos = c(
-  #     CRAN = "https://packagemanager.rstudio.com/cran/{snapshot_date}"
-  # ))\n')
-  #   }
-  #   cat(txt, file = ".Rprofile")
+  # Need to record manually
+  renv::record(project = ".", paste0("renv@", renv_latest))
 
+  # Load the packages now, we're nuking .libPaths()
+  rstudioapi::restartSession
+  callr::r
+
+  withr::local_libpaths()
+
+  # FIXME: This is necessary, because scaffold() doesn't seem to install
+  # a usable renv. Investigate.
+  cli::cli_alert_info("Starting R session to bootstrap {.package renv}") # nolint
+  callr::r(function() packageVersion("renv"), show = TRUE)
+
+  cli::cli_alert_info("Finalizing initialization of renv") # nolint
+  callr::r(finish_init_renv, show = TRUE, args = list(
+    exclude = exclude,
+    convenience_pkgs = convenience_pkgs,
+    renv_latest = renv_latest
+  ))
+
+  cli::cli_alert_info("Restoring all packages") # nolint
+  callr::r(function() renv::restore(clean = TRUE), show = TRUE)
+
+  cli::cli_alert_info("Restoring all packages again") # nolint
+  callr::r(function() renv::restore(), show = TRUE)
+
+  if (Sys.getenv("RSTUDIO") == 1) {
+    rstudioapi::restartSession()
+  }
+}
+
+finish_init_renv <- function(exclude, convenience_pkgs, renv_latest) {
   # print projects renv path: Problem: The library needs to be empty, otherwise
   # the wrong versions are stored in it (from previous renv inits)
   # renv_dir <- .libPaths()[1]
@@ -110,7 +130,8 @@ init_renv <- function(snapshot_date = NULL,
 
   # check if any .Rmd files exist to detect dependencies in .Rmd files via renv
   if (length(list.files(pattern = ".Rmd", recursive = TRUE) > 0)) {
-    cli::cli_alert_info("Installing {.pkg rmarkdown} to scrape dependencies in .Rmd files.") # nolint
+    # Can't use cli here
+    message("Installing rmarkdown to scrape dependencies in .Rmd files.") # nolint
     renv::install("rmarkdown")
   }
 
@@ -129,31 +150,23 @@ init_renv <- function(snapshot_date = NULL,
     deps <- setdiff(deps, exclude)
   }
 
-  # FIXME: renv::deps cannot resolve GH deps https://github.com/rstudio/renv/issues/670
-  # calling renv::install() plain for now
-  # renv::install(deps)
-  renv::install()
+  renv::install(deps)
 
-  # always install latest renv version
-  av_pkgs <- utils::available.packages(repos = "https://packagemanager.rstudio.com/cran/latest") # nolint
-  renv_latest <- av_pkgs[rownames(av_pkgs) == "renv", "Version"]
-
-  cli::cli_alert_info("Installing latest {.field renv} release version.")
-  renv::upgrade(version = renv_latest, prompt = FALSE)
-
-  cli::cli_alert_info("Snapshotting installed packages.")
+  message("Snapshotting installed packages.")
   renv::snapshot(prompt = FALSE)
 
-  renv::rehash(prompt = FALSE)
+  # Need to record manually again
+  renv::record(project = ".", paste0("renv@", renv_latest))
 
-  if (Sys.getenv("RSTUDIO") == 1) {
-    rstudioapi::restartSession()
-  }
-  renv::restore()
+  renv::rehash(prompt = FALSE)
 }
 
 local_remove_renv_envvars <- function(.local_envir = parent.frame()) {
-  bad_env <- grep("^RENV_", names(Sys.getenv()), value = TRUE)
+  bad_env <-
+    c(
+      grep("^RENV_", names(Sys.getenv()), value = TRUE),
+      "R_LIBS_USER"
+    )
   new <- rlang::set_names(rlang::rep_along(bad_env, NA_character_), bad_env)
 
   withr::local_envvar(new, .local_envir = .local_envir)
