@@ -121,7 +121,7 @@ init_renv <- function(snapshot_date = NULL,
   if (convenience_pkgs) {
     deps <- append(
       deps,
-      c("usethis", "styler", "gert", "krlmlr/fledge")
+      c("usethis", "styler", "gert", "cynkra/fledge")
     )
   }
 
