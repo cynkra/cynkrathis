@@ -161,13 +161,12 @@ finish_init_renv <- function(exclude, convenience_pkgs, renv_latest) {
     deps <- setdiff(deps, exclude)
   }
 
+  deps <- setdiff(deps, "renv")
+
   renv::install(deps)
 
   message("Snapshotting installed packages.")
   renv::snapshot(prompt = FALSE)
-
-  # Need to record manually again
-  renv::record(project = ".", paste0("renv@", renv_latest))
 
   renv::rehash(prompt = FALSE)
 }
