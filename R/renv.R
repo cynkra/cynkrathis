@@ -1,6 +1,7 @@
 #' Initialize {renv} infrastructure (cynkra way)
 #'
-#' @description Initializes {renv} setup by setting a predefined RStudio Package
+#' @description
+#' Initializes {renv} setup by setting a predefined RStudio Package
 #' Manager (RSPM) snapshot.
 #' Custom RSPM Snapshots can be configured via `snapshot_date`.
 #'
@@ -24,10 +25,14 @@
 #'
 #' @details
 #' During the process, the latest CRAN version of {renv} will be installed,
-#' regardless of the chose snapshot ID.
+#' regardless of the chosen snapshot ID.
 #'
 #' The heuristic for setting the correct RSPM binary repo currently only supports
 #' Windows, macOS and Ubuntu 20.04.
+#'
+#' The initialization mostly runs in clean vanilla sessions started with
+#' [callr::r_vanilla()].
+#'
 #' @importFrom utils tail available.packages
 #' @importFrom rstudioapi restartSession
 #' @examples
