@@ -7,6 +7,7 @@ config
 cr
 cre
 cron
+cyclocomp
 cynkra
 cynkrathis
 dev
@@ -14,6 +15,7 @@ dontrun
 energie
 env
 evans
+fledge
 gert
 gh
 github
@@ -22,11 +24,17 @@ gmail
 https
 init
 io
+jimhester
 jsonlite
+krlmlr
 LazyData
 libcurl
 libsodium
+linter
+linters
 lintr
+macOS
+minicran
 Ncpus
 noreply
 openssl
@@ -36,6 +44,7 @@ patrick
 precommit
 purrr
 renv
+repo
 repos
 requireNamespace
 ropensci
@@ -43,9 +52,11 @@ roxygen
 RoxygenNote
 Rscript
 RSPM
+RStudio
 rstudioapi
 schratz
 Schratz
+styler
 sudo
 TBD
 testthat

@@ -26,8 +26,8 @@
 #' During the process, the latest CRAN version of {renv} will be installed,
 #' regardless of the chose snapshot ID.
 #'
-#' The heuristic for setting the correct RSPM binary repo currently only supports
-#' Windows, macOS and Ubuntu 20.04.
+#' The heuristic for setting the correct RSPM binary repo currently only
+#' supports Windows, macOS and Ubuntu 20.04.
 #' @importFrom utils tail available.packages
 #' @importFrom rstudioapi restartSession
 #' @examples
@@ -127,7 +127,7 @@ init_renv <- function(snapshot_date = NULL,
     deps <- setdiff(deps, exclude)
   }
 
-  # FIXME: renv::deps cannot resolve GH deps https://github.com/rstudio/renv/issues/670
+  # FIXME: renv::deps cannot resolve GH deps https://github.com/rstudio/renv/issues/670 #nolint
   # calling renv::install() plain for now
   # renv::install(deps)
   renv::install()
@@ -281,4 +281,21 @@ renv_switch_r_version <- function(version = NULL
   # }
 
   return(invisible(TRUE))
+}
+
+#' @importFrom pkgbuild build
+#' @importFrom renv install
+#' @export
+renv_install_local <- function(path = ".") {
+  if (Sys.getenv("RENV_PATHS_LOCAL") == "") {
+    renv_local <- switch(Sys.info()[["sysname"]],
+      "Darwin" = "~/Library/Application Support/renv",
+      "Windows" = "%LOCALAPPDATA%/renv",
+      "Linux" = "~/.local/share/renv"
+    )
+  } else {
+    renv_local <- Sys.getenv("RENV_PATHS_LOCAL")
+  }
+  dir.create(renv_local, showWarnings = FALSE, recursive = TRUE)
+  renv::install(pkgbuild::build(path, dest_path = renv_local))
 }

@@ -37,8 +37,8 @@ Custom RSPM Snapshots can be configured via \code{snapshot_date}.
 During the process, the latest CRAN version of {renv} will be installed,
 regardless of the chose snapshot ID.
 
-The heuristic for setting the correct RSPM binary repo currently only supports
-Windows, macOS and Ubuntu 20.04.
+The heuristic for setting the correct RSPM binary repo currently only
+supports Windows, macOS and Ubuntu 20.04.
 }
 \examples{
 \dontrun{
