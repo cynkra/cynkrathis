@@ -285,6 +285,7 @@ renv_switch_r_version <- function(version = NULL
 
 #' @importFrom pkgbuild build
 #' @importFrom renv install
+#' @importFrom desc desc_get_field
 #' @export
 renv_install_local <- function(path = ".") {
   if (Sys.getenv("RENV_PATHS_LOCAL") == "") {
@@ -297,5 +298,12 @@ renv_install_local <- function(path = ".") {
     renv_local <- Sys.getenv("RENV_PATHS_LOCAL")
   }
   dir.create(renv_local, showWarnings = FALSE, recursive = TRUE)
-  renv::install(pkgbuild::build(path, dest_path = renv_local))
+
+  pkg_name <- desc::desc_get_field("Package")
+
+  cli::cli_alert_info("Building package {.field pkg_name}} and installing into
+    {.field {renv_local}}.", wrap = TRUE)
+  pkg_source <- pkgbuild::build(path, dest_path = renv_local, quiet = TRUE)
+
+  renv::install(pkg_source)
 }
