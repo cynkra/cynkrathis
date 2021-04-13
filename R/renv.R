@@ -301,7 +301,7 @@ renv_install_local <- function(path = ".") {
 
   pkg_name <- desc::desc_get_field("Package")
 
-  cli::cli_alert_info("Building package {.field pkg_name}} and installing into
+  cli::cli_alert_info("Building package {.field {pkg_name}} and installing into
     {.field {renv_local}}.", wrap = TRUE)
   pkg_source <- pkgbuild::build(path, dest_path = renv_local, quiet = TRUE)
 
