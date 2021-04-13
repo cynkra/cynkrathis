@@ -283,6 +283,18 @@ renv_switch_r_version <- function(version = NULL
   return(invisible(TRUE))
 }
 
+#' @title Build a local package and install it into an renv project
+#' @description This is a wrapper around `pkgbuild::build()` and
+#'   `renv::install()` to more easily make local packages available within
+#'   \pkg{renv} projects.
+#'
+#' The following steps are performed:
+#'
+#' 1. Building the package found at argument `path` via `pkgbuild::build()`.
+#' 2. Moving the built source into the \pkg{renv} cache. The cache location is
+#' determined by `Sys.getenv("RENV_PATHS_LOCAL")`.
+#' 3. Installing the package from the cache location via `renv::install()`.
+#'
 #' @importFrom pkgbuild build
 #' @importFrom renv install
 #' @importFrom desc desc_get_field
