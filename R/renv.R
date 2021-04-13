@@ -294,12 +294,14 @@ renv_switch_r_version <- function(version = NULL
 #' 2. Moving the built source into the \pkg{renv} cache. The cache location is
 #' determined by `Sys.getenv("RENV_PATHS_LOCAL")`.
 #' 3. Installing the package from the cache location via `renv::install()`.
-#'
-#' @importFrom pkgbuild build
+#' @param path `[character]`\cr
+#'   The path to the package which should be built and installed.
 #' @importFrom renv install
-#' @importFrom desc desc_get_field
 #' @export
 renv_install_local <- function(path = ".") {
+  if (path == ".") {
+    path <- usethis::proj_get()
+  }
   if (Sys.getenv("RENV_PATHS_LOCAL") == "") {
     renv_local <- switch(Sys.info()[["sysname"]],
       "Darwin" = "~/Library/Application Support/renv",

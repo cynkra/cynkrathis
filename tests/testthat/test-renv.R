@@ -1,5 +1,9 @@
 test_that("renv_install_local works", {
-  cap <- capture.output(suppressMessages(renv_install_local()))
+  tmp <- tempdir()
+  options(usethis.quiet = TRUE)
+  usethis::create_package(tmp, open = FALSE)
+
+  cap <- capture.output(suppressMessages(renv_install_local(tmp)))
   rm(cap)
 
   renv_local <- switch(Sys.info()[["sysname"]],
@@ -8,10 +12,10 @@ test_that("renv_install_local works", {
     "Linux" = "~/.local/share/renv"
   )
 
-  out <- list.files(renv_local, pattern = "cynkrathis_.*", full.names = TRUE)
+  out <- list.files(renv_local, pattern = basename(tmp), full.names = TRUE)
   expect_match(
-    list.files(renv_local, pattern = "cynkrathis_.*"),
-    "cynkrathis_.*"
+    list.files(renv_local, pattern = basename(tmp)),
+    basename(tmp)
   )
   unlink(out, force = TRUE)
 })

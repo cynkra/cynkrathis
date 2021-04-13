@@ -6,6 +6,10 @@
 \usage{
 renv_install_local(path = ".")
 }
+\arguments{
+\item{path}{\verb{[character]}\cr
+The path to the package which should be built and installed.}
+}
 \description{
 This is a wrapper around \code{pkgbuild::build()} and
 \code{renv::install()} to more easily make local packages available within
