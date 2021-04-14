@@ -18,6 +18,7 @@ License: MIT + file LICENSE
 URL: https://github.com/cynkra/cynkrathis
 BugReports: https://github.com/cynkra/cynkrathis/issues
 Imports:
+    callr,
     checkmate,
     cli,
     gh,

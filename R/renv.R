@@ -1,6 +1,7 @@
 #' Initialize {renv} infrastructure (cynkra way)
 #'
-#' @description Initializes {renv} setup by setting a predefined RStudio Package
+#' @description
+#' Initializes {renv} setup by setting a predefined RStudio Package
 #' Manager (RSPM) snapshot.
 #' Custom RSPM Snapshots can be configured via `snapshot_date`.
 #'
@@ -24,10 +25,14 @@
 #'
 #' @details
 #' During the process, the latest CRAN version of {renv} will be installed,
-#' regardless of the chose snapshot ID.
+#' regardless of the chosen snapshot ID.
 #'
 #' The heuristic for setting the correct RSPM binary repo currently only supports
 #' Windows, macOS and Ubuntu 20.04.
+#'
+#' The initialization mostly runs in clean vanilla sessions started with
+#' [callr::r_vanilla()].
+#'
 #' @importFrom utils tail available.packages
 #' @importFrom rstudioapi restartSession
 #' @examples
@@ -79,25 +84,46 @@ init_renv <- function(snapshot_date = NULL,
     )
   }
 
+  # Necessary if we're already in an renv session
+  local_remove_renv_envvars()
+
+  # always install latest renv version
+  av_pkgs <- utils::available.packages(repos = "https://packagemanager.rstudio.com/cran/latest") # nolint
+  renv_latest <- av_pkgs[rownames(av_pkgs) == "renv", "Version"]
+
+  cli::cli_alert_info("Scaffolding with repos = {.url {repos}}") # nolint
   renv::scaffold(project = ".", repos = repos)
 
-  # set repos for current session
-  options(repos = repos)
+  # Install the correct renv version in a new session
+  cli::cli_alert_info("Starting R session to bootstrap {.package renv}") # nolint
+  # https://github.com/r-lib/callr/issues/194
+  callr::r_vanilla(user_profile = FALSE, show = TRUE, install_github_renv, args = list(
+    renv_latest = renv_latest
+  ))
 
-  # FIXME: check if we can make this better
-  # otherwise new installations won't use the configured snapshot
-  # write repos to .Rprofile
-  # if (!is.null(additional_repos)) {
-  #     txt <- glue::glue('options(repos = c(
-  #     CRAN = "https://packagemanager.rstudio.com/cran/{snapshot_date}",
-  #     {names(additional_repos)} = "{additional_repos}"
-  # ))', .trim = FALSE)
-  #   } else {
-  #     txt <- glue::glue('options(repos = c(
-  #     CRAN = "https://packagemanager.rstudio.com/cran/{snapshot_date}"
-  # ))\n')
-  #   }
-  #   cat(txt, file = ".Rprofile")
+  cli::cli_alert_info("Finalizing initialization of renv") # nolint
+  callr::r_vanilla(user_profile = FALSE, show = TRUE, finish_init_renv, args = list(
+    exclude = exclude,
+    convenience_pkgs = convenience_pkgs,
+    renv_latest = renv_latest
+  ))
+
+  if (Sys.getenv("RSTUDIO") == 1) {
+    rstudioapi::restartSession()
+  }
+}
+
+# Called in a fresh vanilla R session
+install_github_renv <- function(renv_latest) {
+  source(".Rprofile")
+
+  renv::install(paste0("rstudio/renv@", renv_latest))
+  renv::snapshot()
+}
+
+# Called in a fresh vanilla R session
+finish_init_renv <- function(exclude, convenience_pkgs, renv_latest) {
+  source(".Rprofile")
 
   # print projects renv path: Problem: The library needs to be empty, otherwise
   # the wrong versions are stored in it (from previous renv inits)
@@ -108,7 +134,8 @@ init_renv <- function(snapshot_date = NULL,
 
   # check if any .Rmd files exist to detect dependencies in .Rmd files via renv
   if (length(list.files(pattern = ".Rmd", recursive = TRUE) > 0)) {
-    cli::cli_alert_info("Installing {.pkg rmarkdown} to scrape dependencies in .Rmd files.") # nolint
+    # Can't use cli here
+    message("Installing rmarkdown to scrape dependencies in .Rmd files.") # nolint
     renv::install("rmarkdown")
   }
 
@@ -127,27 +154,26 @@ init_renv <- function(snapshot_date = NULL,
     deps <- setdiff(deps, exclude)
   }
 
-  # FIXME: renv::deps cannot resolve GH deps https://github.com/rstudio/renv/issues/670
-  # calling renv::install() plain for now
-  # renv::install(deps)
-  renv::install()
+  # Avoid reinstalling renv
+  deps <- setdiff(deps, "renv")
 
-  # always install latest renv version
-  av_pkgs <- utils::available.packages(repos = "https://packagemanager.rstudio.com/cran/latest") # nolint
-  renv_latest <- av_pkgs[rownames(av_pkgs) == "renv", "Version"]
+  renv::install(deps)
 
-  cli::cli_alert_info("Installing latest {.field renv} release version.")
-  renv::upgrade(version = renv_latest, prompt = FALSE)
-
-  cli::cli_alert_info("Snapshotting installed packages.")
+  message("Snapshotting installed packages.")
   renv::snapshot(prompt = FALSE)
 
   renv::rehash(prompt = FALSE)
+}
 
-  if (Sys.getenv("RSTUDIO") == 1) {
-    rstudioapi::restartSession()
-  }
-  renv::restore()
+local_remove_renv_envvars <- function(.local_envir = parent.frame()) {
+  bad_env <-
+    c(
+      "RENV_PROJECT",
+      "R_LIBS_USER"
+    )
+  new <- rlang::set_names(rlang::rep_along(bad_env, NA_character_), bad_env)
+
+  withr::local_envvar(new, .local_envir = .local_envir)
 }
 
 #' Switch between R versions in renv projects
