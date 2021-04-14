@@ -302,14 +302,15 @@ renv_install_local <- function(path = ".") {
   if (path == ".") {
     path <- usethis::proj_get()
   }
-  if (Sys.getenv("RENV_PATHS_LOCAL") == "") {
+
+  renv_local <- Sys.getenv("RENV_PATHS_LOCAL")
+
+  if (renv_local == "") {
     renv_local <- switch(Sys.info()[["sysname"]],
       "Darwin" = "~/Library/Application Support/renv",
       "Windows" = "%LOCALAPPDATA%/renv",
       "Linux" = "~/.local/share/renv"
     )
-  } else {
-    renv_local <- Sys.getenv("RENV_PATHS_LOCAL")
   }
   dir.create(renv_local, showWarnings = FALSE, recursive = TRUE)
 
