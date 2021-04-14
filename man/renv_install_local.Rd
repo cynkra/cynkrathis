@@ -4,11 +4,17 @@
 \alias{renv_install_local}
 \title{Build a local package and install it into an renv project}
 \usage{
-renv_install_local(path = ".")
+renv_install_local(path = ".", quiet = FALSE, ...)
 }
 \arguments{
 \item{path}{\verb{[character]}\cr
 The path to the package which should be built and installed.}
+
+\item{quiet}{\verb{[logical]}\cr
+Whether to suppress console output.}
+
+\item{...}{\cr
+Passed down to \code{pkgbuild::build()}.}
 }
 \description{
 This is a wrapper around \code{pkgbuild::build()} and

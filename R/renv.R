@@ -296,9 +296,13 @@ renv_switch_r_version <- function(version = NULL
 #' 3. Installing the package from the cache location via `renv::install()`.
 #' @param path `[character]`\cr
 #'   The path to the package which should be built and installed.
+#' @param quiet `[logical]`\cr
+#'   Whether to suppress console output.
+#' @param ... \cr
+#'   Passed down to `pkgbuild::build()`.
 #' @importFrom renv install
 #' @export
-renv_install_local <- function(path = ".") {
+renv_install_local <- function(path = ".", quiet = FALSE, ...) {
   if (path == ".") {
     path <- usethis::proj_get()
   }
@@ -316,9 +320,14 @@ renv_install_local <- function(path = ".") {
 
   pkg_name <- desc::desc_get_field("Package")
 
-  cli::cli_alert_info("Building package {.field {pkg_name}} and installing into
-    {.field {renv_local}}.", wrap = TRUE)
-  pkg_source <- pkgbuild::build(path, dest_path = renv_local, quiet = TRUE)
+  if (quiet) {
+    cli::cli_alert_info("Building package {.field {pkg_name}} and
+      installing into {.field {renv_local}}.", wrap = TRUE)
+  }
+  pkg_source <- pkgbuild::build(path,
+    dest_path = renv_local, quiet = quiet,
+    ...
+  )
 
   renv::install(pkg_source)
 }
