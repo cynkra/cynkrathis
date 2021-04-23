@@ -61,7 +61,7 @@ deploy_minicran_package <- function(drat_repo,
   withr::with_dir(
     drat_dir,
     withr::with_options(
-      c(dratBranch = default_branch, dratRepo = drat_dir),
+      c(dratBranch = "docs"),
       {
         cli::cli_alert("Initiating deploy to {.url {drat_repo}}.")
 
@@ -112,7 +112,6 @@ deploy_minicran_package <- function(drat_repo,
 }
 
 clone_drat_dir <- function(drat_repo) {
-
   path <- paste0(tempdir(), "/drat")
   cli::cli_alert("Attempting to create a temporary git clone of
       {.url {drat_repo}}. Your password might be needed for
@@ -126,7 +125,6 @@ clone_drat_dir <- function(drat_repo) {
 
 
 check_for_drat_website_files <- function() {
-
   if (!file.exists("_site.yml")) {
     writeLines(
       'name: "drat"
@@ -160,6 +158,4 @@ cat(readLines("src/contrib/PACKAGES"), sep = "\\n")
       "index.Rmd"
     )
   }
-
-
 }

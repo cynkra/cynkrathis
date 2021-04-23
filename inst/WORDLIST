@@ -17,6 +17,7 @@ env
 evans
 fledge
 gert
+getOption
 gh
 github
 gitignore
@@ -41,6 +42,7 @@ openssl
 ORCID
 os
 patrick
+pkgbuild
 precommit
 purrr
 renv
@@ -52,6 +54,7 @@ roxygen
 RoxygenNote
 Rscript
 RSPM
+rstudio
 RStudio
 rstudioapi
 schratz

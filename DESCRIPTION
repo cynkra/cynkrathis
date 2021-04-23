@@ -1,6 +1,5 @@
 Package: cynkrathis
-Title: Simplify Project Scaffolding and Common 'renv' Related
-    Tasks
+Title: Simplify Project Scaffolding and Common 'renv' Related Tasks
 Version: 0.3.0
 Authors@R:
     c(person(given = "Patrick",
@@ -37,6 +36,7 @@ Suggests:
     drat,
     gert,
     gitignore,
+    lintr,
     pkgbuild,
     precommit,
     rmarkdown,
