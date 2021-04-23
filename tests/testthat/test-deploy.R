@@ -28,9 +28,12 @@ test_that("deploy_minicran_package()", {
   )
 
   # cleanup
-  gert::git_rm("DESCRIPTION")
+  if (!covr::in_covr()) {
+    gert::git_rm("DESCRIPTION")
+    unlink("DESCRIPTION")
+    gert::git_add("DESCRIPTION")
+  }
   unlink("DESCRIPTION")
-  gert::git_add("DESCRIPTION")
 
   ### for local testing
   # gh::gh("DELETE https://api.github.com/repos/{username}/{reponame}",
