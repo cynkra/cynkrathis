@@ -7,31 +7,30 @@
 init_renv(snapshot_date = NULL, exclude = NULL, convenience_pkgs = FALSE)
 }
 \arguments{
-\item{snapshot_date}{\verb{[integer]}\cr
+\item{snapshot_date}{`[integer]`\cr
 A valid RSPM snapshot date. By default the "recommended" date from
-\code{get_snapshots()} for the respective R version is chosen.}
+`get_snapshots()` for the respective R version is chosen.}
 
-\item{exclude}{\verb{[character]}\cr
-Packages to exclude from \code{renv::install()}.
+\item{exclude}{`[character]`\cr
+Packages to exclude from `renv::install()`.
 Useful if a package is not available in the available repositories
-(check with \verb{getOption("repos"}) to prevent \code{init_renv()} to fail.
+(check with `getOption("repos"`) to prevent `init_renv()` to fail.
 This should only be a temporary workaround - consider making local
 packages available in a minicran-like repository.}
 
-\item{convenience_pkgs}{\verb{[logical]}\cr
-Install additional opinionated convenience packages?
-The following packages would be installed:
-\itemize{
-\item usethis
-\item styler
-\item gert
-\item krlmlr/fledge
-}}
+\item{convenience_pkgs}{`[logical]`\cr
+  Install additional opinionated convenience packages?
+  The following packages would be installed:
+
+  - usethis
+  - styler
+  - gert
+  - krlmlr/fledge}
 }
 \description{
 Initializes {renv} setup by setting a predefined RStudio Package
 Manager (RSPM) snapshot.
-Custom RSPM Snapshots can be configured via \code{snapshot_date}.
+Custom RSPM Snapshots can be configured via `snapshot_date`.
 }
 \details{
 During the process, the latest CRAN version of {renv} will be installed,

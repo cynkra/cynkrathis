@@ -7,7 +7,7 @@
 init_precommit(commit = TRUE)
 }
 \arguments{
-\item{commit}{\verb{[logical]}\cr
+\item{commit}{`[logical]`\cr
 Whether to automatically commit the newly created files.}
 }
 \description{

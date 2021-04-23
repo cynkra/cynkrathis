@@ -4,6 +4,7 @@ test_that("deploy_minicran_package()", {
   repo_name <- "/cynkrathis-drat-test"
   repo_url <- sprintf("https://github.com/pat-s%s", repo_name)
 
+  ### for local testing
   # dir <- paste0(tempdir(), repo_name)
   # usethis::create_project(dir, open = FALSE)
 
@@ -11,6 +12,7 @@ test_that("deploy_minicran_package()", {
   #   usethis::use_git()
   #   usethis::use_github()
   # })
+  ### for local testing
 
 
   # for some reason we need to roxygenise, otherwise covr fails
@@ -25,11 +27,15 @@ test_that("deploy_minicran_package()", {
     )
   )
 
+  # cleanup
+  gert::git_rm("DESCRIPTION")
   unlink("DESCRIPTION")
+  gert::git_add("DESCRIPTION")
 
-  # for local testing
+  ### for local testing
   # gh::gh("DELETE https://api.github.com/repos/{username}/{reponame}",
   # username = gh::gh_whoami()$login,
   # reponame = repo_name,
   # .token = "<token with delete_repo scope here>)
+  ### for local testing
 })
