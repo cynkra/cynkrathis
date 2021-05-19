@@ -69,8 +69,23 @@
     "r_version": "4.0.5",
     "r_release_date": "2021-03-31",
     "date": "2021-03-31",
+    "type": "",
+    "note": "vctrs 0.3.7"
+  },
+  {
+    "id": 2511902,
+    "r_version": "4.0.5",
+    "r_release_date": "2021-03-31",
+    "date": "2021-04-23",
     "type": "recommended",
     "note": ""
+  },
+    "id": 2866992,
+    "r_version": "4.0.5",
+    "r_release_date": "2021-03-31",
+    "date": "2021-05-12",
+    "type": "",
+    "note": "dm 0.2.1"
   },
   {
     "id": 2976243,
@@ -79,5 +94,5 @@
     "date": "2021-05-18",
     "type": "recommended",
     "note": ""
-  }
+  },
 ]
