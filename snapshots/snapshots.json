@@ -80,12 +80,13 @@
     "type": "recommended",
     "note": ""
   },
+  {
     "id": 2866992,
     "r_version": "4.0.5",
     "r_release_date": "2021-03-31",
     "date": "2021-05-12",
     "type": "",
-    "note": "dm 0.2.1"
+    "note": ""
   },
   {
     "id": 2976243,
@@ -93,6 +94,6 @@
     "r_release_date": "2021-05-18",
     "date": "2021-05-18",
     "type": "recommended",
-    "note": ""
+    "note": "dm 0.2.1, tibble 3.1.2, pillar 1.6.1"
   },
 ]
