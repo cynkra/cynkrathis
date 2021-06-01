@@ -33,7 +33,7 @@ Imports:
 Suggests:
     covr,
     desc,
-    drat,
+    drat (>= 0.2.0),
     gert,
     gitignore,
     lintr,

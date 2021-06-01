@@ -7,7 +7,7 @@
 renv_switch_r_version(version = NULL)
 }
 \arguments{
-\item{version}{`[character]`\cr
+\item{version}{\verb{[character]}\cr
 The R version to upgrade to.}
 }
 \value{
@@ -19,12 +19,13 @@ which follow the 'cynkra RSPM snapshot' logic.
 This means that each R version is tied to a specific RSPM snapshot.
 
 The function executes the following tasks:
-
-- Replace the R Version in `renv.lock`.
-- Replace the RSPM snapshot in `renv.lock` with the one associated with the
-  selected R Version.
-- (optional) execution of `renv::update()`.
-- (optional) execution of `renv::snapshot()`.
+\itemize{
+\item Replace the R Version in \code{renv.lock}.
+\item Replace the RSPM snapshot in \code{renv.lock} with the one associated with the
+selected R Version.
+\item (optional) execution of \code{renv::update()}.
+\item (optional) execution of \code{renv::snapshot()}.
+}
 }
 \examples{
 \dontrun{
