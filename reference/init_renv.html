@@ -50,7 +50,7 @@
 <meta property="og:title" content="Initialize renv infrastructure (cynkra way) — init_renv" />
 <meta property="og:description" content="Initializes renv setup by setting a predefined RStudio Package
 Manager (RSPM) snapshot.
-Custom RSPM Snapshots can be configured via `snapshot_date`." />
+Custom RSPM Snapshots can be configured via snapshot_date." />
 <meta property="og:image" content="/logo.svg" />
 <meta name="twitter:card" content="summary" />
 
@@ -132,7 +132,7 @@ Custom RSPM Snapshots can be configured via `snapshot_date`." />
     <div class="ref-description">
     <p>Initializes renv setup by setting a predefined RStudio Package
 Manager (RSPM) snapshot.
-Custom RSPM Snapshots can be configured via `snapshot_date`.</p>
+Custom RSPM Snapshots can be configured via <code>snapshot_date</code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>init_renv</span><span class='op'>(</span>snapshot_date <span class='op'>=</span> <span class='cn'>NULL</span>, exclude <span class='op'>=</span> <span class='cn'>NULL</span>, convenience_pkgs <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
@@ -142,28 +142,29 @@ Custom RSPM Snapshots can be configured via `snapshot_date`.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>snapshot_date</th>
-      <td><p>`[integer]`<br />
+      <td><p><code>[integer]</code><br />
 A valid RSPM snapshot date. By default the "recommended" date from
-`get_snapshots()` for the respective R version is chosen.</p></td>
+<code><a href='get_snapshots.html'>get_snapshots()</a></code> for the respective R version is chosen.</p></td>
     </tr>
     <tr>
       <th>exclude</th>
-      <td><p>`[character]`<br />
-Packages to exclude from `renv::install()`.
+      <td><p><code>[character]</code><br />
+Packages to exclude from <code><a href='https://rstudio.github.io/renv//reference/install.html'>renv::install()</a></code>.
 Useful if a package is not available in the available repositories
-(check with `getOption("repos"`) to prevent `init_renv()` to fail.
+(check with <code>getOption("repos"</code>) to prevent <code>init_renv()</code> to fail.
 This should only be a temporary workaround - consider making local
 packages available in a minicran-like repository.</p></td>
     </tr>
     <tr>
       <th>convenience_pkgs</th>
-      <td><p>`[logical]`<br />
-  Install additional opinionated convenience packages?
-  The following packages would be installed:</p>
-<p>- usethis
-  - styler
-  - gert
-  - krlmlr/fledge</p></td>
+      <td><p><code>[logical]</code><br />
+Install additional opinionated convenience packages?
+The following packages would be installed:</p><ul>
+<li><p>usethis</p></li>
+<li><p>styler</p></li>
+<li><p>gert</p></li>
+<li><p>krlmlr/fledge</p></li>
+</ul></td>
     </tr>
     </table>
 
