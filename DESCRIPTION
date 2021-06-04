@@ -36,6 +36,7 @@ Suggests:
     drat (>= 0.2.0),
     gert,
     gitignore,
+    knitr,
     lintr,
     pkgbuild,
     precommit,
@@ -45,6 +46,8 @@ Suggests:
     testthat (>= 3.0.0),
     tic (>= 0.9.0.9005),
     withr
+VignetteBuilder: 
+    knitr
 Remotes:
     ropensci/tic
 Config/testthat/edition: 3

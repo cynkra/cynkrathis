@@ -33,6 +33,7 @@ init
 io
 jsonlite
 Kirill
+knitr
 krlmlr
 LazyData
 libcurl
@@ -81,6 +82,7 @@ tibble
 ubuntu
 usethis
 vctrs
+VignetteBuilder
 withr
 YAML
 YAMLs
