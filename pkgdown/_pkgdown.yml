@@ -6,17 +6,18 @@ destination: docs
 
 navbar:
   structure:
+    left: [news]
     right: [reference, articles, projects, consulting, github]
   components:
     home: ~
     reference:
-      text: REFERENCE
+      text: Reference
       href: reference/index.html
     projects:
-      text: PROJECTS
+      text: Projects
       href: https://www.cynkra.com/projects.html
     consulting:
-      text: CONSULTING
+      text: Consulting
       href: https://www.cynkra.com/consulting.html
 
 authors:
