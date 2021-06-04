@@ -13,7 +13,9 @@ cynkra
 cynkrathis
 desc
 dev
+dm
 dontrun
+dplyr
 energie
 env
 evans
@@ -25,6 +27,7 @@ github
 gitignore
 gmail
 GmbH
+hexbin
 https
 init
 io
@@ -43,10 +46,12 @@ minicran
 Müller
 Ncpus
 noreply
+odbc
 openssl
 Opionionated
 ORCID
 os
+packagemanager
 patrick
 pkgbuild
 precommit
@@ -72,8 +77,10 @@ styler
 sudo
 TBD
 testthat
+tibble
 ubuntu
 usethis
+vctrs
 withr
 YAML
 YAMLs
