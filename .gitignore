@@ -103,3 +103,4 @@ docs/
 Icon
 README.html
 .Rdata
+inst/doc

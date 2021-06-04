@@ -1,0 +1,199 @@
+---
+title: "Snapshot-Centered Project Handling"
+author: "Patrick Schratz"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{rspm-snaphots}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Introduction
+
+<!-- FIXME: list functions -->
+cynkrathis provides some functions which contribute to an opinionated project workflow approach.
+This approach is actively promoted and used within projects at cynkra.
+However, it is quite universal and can be used by anyone if desired.
+
+This post aims at explaining this workflow which we call **"snapshot-centered project handling"**.
+It plays best with a combination of {renv}, RStudio Package Manager (RSPM) and {cynkrathis} but can also be used with only subsets of such.
+
+The key idea lies in the use of a specific R version coupled with an RSPM snapshot.
+Using a specific RSPM snapshot in `options(repos = )` means that the project has only access to a static package source in contrast to a dynamic one when using a classic [CRAN mirror](https://cran.r-project.org/mirrors.html) such as https://cloud.r-project.org/.
+This practice has the following advantages in our view:
+
+- Stable project environment by making use of packages which are likely to play together well.
+- Package versions which are known to work with the R version used.
+- Possibility of controlled package updates between RSPM snapshots.
+
+The combination of an specific R version and a RSPM snapshot is ensured by {renv}.
+In `renv.lock`, the R version and snapshot ID are listed.
+
+```json
+{
+  "R": {
+    "Version": "4.1.0",
+    "Repositories": [
+      {
+        "Name": "CRAN",
+        "URL": "https://packagemanager.rstudio.com/cran/2021-05-18"
+      }
+    ]
+  },
+  [...]
+}
+```
+
+## The nature of snapshot-centered workflows
+
+Now when a project is initiated with {renv} and packages are installed, only packages from this specific snapshot are installed.
+A "snapshot" here means that the repo where packages are looked up contains only the CRAN sources of this specific day in time.
+No additional packages will be available/added to this snapshot in the future.
+
+This might seem limiting on the first look but we believe that it is actually a feature.
+Often when collaborating with other people, multiple people install packages at different stages of a project lifetime.
+
+Let's compare the scenario of a `install.packages("dplyr")` call eight weeks after project start.
+**Without a fixed snapshot**, this would look as follows:
+
+1. A user installs {dplyr} five weeks after the project has started.
+2. Meanwhile, {dplyr} was updated and with it some dependencies of it (maybe even the minimum versions were bumped).
+  Hence, `install.packages("dplyr")` will also update more recent versions of other packages than just {dplyr}.
+3. These updates have the potential to break some analysis in the project without anyone realizing.
+
+In contrast, when **using a snapshot-centered approach**, `install.packages("dplyr")` eight weeks after project start 
+
+1. will not cause any updates of already installed packages bcausse the {dplyr} version which is going to be installed will be the {dplyr} version at the point in time referenced by the RSPM snapshot.
+2. Already installed packages will not be installed again (thanks to {renv} and most importantly, no updates will be installed.
+
+## Practical implications and usage
+
+### Using packages not available in the RSPM snapshot
+
+Often enough there is the need to use packages which are not available in the RSPM snapshot, for example packages living only on GitHub or newer versions of packages.
+In general we recommend trying to get along with the packages available in the snapshot.
+If this is not possible for whatever reason, there is always the possibility to install a specific package from GitHub and track its exact version via {renv}.
+
+The possible downsides of this is that this installation will most likely update multiple packages in the project library and hence possibly break the stability of the fixed project library.
+While this is unavoidable if packages are only available on GitHub, the case is slightly different if a newer version of a package available on CRAN is needed.
+In this case, one might want to consider bumping the entire snapshot ID to one which satisfies the requirement needed.
+
+This leads to the point of using an alternative snapshot which we discuss in separate section.
+
+### Using alternative snapshots for specific R versions
+
+By default, {cynkrathis} couples a R version with the snapshot of the day on which the R version has been released.
+
+However, there are certain happenings during the time window until the next R version release (which is usually ~ 2 - 4 months) which can lead to the assignment of additional snapshots to this R version:
+
+- Important updates to certain R packages might happen which provide added value to a project
+- The snapshot assigned on the release date of the R version might inherit some incompatibilities between packages by chance. For example, it might be a package of your choice was updated the day before the snapshot and now does not play well with another package. 
+
+In such cases, we at cynkra add another snapshot to an R version.
+Now you might wonder where and how you can see which snapshots belong to which R version? Good question!
+Let's discuss this in the next section.
+
+### Retrieving snapshot information
+
+`cynkrathis::get_snapshots()` returns snapshot information.
+Let's look at the output and break down what information can be extracted from this output.
+
+```{r, size="tiny"}
+head(cynkrathis::get_snapshots())
+```
+
+- Column `id` refers to the internal RSPM (packagemanager.rstudio.com) ID of the respective snapshot.
+- Each observations lists the snapshot date (`date`) and the respective release date (`r_release_date`) of the associated R version.
+- Column `note` gives some information about a particular snapshot.
+- Column `type` denotes the default snapshot of a particular R version (as judged by the authors).
+- Each R version can have multiple snapshots assigned.
+
+## Updating snapshots
+
+By default we recommend to always update snapshots when you update your R version so that the R version is always coupled with a snapshot listed in `get_snapshots()`.
+
+There are two different scenarios:
+
+1. Updating/downgrading an R version
+2. Upgrading/downgrading snapshots and keeping the same R version
+
+### Upgrading/downgrading R versions
+
+When you decided to update a given snapshot because of an R version upgrade, you can make use of `renv_switch_r_version()`.
+This function knows which snapshot is the default for which R version.
+Hence, you do not need to look up which snapshot ID you need to use when switching between R versions.
+
+Let's say you want to switch to R 4.0.5.
+In this case, you can do 
+
+```r
+renv_switch_r_version("4.0.5")
+→ Replacing R Version and RSPM snapshot in renv.lock.
+✓ New R Version: 4.0.5.
+✓ New RSPM snapshot: 2021-04-23.
+```
+
+### Upgrading snapshots and keeping the same R version
+
+In this case, it is hard to guess which snapshot you desire to use.
+Hence you need to make some manual adjustments here.
+
+First, look up the snapshot you want to use by calling `get_snapshots()`.
+Then simply replace the snapshot ID in line 7 of `renv.lock`.
+
+Of course you can use any snapshot ID/date you want to use.
+The ones returned by `get_snapshots()` are only recommendations of ours.
+If you have good arguments why another snapshot might be helpful for a particular R version, you are welcome to open PR and share your thoughts with us!
+
+Assuming that you have updated/downgraded your snapshot, the last step is to update the actual installed packages.
+Now that there is another snapshot in place, you have new package sources available and should synchronize your project library to it.
+
+That said, for updating call `renv::update()`.
+{renv} will show you a list of changes which will be applied and which packages will be updated to which version.
+Here a short example:
+
+```
+- gh             [1.2.0 -> 1.3.0]
+- highr          [0.8 -> 0.9]
+- jquerylib      [0.1.3 -> 0.1.4]
+```
+
+Last, call `renv::snapshot()` to record the new versions in the lockfile.
+
+### Downgrading snapshots and keeping the same R version
+
+Is a bit more complicated.
+There is no dedicated `downgrade()` function because by default this function would not know which version to match against for the downgrade (remember, RSPM snapshots are not used by default by {renv}).
+One option is to go with `renv::revert()` and restore the lockfile contents of a previous commit.
+However, this approach has the downside that it does not account for possible new changes to the lockfile one has made meanwhile.
+
+What you actually want is to restore all packages listed in the lockfile with their version available in the configured snapshot.
+
+```r
+installed_pkgs = unname(installed.packages(lib.loc = .libPaths()[1])[, "Package"])
+renv::install(installed_pkgs)
+```
+
+This will install all installed packages again using the version of the snapshot date listed in `renv.lock`.
+Luckily, there is a function in {cynkrathis} to simplify this: `renv_downgrade()`.
+It will restart the session to ensure it is picking up the correct repo option and then execute the calls shown above.
+
+Next, call `renv::snapshot()` and you're good to go.
+
+The output should look similar as the following one
+
+```
+- testthat       [3.0.2 -> 3.0.1]
+- textshaping    [0.3.4 -> 0.2.1]
+```
+
+## Default {renv} options and settings
+
+FIXME: suggested default renv options

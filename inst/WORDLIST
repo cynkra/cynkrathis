@@ -1,5 +1,6 @@
 analytics
 aut
+bcausse
 BugReports
 callr
 ci
@@ -19,6 +20,7 @@ dplyr
 energie
 env
 evans
+FIXME
 fledge
 gert
 getOption
@@ -42,6 +44,7 @@ lifecycle
 linter
 linters
 lintr
+lockfile
 macOS
 minicran
 Müller
