@@ -33,7 +33,7 @@
 #' @examples
 #' \dontrun{
 #'
-#' deploy_local_package(drat_repo = "https://github.com/myuser/mydratrepo.git")
+#' deploy_minicran_package(drat_repo = "https://github.com/myuser/mydratrepo.git")
 #' }
 #'
 #' @name deploy
@@ -61,7 +61,7 @@ deploy_minicran_package <- function(drat_repo,
   withr::with_dir(
     drat_dir,
     withr::with_options(
-      c(dratBranch = "docs"),
+      c(dratBranch = NULL),
       {
         cli::cli_alert("Initiating deploy to {.url {drat_repo}}.")
 

@@ -8,5 +8,5 @@ get_snapshots()
 }
 \description{
 A list of curated cynkra RStudio Package Manager snapshot IDs and their
- metadata.
+metadata.
 }
