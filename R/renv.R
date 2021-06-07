@@ -336,7 +336,7 @@ renv_downgrade <- function() {
   requireNamespace("renv", quietly = TRUE)
 
   # check if renv.lock exists
-  checkmate::assert_file("renv.lock", )
+  checkmate::assert_file("renv.lock")
 
   # to ensure repos is set correctly
   source(".Rprofile")
