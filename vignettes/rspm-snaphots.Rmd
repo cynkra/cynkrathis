@@ -29,7 +29,7 @@ Yet it is quite universal and can be used by anyone if desired.
 
 Note that by default this workflows uses a combination of {renv}, RStudio Package Manager (RSPM) and {cynkrathis} but can also be applied with only subsets of such.
 
-{cynkrathis} provides some functions which contribute to this opinionated project workflow approach:
+{cynkrathis} provides functions which contribute to this opinionated project workflow approach:
 
 - `get_snapshots()`
 - `renv_switch_r_version()`
@@ -38,9 +38,16 @@ Note that by default this workflows uses a combination of {renv}, RStudio Packag
 These little helper functions play an important role in making this workflow fun to apply.
 We will explain their use throughout this article.
 
-The key idea lies in the use of a specific R version coupled with an RSPM snapshot.
+The key idea of the workflow lies in the use of a specific R version coupled with an RSPM snapshot.
 Using a specific RSPM snapshot in `options(repos = )` means that the project has only access to a static package source in contrast to a dynamic one when using a classic [CRAN mirror](https://cran.r-project.org/mirrors.html) such as <https://cloud.r-project.org/>.
-This practice has the following advantages in our view:
+
+What is meant by "static and dynamic package sources" exactly?  
+By default, CRAN mirrors provide new package updates as they are released on CRAN.
+Hence, if one calls `update.packages()` daily, there will always be some packages being updated to their newest version.
+This might be desired for R package development byt problematic for analysis projects, as every package update comes with the potential to break the analysis.  
+Instead, a "static package source" only refers to a CRAN snapshot on a specific day and does not provide any other CRAN package version than the versions available at this specfic day in time.
+
+Using a "static package source" for analysis projects has the following advantages:
 
 -   Stable project environment by making use of packages which are likely to play together well.
 -   Package versions which are known to work with the R version used.
@@ -78,7 +85,7 @@ Let's compare the scenario of a `install.packages("dplyr")` call eight weeks aft
 
 1.  A user installs {dplyr} five weeks after the project has started.
 2.  Meanwhile, {dplyr} was updated and with it some dependencies of it (maybe even the minimum versions were bumped). Hence, `install.packages("dplyr")` will also update more recent versions of other packages than just {dplyr}.
-3.  These updates have the potential to break some analysis in the project without anyone realizing.
+3.  These updates have the potential to break some analysis in the project, possibly without anyone realizing.
 
 In contrast, when **using a snapshot-centered approach**, `install.packages("dplyr")` eight weeks after project start
 
@@ -86,6 +93,13 @@ In contrast, when **using a snapshot-centered approach**, `install.packages("dpl
 2.  Already installed packages will not be installed again (thanks to {renv} and most importantly, no updates will be installed.
 
 ## Practical implications and usage
+
+Next, let's discuss some practical questions which will be coming up at some point during the analysis:
+
+- How do I upgrade/downgrade a single/all packages?
+- How do I upgrade the R version?
+
+We might eventually add more subsection over time here.
 
 ### Using packages not available in the RSPM snapshot
 
@@ -101,15 +115,16 @@ This leads to the point of using an alternative snapshot which we discuss in sep
 
 ### Using alternative snapshots for specific R versions
 
-By default, {cynkrathis} couples a R version with the snapshot of the day on which the R version has been released.
+By default, {cynkrathis} couples a R version with the snapshot of the day on which the R version has been released (see `get_snapshots()`).
 
-However, there are certain happenings during the time window until the next R version release (which is usually \~ 2 - 4 months) which can lead to the assignment of additional snapshots to this R version:
+However, there are certain happenings during the time window until the next R version release (which is usually \~ 2 - 4 months) which can lead to the assignment of additional snapshots to a specific R version:
 
 -   Important updates to certain R packages might happen which provide added value to a project
 -   The snapshot assigned on the release date of the R version might inherit some incompatibilities between packages by chance. For example, it might be a package of your choice was updated the day before the snapshot and now does not play well with another package.
 
 In such cases, we at cynkra add another snapshot to an R version.
-Now you might wonder where and how you can see which snapshots belong to which R version?
+The source for these assignment lives in a [JSON file in the cynkrathis package](https://github.com/cynkra/cynkrathis/blob/main/snapshots/snapshots.json).
+Now you might wonder where and how you can see which snapshots belong to which R version without looking at this JSON file all the time?
 Good question!
 Let's discuss this in the next section.
 
@@ -118,14 +133,15 @@ Let's discuss this in the next section.
 `cynkrathis::get_snapshots()` returns snapshot information.
 Let's look at the output and break down what information can be extracted from this output.
 
-```{r, size="tiny"}
-head(cynkrathis::get_snapshots())
+```{r echo=FALSE}
+options(width = 180)
+head(cynkrathis::get_snapshots(), 10)
 ```
 
 -   Column `id` refers to the internal RSPM (packagemanager.rstudio.com) ID of the respective snapshot.
 -   Each observations lists the snapshot date (`date`) and the respective release date (`r_release_date`) of the associated R version.
 -   Column `note` gives some information about a particular snapshot.
--   Column `type` denotes the default snapshot of a particular R version (as judged by the authors).
+-   Column `type` denotes the default snapshot of a particular R version when its tagged as "recommended".
 -   Each R version can have multiple snapshots assigned.
 
 ## Updating snapshots
@@ -135,15 +151,15 @@ By default we recommend to always update snapshots when you update your R versio
 There are two different scenarios:
 
 1.  Updating/downgrading an R version
-2.  Upgrading/downgrading snapshots and keeping the same R version
+2.  Upgrading/downgrading **snapshots only** and keeping the same R version
 
 ### Upgrading/downgrading R versions
 
-When you decided to update a given snapshot because of an R version upgrade, you can make use of `renv_switch_r_version()`.
+When you decided to update a given snapshot because of an R version upgrade, one can make use of `renv_switch_r_version()`.
 This function knows which snapshot is the default for which R version.
-Hence, you do not need to look up which snapshot ID you need to use when switching between R versions.
+Hence, there is no need to look up which snapshot ID to use when switching between R versions.
 
-Let's say you want to switch to R 4.0.5.
+Let's say one wants to switch to R 4.0.5.
 In this case, you can do
 
 ``` {.r}
@@ -155,17 +171,17 @@ renv_switch_r_version("4.0.5")
 
 ### Upgrading snapshots and keeping the same R version
 
-In this case, it is hard to guess which snapshot you desire to use.
-Hence you need to make some manual adjustments here.
+Here it is hard to guess which snapshot one desires to use as `renv_switch_r_version()` will always use the snapshot ID tagged as "recommened" in `get_snapshots()`.
+Most often this is already the snapshot ID in use for the particular R version.
+If a different snapshot should be used, manual adjustments is required.
 
 First, look up the snapshot you want to use by calling `get_snapshots()`.
 Then simply replace the snapshot ID in line 7 of `renv.lock`.
 
-Of course you can use any snapshot ID/date you want to use.
-The ones returned by `get_snapshots()` are only recommendations of ours.
+One can use any snapshot ID/date available and the ones returned by `get_snapshots()` are only recommendations of cynkra but might not work for you personally.
 If you have good arguments why another snapshot might be helpful for a particular R version, you are welcome to open PR and share your thoughts with us!
 
-Assuming that you have updated/downgraded your snapshot, the last step is to update the actual installed packages.
+OK - let's assume that you have updated/downgraded your snapshot: the last step would be to update the actual installed packages.
 Now that there is another snapshot in place, you have new package sources available and should synchronize your project library to it.
 
 That said, for updating call `renv::update()`.
@@ -180,19 +196,19 @@ Last, call `renv::snapshot()` to record the new versions in the lockfile.
 
 ### Downgrading snapshots and keeping the same R version
 
-Is a bit more complicated.
+Downgrading is a bit more complicated but do not worry - {cynkrathis} got you covered.
 There is no dedicated `downgrade()` function because by default this function would not know which version to match against for the downgrade (remember, RSPM snapshots are not used by default by {renv}).
 One option is to go with `renv::revert()` and restore the lockfile contents of a previous commit.
 However, this approach has the downside that it does not account for possible new changes to the lockfile one has made meanwhile.
 
-What you actually want is to restore all packages listed in the lockfile with their version available in the configured snapshot.
+What you actually want is to *restore all packages listed in the lockfile with their version available in the configured snapshot*.
 
 ``` {.r}
 installed_pkgs = unname(installed.packages(lib.loc = .libPaths()[1])[, "Package"])
 renv::install(installed_pkgs)
 ```
 
-This will install all installed packages again using the version of the snapshot date listed in `renv.lock`.
+The snippet above will install all installed packages again using the version of the snapshot date listed in `renv.lock`.
 Luckily, there is a function in {cynkrathis} to simplify this: `renv_downgrade()`.
 It will restart the session to ensure it is picking up the correct repo option and then execute the calls shown above.
 
