@@ -333,15 +333,10 @@ renv_install_local <- function(path = ".", quiet = FALSE, ...) {
     path <- usethis::proj_get()
   }
 
-  renv_local <- Sys.getenv("RENV_PATHS_LOCAL")
+  # this gets the root paths dynamically on each OS and honors renv env vars
+  # like RENV_PATHS_LOCAL
+  renv_local <- renv::paths$root()
 
-  if (renv_local == "") {
-    renv_local <- switch(Sys.info()[["sysname"]],
-      "Darwin" = "~/Library/Application Support/renv",
-      "Windows" = "%LOCALAPPDATA%/renv",
-      "Linux" = "~/.local/share/renv"
-    )
-  }
   dir.create(renv_local, showWarnings = FALSE, recursive = TRUE)
 
   pkg_name <- desc::desc_get_field("Package")
