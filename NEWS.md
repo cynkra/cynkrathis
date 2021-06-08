@@ -1,3 +1,11 @@
+<!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
+
+# cynkrathis 0.3.1 (2021-06-01)
+
+- `deploy_minicran_package()`: compatibility with drat 0.2.0
+- `renv_switch_r_version()`: coerce `new_snapshot` date to character to prevent NA printing
+
+
 # cynkrathis 0.3.0 (2021-03-17)
 
 - add `deploy_minicran_package()` (#16)

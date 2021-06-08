@@ -259,8 +259,8 @@ renv_switch_r_version <- function(version = NULL
   renvlock[3] <- sprintf("    \"Version\": \"%s\",", version)
 
   snapshots <- get_snapshots()
-  new_snapshot <- snapshots[snapshots$r_version == version &
-    snapshots$type == "recommended", c("date")]
+  new_snapshot <- as.character(snapshots[snapshots$r_version == version &
+    snapshots$type == "recommended", c("date")])
   # replace RSPM snapshot
   renvlock[6:7] <- c(
     "        \"Name\": \"CRAN\",",

@@ -7,7 +7,7 @@
 init_tic(commit = TRUE)
 }
 \arguments{
-\item{commit}{`[logical]`\cr
+\item{commit}{\verb{[logical]}\cr
 Whether to automatically commit the newly created files.}
 }
 \description{
