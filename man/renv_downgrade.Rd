@@ -17,11 +17,28 @@ workflow" and can be used to downgrade all packages to an RSPM snapshot listed i
 While the main purpose is downgrade packages which exist in a higher
 version, this function can also be used to restore a clean state of the
 project library outside of a downgrade scenario.
+Be aware of the handling of packages installed from remote sources (see
+section "Downgrading behavior").
 
 Under the hood, it records all packages installed in the \code{renv} project
 library and restores these with the RSPM snapshot found in Line 7 of
 \code{renv.lock}.
 }
+\section{Downgrading behavior 🚧️}{
+
+
+There are important differences to be aware of when downgrading packages with respect to
+their installation source:
+\enumerate{
+\item If a package is not available on CRAN, \code{renv_downgrade()} will restore the
+version from the remote source just fine.
+\item If a package is available on CRAN and a remote snapshot (e.g. from GitHub)
+was referenced in \code{renv.lock}, \code{renv_downgrade()} will downgrade this package
+to its CRAN version of the respective snapshot and \strong{not} keep the remote
+snapshot version.
+}
+}
+
 \examples{
 \dontrun{
 renv_downgrade()
