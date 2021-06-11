@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# cynkrathis 0.3.1.9000 (2021-06-11)
+
+- Add `renv_donwgrade()`, a helper for downgrading to old RSPM snapshots
+
+
 # cynkrathis 0.3.1 (2021-06-01)
 
 - `deploy_minicran_package()`: compatibility with drat 0.2.0
