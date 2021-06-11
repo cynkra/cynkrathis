@@ -309,6 +309,49 @@ renv_switch_r_version <- function(version = NULL
   return(invisible(TRUE))
 }
 
+#' @title Build a local package and install it into an renv project
+#' @description This is a wrapper around `pkgbuild::build()` and
+#'   `renv::install()` to more easily make local packages available within
+#'   \pkg{renv} projects.
+#'
+#' The following steps are performed:
+#'
+#' 1. Building the package found at argument `path` via `pkgbuild::build()`.
+#' 2. Moving the built source into the \pkg{renv} cache. The cache location is
+#' determined by `Sys.getenv("RENV_PATHS_LOCAL")`.
+#' 3. Installing the package from the cache location via `renv::install()`.
+#' @param path `[character]`\cr
+#'   The path to the package which should be built and installed.
+#' @param quiet `[logical]`\cr
+#'   Whether to suppress console output.
+#' @param ... \cr
+#'   Passed down to `pkgbuild::build()`.
+#' @importFrom renv install
+#' @export
+renv_install_local <- function(path = ".", quiet = FALSE, ...) {
+  if (path == ".") {
+    path <- usethis::proj_get()
+  }
+
+  # this gets the root paths dynamically on each OS and honors renv env vars
+  # like RENV_PATHS_LOCAL
+  renv_local <- renv::paths$root()
+
+  dir.create(renv_local, showWarnings = FALSE, recursive = TRUE)
+
+  pkg_name <- desc::desc_get_field("Package")
+
+  if (quiet) {
+    cli::cli_alert_info("Building package {.field {pkg_name}} and
+      installing into {.field {renv_local}}.", wrap = TRUE)
+  }
+  pkg_source <- pkgbuild::build(path,
+    dest_path = renv_local, quiet = quiet,
+    ...
+  )
+
+  renv::install(pkg_source)
+}
 
 #' Downgrade an renv project to a specific RSPM snapshot
 #'
