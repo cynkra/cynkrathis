@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • cynkrathis</title>
+<title>Downgrade an renv project to a specific RSPM snapshot — renv_downgrade • cynkrathis</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,7 +47,18 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Downgrade an renv project to a specific RSPM snapshot — renv_downgrade" />
+<meta property="og:description" content="This functions aims to be used within a &quot;snapshot-centered project
+workflow&quot; and can be used to downgrade all packages to an RSPM snapshot listed in
+renv.lock.
+While the main purpose is downgrade packages which exist in a higher
+version, this function can also be used to restore a clean state of the
+project library outside of a downgrade scenario.
+Be aware of the handling of packages installed from remote sources (see
+section &quot;Downgrading behavior&quot;).
+Under the hood, it records all packages installed in the renv project
+library and restores these with the RSPM snapshot found in Line 7 of
+renv.lock." />
 <meta property="og:image" content="/logo.svg" />
 <meta name="twitter:card" content="summary" />
 
@@ -68,7 +79,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -119,116 +130,58 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Downgrade an renv project to a specific RSPM snapshot</h1>
+    <small class="dont-index">Source: <a href='https://github.com/cynkra/cynkrathis/blob/master/R/renv.R'><code>R/renv.R</code></a></small>
+    <div class="hidden name"><code>renv_downgrade.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>This functions aims to be used within a "snapshot-centered project
+workflow" and can be used to downgrade all packages to an RSPM snapshot listed in
+<code>renv.lock</code>.</p>
+<p>While the main purpose is downgrade packages which exist in a higher
+version, this function can also be used to restore a clean state of the
+project library outside of a downgrade scenario.
+Be aware of the handling of packages installed from remote sources (see
+section "Downgrading behavior").</p>
+<p>Under the hood, it records all packages installed in the <code>renv</code> project
+library and restores these with the RSPM snapshot found in Line 7 of
+<code>renv.lock</code>.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>renv_downgrade</span><span class='op'>(</span><span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-renv" class="hasAnchor"><a href="#section-renv" class="anchor"></a>renv</h2>
-          <p class="section-desc"><p>renv helpers</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="init_renv.html">init_renv()</a></code> </p>
-        </td>
-        <td><p>Initialize renv infrastructure (cynkra way)</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="renv_downgrade.html">renv_downgrade()</a></code> </p>
-        </td>
-        <td><p>Downgrade an renv project to a specific RSPM snapshot</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="renv_switch_r_version.html">renv_switch_r_version()</a></code> </p>
-        </td>
-        <td><p>Switch between R versions in renv projects</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-rstudio-connect" class="hasAnchor"><a href="#section-rstudio-connect" class="anchor"></a>RStudio Connect</h2>
-          <p class="section-desc"><p>RStudio Connect helpers</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="deploy.html">deploy_minicran_package()</a></code> </p>
-        </td>
-        <td><p>Deployment helpers for internal minicran packages</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-miscellaneous" class="hasAnchor"><a href="#section-miscellaneous" class="anchor"></a>Miscellaneous</h2>
-          <p class="section-desc"><p>Optional project scaffolding helpers</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="get_snapshots.html">get_snapshots()</a></code> </p>
-        </td>
-        <td><p>Return metadata for cynkra RSPM snapshots</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="init_precommit.html">init_precommit()</a></code> </p>
-        </td>
-        <td><p>Use precommit with that project</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="init_tic.html">init_tic()</a></code> </p>
-        </td>
-        <td><p>Initialize tic CI structure</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="init_gitignore.html">init_gitignore()</a></code> </p>
-        </td>
-        <td><p>Write fully equipped gitignore files</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="init_lintr.html">init_lintr()</a></code> </p>
-        </td>
-        <td><p>Initialize lintr config</p></td>
-      </tr>
-    </tbody>
-    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Called for its side-effect.</p>
+    <h2 class="hasAnchor" id="downgrading-behavior-"><a class="anchor" href="#downgrading-behavior-"></a>Downgrading behavior 🚧️</h2>
+
+    
+
+
+<p>There are important differences to be aware of when downgrading packages with respect to
+their installation source:</p><ol>
+<li><p>If a package is not available on CRAN, <code>renv_downgrade()</code> will restore the
+version from the remote source just fine.</p></li>
+<li><p>If a package is available on CRAN and a remote snapshot (e.g. from GitHub)
+was referenced in <code>renv.lock</code>, <code>renv_downgrade()</code> will downgrade this package
+to its CRAN version of the respective snapshot and <strong>not</strong> keep the remote
+snapshot version.</p></li>
+</ol>
+
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>renv_switch_r_version</p></div>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'>renv_downgrade</span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
