@@ -352,3 +352,70 @@ renv_install_local <- function(path = ".", quiet = FALSE, ...) {
 
   renv::install(pkg_source)
 }
+
+#' Downgrade an renv project to a specific RSPM snapshot
+#'
+#' @description
+#'   This functions aims to be used within a "snapshot-centered project
+#'   workflow" and can be used to downgrade all packages to an RSPM snapshot listed in
+#'   `renv.lock`.
+#'
+#'   While the main purpose is downgrade packages which exist in a higher
+#'   version, this function can also be used to restore a clean state of the
+#'   project library outside of a downgrade scenario.
+#'   Be aware of the handling of packages installed from remote sources (see
+#'   section "Downgrading behavior").
+#'
+#'   Under the hood, it records all packages installed in the `renv` project
+#'   library and restores these with the RSPM snapshot found in Line 7 of
+#'   `renv.lock`.
+#'
+#' @section Downgrading behavior 🚧️:
+#'
+#' There are important differences to be aware of when downgrading packages with respect to
+#' their installation source:
+#'
+#' 1. If a package is not available on CRAN, `renv_downgrade()` will restore the
+#' version from the remote source just fine.
+#' 2. If a package is available on CRAN and a remote snapshot (e.g. from GitHub)
+#' was referenced in `renv.lock`, `renv_downgrade()` will downgrade this package
+#' to its CRAN version of the respective snapshot and **not** keep the remote
+#' snapshot version.
+#'
+#' @return Called for its side-effect.
+#' @export
+#' @seealso renv_switch_r_version
+#'
+#' @examples
+#' \dontrun{
+#' renv_downgrade()
+#' }
+renv_downgrade <- function() {
+  requireNamespace("renv", quietly = TRUE)
+
+  # check if renv.lock exists
+  checkmate::assert_file("renv.lock")
+
+  # to ensure repos is set correctly
+  source(".Rprofile")
+
+  # list all packages from renv library (should always be the renv lib
+  # if renv.lock exists)
+  installed_pkgs <- unname(utils::installed.packages(
+    lib.loc = .libPaths()[1]
+  )[, "Package"])
+
+  snapshot_date <- stringr::str_extract(
+    readLines("renv.lock", n = 7)[7],
+    "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+  )
+  cli::cli_alert_info("Reinstalling all packages using RSPM snapshot
+    {.field {snapshot_date}}.", wrap = TRUE)
+
+  renv::install(installed_pkgs)
+
+  cli::cli_alert_success("Successfully rebased all packages to RSPM snapshot
+    {.field {snapshot_date}}.", wrap = TRUE)
+  cli::cli_alert("Now call {.fun renv::snapshot} to record the new package
+    versions in {.file renv.lock}.", wrap = TRUE)
+}
