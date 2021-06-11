@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# cynkrathis 0.3.1.9001 (2021-06-11)
+
+- Add `renv_install_local()`, an {renv} helper which helps building local packages by moving them to the shared {renv} cache location for local packages and installing them - all in one step
+
+
 # cynkrathis 0.3.1.9000 (2021-06-11)
 
 - Add `renv_donwgrade()`, a helper for downgrading to old RSPM snapshots
