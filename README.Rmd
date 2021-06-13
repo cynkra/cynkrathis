@@ -11,6 +11,7 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
+options(width = 180)
 ```
 
 <!-- badges: start -->
@@ -32,7 +33,6 @@ Usually each R Version is tied to a snapshot near it's release date.
 If a snapshot is considered unstable due to certain R package version clashes, additional snapshots for specific R versions can be listed.
 
 ```{r }
-options(width = 180)
 head(cynkrathis::get_snapshots(), 10)
 ```
 

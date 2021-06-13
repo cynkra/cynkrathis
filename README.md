@@ -25,7 +25,6 @@ package version clashes, additional snapshots for specific R versions
 can be listed.
 
 ``` r
-options(width = 180)
 head(cynkrathis::get_snapshots(), 10)
 #>         id r_version r_release_date       date        type                                                              note
 #> 12 2976243     4.1.0     2021-05-18 2021-05-18 recommended                              dm 0.2.1, tibble 3.1.2, pillar 1.6.1
