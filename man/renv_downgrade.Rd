@@ -10,6 +10,8 @@ renv_downgrade()
 Called for its side-effect.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+
 This functions aims to be used within a "snapshot-centered project
 workflow" and can be used to downgrade all packages to an RSPM snapshot listed in
 \code{renv.lock}.

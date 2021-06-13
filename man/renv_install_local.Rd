@@ -17,9 +17,10 @@ Whether to suppress console output.}
 Passed down to \code{pkgbuild::build()}.}
 }
 \description{
-This is a wrapper around \code{pkgbuild::build()} and
-\code{renv::install()} to more easily make local packages available within
-\pkg{renv} projects.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+
+This is a wrapper around \code{pkgbuild::build()} and \code{renv::install()} to more
+easily make local packages available within \pkg{renv} projects.
 
 The following steps are performed:
 \enumerate{

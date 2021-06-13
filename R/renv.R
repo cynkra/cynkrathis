@@ -1,6 +1,8 @@
 #' Initialize {renv} infrastructure (cynkra way)
 #'
 #' @description
+#' `r lifecycle::badge('experimental')`
+#'
 #' Initializes {renv} setup by setting a predefined RStudio Package
 #' Manager (RSPM) snapshot.
 #' Custom RSPM Snapshots can be configured via `snapshot_date`.
@@ -310,9 +312,12 @@ renv_switch_r_version <- function(version = NULL
 }
 
 #' @title Build a local package and install it into an renv project
-#' @description This is a wrapper around `pkgbuild::build()` and
-#'   `renv::install()` to more easily make local packages available within
-#'   \pkg{renv} projects.
+#' @description
+#'
+#' `r lifecycle::badge('experimental')`
+#'
+#' This is a wrapper around `pkgbuild::build()` and `renv::install()` to more
+#' easily make local packages available within \pkg{renv} projects.
 #'
 #' The following steps are performed:
 #'
@@ -356,6 +361,8 @@ renv_install_local <- function(path = ".", quiet = FALSE, ...) {
 #' Downgrade an renv project to a specific RSPM snapshot
 #'
 #' @description
+#'   `r lifecycle::badge('experimental')`
+#'
 #'   This functions aims to be used within a "snapshot-centered project
 #'   workflow" and can be used to downgrade all packages to an RSPM snapshot listed in
 #'   `renv.lock`.

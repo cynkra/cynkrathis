@@ -20,6 +20,8 @@ DESCRIPTION file.}
 When \code{TRUE}, the final git commit/push steps are skipped.}
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+
 Builds and deploys a local package to a git repository in a CRAN like
 structure.
 

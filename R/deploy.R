@@ -1,6 +1,8 @@
 #' @title Deployment helpers for internal minicran packages
 #' @description
 #'
+#' `r lifecycle::badge('experimental')`
+#'
 #' Builds and deploys a local package to a git repository in a CRAN like
 #' structure.
 #'
