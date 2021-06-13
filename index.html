@@ -90,7 +90,8 @@
 <a href="#cynkra-rspm-snapshots" class="anchor"></a>cynkra RSPM snapshots</h2>
 <p>cynkra makes use of certain RStudio Package Manager (RSPM) snapshots across projects. Usually each R Version is tied to a snapshot near it’s release date. If a snapshot is considered unstable due to certain R package version clashes, additional snapshots for specific R versions can be listed.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu">cynkrathis</span><span class="fu">::</span><span class="fu"><a href="reference/get_snapshots.html">get_snapshots</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">10</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">180</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu">cynkrathis</span><span class="fu">::</span><span class="fu"><a href="reference/get_snapshots.html">get_snapshots</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">10</span><span class="op">)</span>
 <span class="co">#&gt;         id r_version r_release_date       date        type                                                              note</span>
 <span class="co">#&gt; 12 2976243     4.1.0     2021-05-18 2021-05-18 recommended                              dm 0.2.1, tibble 3.1.2, pillar 1.6.1</span>
 <span class="co">#&gt; 11 2866992     4.0.5     2021-03-31 2021-05-12                                                                              </span>
