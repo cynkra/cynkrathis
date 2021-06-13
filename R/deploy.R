@@ -6,8 +6,8 @@
 #' Builds and deploys a local package to a git repository in a CRAN like
 #' structure.
 #'
-#' The resulting git repository can then be served via
-#' [RStudio Connect](https://rstudio.com/products/connect/) and accessed as an
+#' The resulting git repository can then be served via [RStudio
+#' Connect](https://www.rstudio.com/products/connect/) and accessed as an
 #' additional repository next to the main CRAN repository (by setting it via
 #' `options(repos = )`).
 #' RStudio Connect can crawl the repository in a defined internal when deploying
@@ -15,7 +15,7 @@
 #' Changes (i.e. new package versions) are picked up automatically.
 #'
 #' This is an alternative to hosting and using a private instance of
-#' [RStudio Package Manager](https://rstudio.com/products/package-manager/).
+#' [RStudio Package Manager](https://www.rstudio.com/products/package-manager/).
 #'
 #'   The function executes the following tasks:
 #'   - Build a tarball of the package via `pkgbuild::build()`.

@@ -6,7 +6,7 @@
 [![Coverage
 status](https://codecov.io/gh/cynkra/cynkrathis/branch/main/graph/badge.svg)](https://codecov.io/github/cynkra/cynkrathis?branch=main)
 [![CRAN
-status](https://www.r-pkg.org/badges/version/cynkrathis)](https://CRAN.R-project.org/package=cynkrathis)
+status](https://www.r-pkg.org/badges/version/cynkrathis)](https://www.r-pkg.org/badges/version/cynkrathis)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CodeFactor](https://www.codefactor.io/repository/github/cynkra/cynkrathis/badge)](https://www.codefactor.io/repository/github/cynkra/cynkrathis)
@@ -26,21 +26,31 @@ can be listed.
 
 ``` r
 cynkrathis::get_snapshots()
-#>        id r_version r_release_date       date        type
-#> 7 1570705     4.0.4     2021-02-26 2021-02-26            
-#> 6 1390593     4.0.4     2021-02-16 2021-02-16 recommended
-#> 5 1033374     4.0.3           <NA> 2021-01-27            
-#> 4     351     4.0.3     2020-10-10 2020-10-13 recommended
-#> 3     314     4.0.2     2020-06-22 2020-08-24            
-#> 2     301     4.0.2     2020-06-22 2020-07-13            
-#> 1     259     3.6.3     2020-02-29 2020-03-02 recommended
-#>                                                                note
-#> 7                                                       renv 0.13.0
-#> 6 dm 0.1.12, odbc 1.3.0, testthat 3.0.2, lifecycle 1.0.0, no hexbin
-#> 5                            dm >= 0.1.10, no hexbin, odbc >= 1.3.0
-#> 4                                                  rmarkdown >= 2.5
-#> 3                                                    dplyr >= 1.0.0
-#> 2                                                    dplyr >= 1.0.0
+#>         id r_version r_release_date       date        type
+#> 12 2976243     4.1.0     2021-05-18 2021-05-18 recommended
+#> 11 2866992     4.0.5     2021-03-31 2021-05-12            
+#> 10 2511902     4.0.5     2021-03-31 2021-04-23 recommended
+#> 9  2080338     4.0.5     2021-03-31 2021-03-31            
+#> 8  1987521     4.0.4     2021-03-26 2021-03-26            
+#> 7  1570705     4.0.4     2021-02-26 2021-02-26            
+#> 6  1390593     4.0.4     2021-02-16 2021-02-16 recommended
+#> 5  1033374     4.0.3           <NA> 2021-01-27            
+#> 4      351     4.0.3     2020-10-10 2020-10-13 recommended
+#> 3      314     4.0.2     2020-06-22 2020-08-24            
+#> 2      301     4.0.2     2020-06-22 2020-07-13            
+#> 1      259     3.6.3     2020-02-29 2020-03-02 recommended
+#>                                                                 note
+#> 12                              dm 0.2.1, tibble 3.1.2, pillar 1.6.1
+#> 11                                                                  
+#> 10                                                                  
+#> 9                                                        vctrs 0.3.7
+#> 8                                                        dplyr 1.0.5
+#> 7                                                        renv 0.13.0
+#> 6  dm 0.1.12, odbc 1.3.0, testthat 3.0.2, lifecycle 1.0.0, no hexbin
+#> 5                             dm >= 0.1.10, no hexbin, odbc >= 1.3.0
+#> 4                                                   rmarkdown >= 2.5
+#> 3                                                     dplyr >= 1.0.0
+#> 2                                                     dplyr >= 1.0.0
 #> 1
 ```
 
@@ -56,4 +66,4 @@ cynkrathis::init_renv()
 ## Miscellaneous helpers
 
 See the grouped [pkgdown
-reference](https://cynkra.github.io/cynkrathis/reference/index.html).
+reference](https://cynkrathis.cynkra.com/reference/index.html).

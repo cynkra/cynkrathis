@@ -47,5 +47,5 @@ renv_downgrade()
 }
 }
 \seealso{
-renv_switch_r_version
+renv_switch_r_version()
 }

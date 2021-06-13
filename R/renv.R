@@ -391,7 +391,7 @@ renv_install_local <- function(path = ".", quiet = FALSE, ...) {
 #'
 #' @return Called for its side-effect.
 #' @export
-#' @seealso renv_switch_r_version
+#' @seealso renv_switch_r_version()
 #'
 #' @examples
 #' \dontrun{

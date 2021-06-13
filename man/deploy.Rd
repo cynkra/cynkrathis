@@ -25,8 +25,7 @@ When \code{TRUE}, the final git commit/push steps are skipped.}
 Builds and deploys a local package to a git repository in a CRAN like
 structure.
 
-The resulting git repository can then be served via
-\href{https://rstudio.com/products/connect/}{RStudio Connect} and accessed as an
+The resulting git repository can then be served via \href{https://www.rstudio.com/products/connect/}{RStudio Connect} and accessed as an
 additional repository next to the main CRAN repository (by setting it via
 \code{options(repos = )}).
 RStudio Connect can crawl the repository in a defined internal when deploying
@@ -34,7 +33,7 @@ the git repository via "Import from git".
 Changes (i.e. new package versions) are picked up automatically.
 
 This is an alternative to hosting and using a private instance of
-\href{https://rstudio.com/products/package-manager/}{RStudio Package Manager}.
+\href{https://www.rstudio.com/products/package-manager/}{RStudio Package Manager}.
 
 The function executes the following tasks:
 \itemize{
