@@ -32,7 +32,8 @@ Usually each R Version is tied to a snapshot near it's release date.
 If a snapshot is considered unstable due to certain R package version clashes, additional snapshots for specific R versions can be listed.
 
 ```{r }
-cynkrathis::get_snapshots()
+options(width = 180)
+head(cynkrathis::get_snapshots(), 10)
 ```
 
 ## Initialize {renv} with a given RSPM snapshot
