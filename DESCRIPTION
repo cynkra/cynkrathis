@@ -1,6 +1,6 @@
 Package: cynkrathis
 Title: Simplify Project Scaffolding and Common 'renv' Related Tasks
-Version: 0.3.1
+Version: 0.3.1.9001
 Authors@R:
     c(person(given = "Patrick",
              family = "Schratz",
@@ -43,6 +43,7 @@ Suggests:
     rmarkdown,
     roxygen2,
     rsconnect,
+    stringr,
     testthat (>= 3.0.0),
     tic (>= 0.9.0.9005),
     withr

@@ -9,6 +9,7 @@ covr
 cr
 cre
 cron
+cyclocomp
 cynkra
 cynkrathis
 desc
@@ -32,6 +33,7 @@ hexbin
 https
 init
 io
+jimhester
 jsonlite
 Kirill
 knitr
@@ -39,7 +41,6 @@ krlmlr
 LazyData
 libcurl
 libsodium
-lifecycle
 linter
 linters
 lintr

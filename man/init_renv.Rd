@@ -29,6 +29,8 @@ The following packages would be installed:
 }}
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+
 Initializes {renv} setup by setting a predefined RStudio Package
 Manager (RSPM) snapshot.
 Custom RSPM Snapshots can be configured via \code{snapshot_date}.
