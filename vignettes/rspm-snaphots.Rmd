@@ -232,7 +232,18 @@ There are more potential settings which might need adjustments when administrati
 | `RENV_PATHS_PREFIX_AUTO`            | TRUE            | Env var         |
 +-------------------------------------+-----------------+-----------------+
 
-- `renv.config.auto.snapshot`: @kirill FIXME
+- `renv.config.auto.snapshot`: There are different scenarios in which `env.config.auto.snapshot = TRUE` can lead to undesired situations:
+  1. If the R session was not restarted for some time and a collaborator updated `renv.lock` meanwhile on the git remote, one does not get a reminder that the package library is out of sync.
+  If one new installs a new package, auto-snapshot kicks in causing `renv.lock` to become a potential merge conflict. If this file is now commited before changes are pulled (possibly due to some automation happening), the push is rejected and the conflicts needs to be solved first.
+
+  2. Even if one gets a remember and restores the remote state first, the restore may fail. One might frantically try to install packages manually, which works, but then auto-snapshot writes a bogus state into the lock file.
+
+  3. If everything works out great, and one actually manages to restore cleanly and install new packages, now everybody else immediately sees all intermediate experiments with packages that one did to test-drive and then later removed again.
+  "Ideally", one commits straight to the main branch, so that everybody can track the flow of ones exploration and happily installs all the packages which have been touched to their library, only to remove then again later.
+  
+  These are just a few scenarios which actually happened in practice.
+  With manual snapshots, we decouple snapshotting from restoring and installing, which gives us a bit more control.
+  This works because in a multi-user project there is often one or few contributors who define the package environment, and the others just follow (and don't need this setting, to begin with).
 
 - `RENV_PATHS_PREFIX_AUTO`: When setting this environment variable to `TRUE`, {renv} will create OS-aware project libraries.
   This prevents conflicts after OS upgrades, especially on Linux. For example, binary packages on Ubuntu are not compatible across LTS versions because they link against specific system libraries which differe between these OS versions.
