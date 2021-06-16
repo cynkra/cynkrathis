@@ -1,6 +1,6 @@
 ---
 title: "Snapshot-Centered Project Workflow"
-author: "Patrick Schratz"
+author: "Patrick Schratz, Kirill Müller"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{rspm-snaphots}
@@ -20,8 +20,6 @@ knitr::opts_chunk$set(
 
 ## Introduction
 
-<!-- FIXME: list functions -->
-
 This post aims at explaining this **"snapshot-centered project workflow"** in greater detail.
 This approach is actively promoted and used within projects at cynkra.
 It plays particular well with a centralized RStudio Workbench installation when collaborating with multiple people on a project.
@@ -33,7 +31,7 @@ Note that by default this workflows uses a combination of {renv}, RStudio Packag
 
 - `get_snapshots()`
 - `renv_switch_r_version()`
-- `renv_downgrade()` # FIXME: not yet implemented
+- `renv_downgrade()`
 
 These little helper functions play an important role in making this workflow fun to apply.
 We will explain their use throughout this article.
@@ -92,14 +90,14 @@ In contrast, when **using a snapshot-centered approach**, `install.packages("dpl
 1.  will not cause any updates of already installed packages bcausse the {dplyr} version which is going to be installed will be the {dplyr} version at the point in time referenced by the RSPM snapshot.
 2.  Already installed packages will not be installed again (thanks to {renv} and most importantly, no updates will be installed.
 
+
+
 ## Practical implications and usage
 
 Next, let's discuss some practical questions which will be coming up at some point during the analysis:
 
 - How do I upgrade/downgrade a single/all packages?
 - How do I upgrade the R version?
-
-We might eventually add more subsection over time here.
 
 ### Using packages not available in the RSPM snapshot
 
@@ -248,3 +246,4 @@ There are more potential settings which might need adjustments when administrati
 - `RENV_PATHS_PREFIX_AUTO`: When setting this environment variable to `TRUE`, {renv} will create OS-aware project libraries.
   This prevents conflicts after OS upgrades, especially on Linux. For example, binary packages on Ubuntu are not compatible across LTS versions because they link against specific system libraries which differe between these OS versions.
   Without this setting, {renv} would try to re-use already existing packages which then leads to errors during load-time.
+  
