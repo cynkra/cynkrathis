@@ -117,7 +117,7 @@ deploy_minicran_package <- function(drat_repo,
 }
 
 clone_drat_dir <- function(drat_repo) {
-  path <- paste0(tempdir(), "/drat")
+  path <- tempfile()
   cli::cli_alert("Attempting to create a temporary git clone of
       {.url {drat_repo}}. Your password might be needed for
       authentication.", wrap = TRUE)
