@@ -61,7 +61,7 @@ deploy_minicran_package <- function(drat_repo,
   pkgversion <- desc::desc_get_version()
 
   # copy git config in case config is not set globally
-  file.copy(".git/config", paste0(drat_dir, "/.git/config"), overwrite = TRUE)
+  file.copy(".git/config", file.path(drat_dir, ".git/config"), overwrite = TRUE)
 
   withr::with_dir(
     drat_dir,
