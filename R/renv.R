@@ -415,7 +415,7 @@ renv_downgrade <- function() {
   # check only available packages on 'repos' set to avoid download failures
   # for non-avail pkgs (e.g. GitHub packages)
   avail_pkgs <- available.packages()[, "Package"]
-  non_avail <- setdiff(installed_pkgs, avail)
+  non_avail <- setdiff(installed_pkgs, avail_pkgs)
   pkgs_to_install <- setdiff(installed_pkgs, non_avail)
 
   snapshot_date <- stringr::str_extract(
