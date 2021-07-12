@@ -412,6 +412,12 @@ renv_downgrade <- function() {
     lib.loc = .libPaths()[1]
   )[, "Package"])
 
+  # check only available packages on 'repos' set to avoid download failures
+  # for non-avail pkgs (e.g. GitHub packages)
+  avail_pkgs <- available.packages()[, "Package"]
+  non_avail <- setdiff(installed_pkgs, avail)
+  pkgs_to_install <- setdiff(installed_pkgs, non_avail)
+
   snapshot_date <- stringr::str_extract(
     readLines("renv.lock", n = 7)[7],
     "[0-9]{4}-[0-9]{2}-[0-9]{2}"
@@ -419,7 +425,7 @@ renv_downgrade <- function() {
   cli::cli_alert_info("Reinstalling all packages using RSPM snapshot
     {.field {snapshot_date}}.", wrap = TRUE)
 
-  renv::install(installed_pkgs)
+  renv::install(pkgs_to_install)
 
   cli::cli_alert_success("Successfully rebased all packages to RSPM snapshot
     {.field {snapshot_date}}.", wrap = TRUE)
