@@ -1,11 +1,13 @@
 #' @title Deployment helpers for internal minicran packages
 #' @description
 #'
+#' `r lifecycle::badge('experimental')`
+#'
 #' Builds and deploys a local package to a git repository in a CRAN like
 #' structure.
 #'
-#' The resulting git repository can then be served via
-#' [RStudio Connect](https://rstudio.com/products/connect/) and accessed as an
+#' The resulting git repository can then be served via [RStudio
+#' Connect](https://www.rstudio.com/products/connect/) and accessed as an
 #' additional repository next to the main CRAN repository (by setting it via
 #' `options(repos = )`).
 #' RStudio Connect can crawl the repository in a defined internal when deploying
@@ -13,7 +15,7 @@
 #' Changes (i.e. new package versions) are picked up automatically.
 #'
 #' This is an alternative to hosting and using a private instance of
-#' [RStudio Package Manager](https://rstudio.com/products/package-manager/).
+#' [RStudio Package Manager](https://www.rstudio.com/products/package-manager/).
 #'
 #'   The function executes the following tasks:
 #'   - Build a tarball of the package via `pkgbuild::build()`.
@@ -57,6 +59,9 @@ deploy_minicran_package <- function(drat_repo,
 
   pkgname <- desc::desc_get("Package")
   pkgversion <- desc::desc_get_version()
+
+  # copy git config in case config is not set globally
+  file.copy(".git/config", file.path(drat_dir, ".git/config"), overwrite = TRUE)
 
   withr::with_dir(
     drat_dir,
@@ -112,7 +117,7 @@ deploy_minicran_package <- function(drat_repo,
 }
 
 clone_drat_dir <- function(drat_repo) {
-  path <- paste0(tempdir(), "/drat")
+  path <- tempfile()
   cli::cli_alert("Attempting to create a temporary git clone of
       {.url {drat_repo}}. Your password might be needed for
       authentication.", wrap = TRUE)

@@ -11,12 +11,13 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
+options(width = 180)
 ```
 
 <!-- badges: start -->
 [![tic](https://github.com/cynkra/cynkrathis/workflows/tic/badge.svg?branch=master)](https://github.com/cynkra/cynkrathis/actions)
 [![Coverage status](https://codecov.io/gh/cynkra/cynkrathis/branch/main/graph/badge.svg)](https://codecov.io/github/cynkra/cynkrathis?branch=main)
-[![CRAN status](https://www.r-pkg.org/badges/version/cynkrathis)](https://CRAN.R-project.org/package=cynkrathis)
+[![CRAN status](https://www.r-pkg.org/badges/version/cynkrathis)](https://www.r-pkg.org/badges/version/cynkrathis)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CodeFactor](https://www.codefactor.io/repository/github/cynkra/cynkrathis/badge)](https://www.codefactor.io/repository/github/cynkra/cynkrathis)
 <!-- badges: end -->
@@ -32,7 +33,7 @@ Usually each R Version is tied to a snapshot near it's release date.
 If a snapshot is considered unstable due to certain R package version clashes, additional snapshots for specific R versions can be listed.
 
 ```{r }
-cynkrathis::get_snapshots()
+head(cynkrathis::get_snapshots(), 10)
 ```
 
 ## Initialize {renv} with a given RSPM snapshot
@@ -45,4 +46,4 @@ cynkrathis::init_renv()
 
 ## Miscellaneous helpers
 
-See the grouped [pkgdown reference](https://cynkra.github.io/cynkrathis/reference/index.html).
+See the grouped [pkgdown reference](https://cynkrathis.cynkra.com/reference/index.html).
