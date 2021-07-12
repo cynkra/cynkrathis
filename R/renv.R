@@ -416,7 +416,18 @@ renv_downgrade <- function() {
   # for non-avail pkgs (e.g. GitHub packages)
   avail_pkgs <- available.packages()[, "Package"]
   non_avail <- setdiff(installed_pkgs, avail_pkgs)
-  pkgs_to_install <- setdiff(installed_pkgs, non_avail)
+  # also include "recommended" pkgs as otherwise deployments to RSC may fail
+  # e.g. if a recommended package version does not align with the RSPM
+  # snapshot on RSC
+  pkgs_to_install <- setdiff(installed_pkgs, c(
+    non_avail,
+    names(which(available.packages(
+      repos =
+        c(CRAN = "https://cran.r-project.org")
+    )[, "Priority"] == "recommended", ))
+  ))
+
+
 
   snapshot_date <- stringr::str_extract(
     readLines("renv.lock", n = 7)[7],
