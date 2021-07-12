@@ -419,15 +419,13 @@ renv_downgrade <- function() {
   # also include "recommended" pkgs as otherwise deployments to RSC may fail
   # e.g. if a recommended package version does not align with the RSPM
   # snapshot on RSC
-  pkgs_to_install <- setdiff(installed_pkgs, c(
-    non_avail,
-    names(which(available.packages(
+  pkgs_to_install <- setdiff(
+    c(installed_pkgs, names(which(available.packages(
       repos =
         c(CRAN = "https://cran.r-project.org")
-    )[, "Priority"] == "recommended", ))
-  ))
-
-
+    )[, "Priority"] == "recommended", ))),
+    non_avail
+  )
 
   snapshot_date <- stringr::str_extract(
     readLines("renv.lock", n = 7)[7],
