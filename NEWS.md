@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# cynkrathis 0.3.3 (2021-07-12)
+
+- `renv_downgrade()`: Account for packages from remote sources and CRAN's "recommended" packages
+
+
 # cynkrathis 0.3.2 (2021-06-17)
 
 - `deploy_minicran_package()` now also works if no global git config was set by copying the projects git config to the temporary drat directory (#21)

@@ -1,6 +1,6 @@
 Package: cynkrathis
 Title: Simplify Project Scaffolding and Common 'renv' Related Tasks
-Version: 0.3.2
+Version: 0.3.3
 Authors@R:
     c(person(given = "Patrick",
              family = "Schratz",
