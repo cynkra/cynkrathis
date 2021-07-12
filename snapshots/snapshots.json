@@ -36,6 +36,7 @@
   {
     "id": 1033374,
     "r_version": "4.0.3",
+    "r_release_date": "2020-10-10",
     "date": "2021-01-27",
     "type": "",
     "note": "dm >= 0.1.10, no hexbin, odbc >= 1.3.0"
