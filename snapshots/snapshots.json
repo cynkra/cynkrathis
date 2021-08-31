@@ -128,5 +128,13 @@
     "date": "2021-08-10",
     "type": "recommended",
     "note": ""
+  },
+  {
+    "id": 4804401,
+    "r_version": "4.1.1",
+    "r_release_date": "2021-08-10",
+    "date": "2021-08-30",
+    "type": "",
+    "note": "RSQLite 2.2.8, tibble 3.1.4"
   }
 ]
