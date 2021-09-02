@@ -1,12 +1,15 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
-# cynkrathis 0.3.1.9001 (2021-06-11)
+# cynkrathis 0.3.3 (2021-07-12)
 
+- `renv_downgrade()`: Account for packages from remote sources and CRAN's "recommended" packages
+
+
+# cynkrathis 0.3.2 (2021-06-17)
+
+- `deploy_minicran_package()` now also works if no global git config was set by copying the projects git config to the temporary drat directory (#21)
+- `deploy_minicran_package()` uses a fresh directory for each clone task now instead of reusing the previous one which might lead to conflicts (#22)
 - Add `renv_install_local()`, an {renv} helper which helps building local packages by moving them to the shared {renv} cache location for local packages and installing them - all in one step
-
-
-# cynkrathis 0.3.1.9000 (2021-06-11)
-
 - Add `renv_donwgrade()`, a helper for downgrading to old RSPM snapshots
 
 

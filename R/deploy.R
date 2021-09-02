@@ -60,6 +60,9 @@ deploy_minicran_package <- function(drat_repo,
   pkgname <- desc::desc_get("Package")
   pkgversion <- desc::desc_get_version()
 
+  # copy git config in case config is not set globally
+  file.copy(".git/config", file.path(drat_dir, ".git/config"), overwrite = TRUE)
+
   withr::with_dir(
     drat_dir,
     withr::with_options(
@@ -114,7 +117,7 @@ deploy_minicran_package <- function(drat_repo,
 }
 
 clone_drat_dir <- function(drat_repo) {
-  path <- paste0(tempdir(), "/drat")
+  path <- tempfile()
   cli::cli_alert("Attempting to create a temporary git clone of
       {.url {drat_repo}}. Your password might be needed for
       authentication.", wrap = TRUE)
