@@ -7,7 +7,7 @@
 init_renv(snapshot_date = NULL, exclude = NULL, convenience_pkgs = FALSE)
 }
 \arguments{
-\item{snapshot_date}{\verb{[integer]}\cr
+\item{snapshot_date}{\verb{[Date]}\cr
 A valid RSPM snapshot date. By default the "recommended" date from
 \code{get_snapshots()} for the respective R version is chosen.}
 

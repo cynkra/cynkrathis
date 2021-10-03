@@ -7,7 +7,7 @@
 #' Manager (RSPM) snapshot.
 #' Custom RSPM Snapshots can be configured via `snapshot_date`.
 #'
-#' @param snapshot_date `[integer]`\cr
+#' @param snapshot_date `[Date]`\cr
 #'   A valid RSPM snapshot date. By default the "recommended" date from
 #'   `get_snapshots()` for the respective R version is chosen.
 #' @param exclude `[character]`\cr
