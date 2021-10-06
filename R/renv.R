@@ -144,6 +144,11 @@ finish_init_renv <- function(exclude, convenience_pkgs, renv_latest) {
   # scrape dependencies of project and install them
   # FIXME this can be done better
   deps <- renv::dependencies(errors = "reported", dev = TRUE)$Package
+  unavailable <- setdiff(deps, rownames(available.packages()))
+  if (!all(unavailable %in% exclude)) {
+    message("Also excluding unavailable packages: ", paste0(setdiff(unavailable, exclude), collapse = ", "))
+    exclude <- unique(c(exclude, unavailable))
+  }
 
   if (convenience_pkgs) {
     deps <- append(
