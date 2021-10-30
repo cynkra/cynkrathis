@@ -143,7 +143,7 @@ easily make local packages available within <span class="pkg">renv</span> projec
 <p>The following steps are performed:</p><ol>
 <li><p>Building the package found at argument <code>path</code> via <code><a href='https://rdrr.io/pkg/pkgbuild/man/build.html'>pkgbuild::build()</a></code>.</p></li>
 <li><p>Moving the built source into the <span class="pkg">renv</span> cache. The cache location is
-determined by <code><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv("RENV_PATHS_LOCAL")</a></code>.</p></li>
+determined by <code>Sys.getenv("RENV_PATHS_LOCAL")</code>.</p></li>
 <li><p>Installing the package from the cache location via <code><a href='https://rstudio.github.io/renv/reference/install.html'>renv::install()</a></code>.</p></li>
 </ol>
 

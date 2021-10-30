@@ -150,7 +150,7 @@ Commit and push the changes to the git repository.
 structure.</p>
 <p>The resulting git repository can then be served via <a href='https://www.rstudio.com/products/connect/'>RStudio Connect</a> and accessed as an
 additional repository next to the main CRAN repository (by setting it via
-<code><a href='https://rdrr.io/r/base/options.html'>options(repos = )</a></code>).
+<code>options(repos = )</code>).
 RStudio Connect can crawl the repository in a defined internal when deploying
 the git repository via "Import from git".
 Changes (i.e. new package versions) are picked up automatically.</p>
@@ -191,12 +191,12 @@ When <code>TRUE</code>, the final git commit/push steps are skipped.</p></td>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-
-<span class='fu'>deploy_minicran_package</span><span class='op'>(</span>drat_repo <span class='op'>=</span> <span class='st'>"https://github.com/myuser/mydratrepo.git"</span><span class='op'>)</span>
-<span class='op'>}</span>
-
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>deploy_minicran_package</span><span class='op'>(</span>drat_repo <span class='op'>=</span> <span class='st'>"https://github.com/myuser/mydratrepo.git"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
