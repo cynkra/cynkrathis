@@ -143,5 +143,12 @@
     "date": "2021-10-01",
     "type": "",
     "note": "dm 0.2.4"
+  },
+  {
+    "r_version": "4.1.2",
+    "r_release_date": "2021-11-01",
+    "date": "2021-11-01",
+    "type": "recommended",
+    "note": ""
   }
 ]
