@@ -3,7 +3,6 @@
 #' @template commit
 #' @export
 init_tic <- function(commit = TRUE) {
-
   if (!requireNamespace("tic", quietly = TRUE)) {
     stop("Please install 'ropensci/tic'.")
   }
@@ -32,6 +31,5 @@ init_tic <- function(commit = TRUE) {
       ".Rbuildignore",
       ".gitignore"
     ))
-
   }
 }
