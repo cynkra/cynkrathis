@@ -3,7 +3,6 @@
 #' @template commit
 #' @export
 init_precommit <- function(commit = TRUE) {
-
   if (!requireNamespace("precommit", quietly = TRUE)) {
     stop("Please install 'precommit'.")
   }

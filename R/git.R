@@ -4,7 +4,6 @@
 #' @description By making use of the gitignore.io API.
 #' @export
 init_gitignore <- function(commit = TRUE) {
-
   if (!requireNamespace("gitignore", quietly = TRUE)) {
     stop("Please install 'gitignore'.")
   }
