@@ -150,5 +150,12 @@
     "date": "2021-11-01",
     "type": "recommended",
     "note": ""
+  },
+  {
+    "r_version": "4.1.2",
+    "r_release_date": "2021-11-01",
+    "date": "2021-12-22",
+    "type": "",
+    "note": "before CRAN vacation"
   }
 ]
