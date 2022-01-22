@@ -1,11 +1,13 @@
+url: https://cynkrathis.cynkra.com
+
 template:
   package: cynkratemplate
-  default_assets: false
 
 destination: docs
 
 navbar:
   structure:
+    left: [news]
     right: [reference, articles, projects, consulting, github]
   components:
     home: ~
@@ -23,7 +25,7 @@ authors:
   Patrick Schratz:
     href: https://pat-s.me
   Kirill Müller:
-    href: http://krlmlr.info
+    href: https://krlmlr.info
 
 reference:
   - title: renv
