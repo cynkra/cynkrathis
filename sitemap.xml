@@ -1,63 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/404.html</loc>
+    <loc>https://cynkrathis.cynkra.com/404.html</loc>
   </url>
   <url>
-    <loc>/CODE_OF_CONDUCT.html</loc>
+    <loc>https://cynkrathis.cynkra.com/CODE_OF_CONDUCT.html</loc>
   </url>
   <url>
-    <loc>/CONTRIBUTING.html</loc>
+    <loc>https://cynkrathis.cynkra.com/CONTRIBUTING.html</loc>
   </url>
   <url>
-    <loc>/LICENSE-text.html</loc>
+    <loc>https://cynkrathis.cynkra.com/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>/LICENSE.html</loc>
+    <loc>https://cynkrathis.cynkra.com/LICENSE.html</loc>
   </url>
   <url>
-    <loc>/SUPPORT.html</loc>
+    <loc>https://cynkrathis.cynkra.com/SUPPORT.html</loc>
   </url>
   <url>
-    <loc>/authors.html</loc>
+    <loc>https://cynkrathis.cynkra.com/authors.html</loc>
   </url>
   <url>
-    <loc>/index.html</loc>
+    <loc>https://cynkrathis.cynkra.com/index.html</loc>
   </url>
   <url>
-    <loc>/news/index.html</loc>
+    <loc>https://cynkrathis.cynkra.com/news/index.html</loc>
   </url>
   <url>
-    <loc>/reference/deploy.html</loc>
+    <loc>https://cynkrathis.cynkra.com/reference/deploy.html</loc>
   </url>
   <url>
-    <loc>/reference/get_snapshots.html</loc>
+    <loc>https://cynkrathis.cynkra.com/reference/get_snapshots.html</loc>
   </url>
   <url>
-    <loc>/reference/index.html</loc>
+    <loc>https://cynkrathis.cynkra.com/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/init_gitignore.html</loc>
+    <loc>https://cynkrathis.cynkra.com/reference/init_gitignore.html</loc>
   </url>
   <url>
-    <loc>/reference/init_lintr.html</loc>
+    <loc>https://cynkrathis.cynkra.com/reference/init_lintr.html</loc>
   </url>
   <url>
-    <loc>/reference/init_precommit.html</loc>
+    <loc>https://cynkrathis.cynkra.com/reference/init_precommit.html</loc>
   </url>
   <url>
-    <loc>/reference/init_renv.html</loc>
+    <loc>https://cynkrathis.cynkra.com/reference/init_renv.html</loc>
   </url>
   <url>
-    <loc>/reference/init_tic.html</loc>
+    <loc>https://cynkrathis.cynkra.com/reference/init_tic.html</loc>
   </url>
   <url>
-    <loc>/reference/renv_downgrade.html</loc>
+    <loc>https://cynkrathis.cynkra.com/reference/renv_downgrade.html</loc>
   </url>
   <url>
-    <loc>/reference/renv_install_local.html</loc>
+    <loc>https://cynkrathis.cynkra.com/reference/renv_install_local.html</loc>
   </url>
   <url>
-    <loc>/reference/renv_switch_r_version.html</loc>
+    <loc>https://cynkrathis.cynkra.com/reference/renv_switch_r_version.html</loc>
   </url>
 </urlset>
