@@ -103,6 +103,7 @@ html,
 body {
   font-family: "frutiger-light", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 15px;
+  color: black;
 }
 
 /* syntax highlighting ------------------------------------------------------ */
@@ -263,7 +264,7 @@ nav[data-toggle="toc"] .nav > li > a {
 }
 
 .navbar-default .navbar-left  > li > a {
-  color: gray;
+  color: black;
   font-size: 12px;
   font-style: italic;
   line-height: 20px;
