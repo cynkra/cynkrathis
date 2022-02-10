@@ -168,8 +168,8 @@
   {
     "r_version": "4.1.2",
     "r_release_date": "2021-11-01",
-    "date": "2022-02-05",
+    "date": "2022-02-07",
     "type": "",
-    "note": "pillar 1.7.0, rlang 1.0.0, dm 0.2.7"
+    "note": "pillar 1.7.0, rlang 1.0.1, dm 0.2.7"
   }
 ]
