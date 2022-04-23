@@ -183,7 +183,14 @@
     "r_version": "4.1.3",
     "r_release_date": "2022-03-10",
     "date": "2022-04-15",
-    "type": "recommended",
+    "type": "",
     "note": "vctrs 0.4.1, dm 0.2.8"
+  },
+  {
+    "r_version": "4.2.0",
+    "r_release_date": "2022-04-22",
+    "date": "2022-04-22",
+    "type": "recommended",
+    "note": ""
   }
 ]
