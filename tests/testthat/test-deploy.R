@@ -28,7 +28,7 @@ test_that("deploy_minicran_package()", {
   )
 
   # cleanup
-  if (!covr::in_covr()) {
+  if (Sys.getenv("NOT_CRAN") != "true" && !covr::in_covr()) {
     gert::git_rm("DESCRIPTION")
     unlink("DESCRIPTION")
     gert::git_add("DESCRIPTION")
