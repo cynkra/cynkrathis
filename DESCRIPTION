@@ -24,7 +24,6 @@ Imports:
     glue,
     jsonlite,
     lifecycle,
-    purrr,
     renv,
     rlang,
     rstudioapi,
