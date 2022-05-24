@@ -192,5 +192,12 @@
     "date": "2022-04-22",
     "type": "recommended",
     "note": ""
+  },
+  {
+    "r_version": "4.2.0",
+    "r_release_date": "2022-04-22",
+    "date": "2022-05-20",
+    "type": "",
+    "note": "dplyr 1.0.9"
   }
 ]
