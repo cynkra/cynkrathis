@@ -75,6 +75,8 @@ Custom RSPM Snapshots can be configured via <code>snapshot_date</code>.</p>
 <dd><p><code>[Date]</code><br>
 A valid RSPM snapshot date. By default the "recommended" date from
 <code><a href="get_snapshots.html">get_snapshots()</a></code> for the respective R version is chosen.</p></dd>
+
+
 <dt>exclude</dt>
 <dd><p><code>[character]</code><br>
 Packages to exclude from <code><a href="https://rstudio.github.io/renv/reference/install.html" class="external-link">renv::install()</a></code>.
@@ -82,6 +84,8 @@ Useful if a package is not available in the available repositories
 (check with <code>getOption("repos"</code>) to prevent <code>init_renv()</code> to fail.
 This should only be a temporary workaround - consider making local
 packages available in a minicran-like repository.</p></dd>
+
+
 <dt>convenience_pkgs</dt>
 <dd><p><code>[logical]</code><br>
 Install additional opinionated convenience packages?
@@ -90,6 +94,7 @@ The following packages would be installed:</p><ul><li><p>usethis</p></li>
 <li><p>gert</p></li>
 <li><p>krlmlr/fledge</p></li>
 </ul></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
