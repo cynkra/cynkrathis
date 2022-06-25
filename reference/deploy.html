@@ -105,7 +105,7 @@ Changes (i.e. new package versions) are picked up automatically.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">deploy_minicran_package</span><span class="op">(</span><span class="va">drat_repo</span>, commit_message <span class="op">=</span> <span class="cn">NULL</span>, dry_run <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">deploy_minicran_package</span><span class="op">(</span><span class="va">drat_repo</span>, commit_message <span class="op">=</span> <span class="cn">NULL</span>, dry_run <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -130,11 +130,11 @@ When <code>TRUE</code>, the final git commit/push steps are skipped.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">deploy_minicran_package</span><span class="op">(</span>drat_repo <span class="op">=</span> <span class="st">"https://github.com/myuser/mydratrepo.git"</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">deploy_minicran_package</span><span class="op">(</span>drat_repo <span class="op">=</span> <span class="st">"https://github.com/myuser/mydratrepo.git"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

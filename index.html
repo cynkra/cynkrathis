@@ -86,25 +86,25 @@
 </h2>
 <p>cynkra makes use of certain RStudio Package Manager (RSPM) snapshots across projects. Usually each R Version is tied to a snapshot near it’s release date. If a snapshot is considered unstable due to certain R package version clashes, additional snapshots for specific R versions can be listed.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">cynkrathis</span><span class="fu">::</span><span class="fu"><a href="reference/get_snapshots.html">get_snapshots</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">10</span><span class="op">)</span>
-<span class="co">#&gt;         id r_version r_release_date       date        type                                note</span>
-<span class="co">#&gt; 23      NA     4.1.3     2022-03-10 2022-03-10 recommended                                    </span>
-<span class="co">#&gt; 22      NA     4.1.2     2021-11-01 2022-02-07             pillar 1.7.0, rlang 1.0.1, dm 0.2.7</span>
-<span class="co">#&gt; 21      NA     4.1.2     2021-11-01 2022-01-27                                    pillar 1.6.5</span>
-<span class="co">#&gt; 20      NA     4.1.2     2021-11-01 2021-12-22                            before CRAN vacation</span>
-<span class="co">#&gt; 19      NA     4.1.2     2021-11-01 2021-11-01 recommended                                    </span>
-<span class="co">#&gt; 18      NA     4.1.1     2021-08-10 2021-10-01                                        dm 0.2.4</span>
-<span class="co">#&gt; 17 4804401     4.1.1     2021-08-10 2021-08-30                     RSQLite 2.2.8, tibble 3.1.4</span>
-<span class="co">#&gt; 16 4520552     4.1.1     2021-08-10 2021-08-10 recommended                                    </span>
-<span class="co">#&gt; 15 4392527     4.1.0     2021-05-18 2021-07-29                                    pillar 1.6.2</span>
-<span class="co">#&gt; 14 3656918     4.1.0     2021-05-18 2021-06-21                                        dm 0.2.3</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">cynkrathis</span><span class="fu">::</span><span class="fu"><a href="reference/get_snapshots.html">get_snapshots</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="co">#&gt;         id r_version r_release_date       date        type                                note</span></span>
+<span><span class="co">#&gt; 23      NA     4.1.3     2022-03-10 2022-03-10 recommended                                    </span></span>
+<span><span class="co">#&gt; 22      NA     4.1.2     2021-11-01 2022-02-07             pillar 1.7.0, rlang 1.0.1, dm 0.2.7</span></span>
+<span><span class="co">#&gt; 21      NA     4.1.2     2021-11-01 2022-01-27                                    pillar 1.6.5</span></span>
+<span><span class="co">#&gt; 20      NA     4.1.2     2021-11-01 2021-12-22                            before CRAN vacation</span></span>
+<span><span class="co">#&gt; 19      NA     4.1.2     2021-11-01 2021-11-01 recommended                                    </span></span>
+<span><span class="co">#&gt; 18      NA     4.1.1     2021-08-10 2021-10-01                                        dm 0.2.4</span></span>
+<span><span class="co">#&gt; 17 4804401     4.1.1     2021-08-10 2021-08-30                     RSQLite 2.2.8, tibble 3.1.4</span></span>
+<span><span class="co">#&gt; 16 4520552     4.1.1     2021-08-10 2021-08-10 recommended                                    </span></span>
+<span><span class="co">#&gt; 15 4392527     4.1.0     2021-05-18 2021-07-29                                    pillar 1.6.2</span></span>
+<span><span class="co">#&gt; 14 3656918     4.1.0     2021-05-18 2021-06-21                                        dm 0.2.3</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="initialize-renv-with-a-given-rspm-snapshot">Initialize {renv} with a given RSPM snapshot<a class="anchor" aria-label="anchor" href="#initialize-renv-with-a-given-rspm-snapshot"></a>
 </h2>
 <p>By default <code><a href="reference/init_renv.html">init_renv()</a></code> will select the <code>"recommended"</code> snapshot of the R version which is currently used.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">cynkrathis</span><span class="fu">::</span><span class="fu"><a href="reference/init_renv.html">init_renv</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">cynkrathis</span><span class="fu">::</span><span class="fu"><a href="reference/init_renv.html">init_renv</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="miscellaneous-helpers">Miscellaneous helpers<a class="anchor" aria-label="anchor" href="#miscellaneous-helpers"></a>
