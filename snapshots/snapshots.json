@@ -206,5 +206,12 @@
     "date": "2022-06-07",
     "type": "",
     "note": "dbplyr 2.2.0"
+  },
+  {
+    "r_version": "4.2.1",
+    "r_release_date": "2022-06-23",
+    "date": "2022-06-23",
+    "type": "recommended",
+    "note": ""
   }
 ]
