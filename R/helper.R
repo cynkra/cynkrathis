@@ -8,7 +8,6 @@
 #' @importFrom jsonlite read_json
 #' @export
 get_snapshots <- function() {
-
   # uses a valid GITHUB_PAT from the user with access to the org
   resp <- gh::gh("/repos/:owner/:repo/contents/:path",
     owner = "cynkra",
