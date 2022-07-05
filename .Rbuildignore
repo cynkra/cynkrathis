@@ -9,7 +9,6 @@
 ^snapshots$
 ^\.ccache$
 ^tic\.R$
-^\.pre-commit-config\.yaml$
 ^man-roxygen$
 ^pkgdown$
 ^docs$
@@ -17,3 +16,5 @@ README.html
 ^logo\.svg$
 ^codecov\.yml$
 ^\.lintr$
+^\.pre-commit-config\.yaml$
+^\.meta$
