@@ -45,7 +45,6 @@
 init_renv <- function(snapshot_date = NULL,
                       exclude = NULL,
                       convenience_pkgs = FALSE) {
-
   # clean any leftover renv artifacts (and .RProfile)
   unlink(c(".RProfile", "renv.lock", ".Renviron"))
   unlink("renv/", recursive = TRUE)
@@ -228,7 +227,6 @@ renv_switch_r_version <- function(version = NULL
                                   # update_packages = FALSE,
                                   # snapshot = FALSE
 ) {
-
   # assertions
   checkmate::assert_character(version,
     len = 1,
