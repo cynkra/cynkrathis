@@ -208,10 +208,24 @@
     "note": "dbplyr 2.2.0"
   },
   {
+    "r_version": "4.2.0",
+    "r_release_date": "2022-04-22",
+    "date": "2022-06-21",
+    "type": "",
+    "note": "RMariaDB 1.2.2"
+  },
+  {
     "r_version": "4.2.1",
     "r_release_date": "2022-06-23",
     "date": "2022-06-23",
     "type": "recommended",
     "note": ""
+  },
+  {
+    "r_version": "4.2.1",
+    "r_release_date": "2022-06-23",
+    "date": "2022-08-i10
+    "type": "",
+    "note": "dm 1.0.1"
   }
 ]
