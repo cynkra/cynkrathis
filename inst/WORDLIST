@@ -89,6 +89,7 @@ gitignore
 GL
 gmail
 GmbH
+grepl
 harfbuzz
 hexbin
 hH
@@ -133,6 +134,7 @@ linters
 lintr
 linux
 lm
+lsb
 lu
 lX
 macOS
@@ -167,6 +169,7 @@ Opionionated
 ORCID
 os
 packagemanager
+pak
 pandoc
 patrick
 pB
@@ -214,6 +217,7 @@ SDKs
 sexualized
 sLK
 socio
+sprintf
 ss
 StackOverflow
 stackoverflow
@@ -224,6 +228,7 @@ styler
 sublicense
 sudo
 svg
+Sys
 TBD
 testthat
 textLength
