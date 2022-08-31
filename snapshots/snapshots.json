@@ -224,8 +224,15 @@
   {
     "r_version": "4.2.1",
     "r_release_date": "2022-06-23",
-    "date": "2022-08-i10
+    "date": "2022-08-10"
     "type": "",
     "note": "dm 1.0.1"
+  },
+  {
+    "r_version": "4.2.1",
+    "r_release_date": "2022-06-23",
+    "date": "2022-08-26"
+    "type": "",
+    "note": "pillar 1.8.1"
   }
 ]
