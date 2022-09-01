@@ -1,5 +1,3 @@
-<!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
-
 # cynkrathis 0.3.3 (2021-07-12)
 
 - `renv_downgrade()`: Account for packages from remote sources and CRAN's "recommended" packages
