@@ -1,52 +1,33 @@
 url: https://cynkrathis.cynkra.com
-
 template:
   package: cynkratemplate
-  includes:
-    in_header: |
-      <script defer data-domain="cynkrathis.cynkra.com" src="https://plausible.io/js/plausible.js"></script>
-
 development:
   mode: auto
-
 destination: docs
-
 navbar:
   structure:
-    left: [news]
-    right: [reference, articles, projects, consulting, github]
-  components:
-    home: ~
-    reference:
-      text: REFERENCE
-      href: reference/index.html
-    projects:
-      text: PROJECTS
-      href: https://www.cynkra.com/projects.html
-    consulting:
-      text: CONSULTING
-      href: https://www.cynkra.com/consulting.html
-
+    left: news
+    right:
+    - reference
+    - articles
+    - github
 authors:
   Patrick Schratz:
     href: https://pat-s.me
   Kirill Müller:
     href: https://krlmlr.info
-
 reference:
-  - title: renv
-    desc: renv helpers
-    contents:
-      - contains("renv")
-  - title: RStudio Connect
-    desc: RStudio Connect helpers
-    contents:
-      - contains("deploy_minicran")
-  - title: Miscellaneous
-    desc: Optional project scaffolding helpers
-    contents:
-      - get_snapshots
-      - init_precommit
-      - init_tic
-      - init_gitignore
-      - init_lintr
+- title: renv
+  desc: renv helpers
+  contents: contains("renv")
+- title: RStudio Connect
+  desc: RStudio Connect helpers
+  contents: contains("deploy_minicran")
+- title: Miscellaneous
+  desc: Optional project scaffolding helpers
+  contents:
+  - get_snapshots
+  - init_precommit
+  - init_tic
+  - init_gitignore
+  - init_lintr
