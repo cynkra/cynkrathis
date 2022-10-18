@@ -10,20 +10,7 @@ navbar:
     right:
     - reference
     - articles
-    - projects
-    - consulting
     - github
-  components:
-    home: ~
-    reference:
-      text: REFERENCE
-      href: reference/index.html
-    projects:
-      text: PROJECTS
-      href: https://www.cynkra.com/projects.html
-    consulting:
-      text: CONSULTING
-      href: https://www.cynkra.com/consulting.html
 authors:
   Patrick Schratz:
     href: https://pat-s.me
