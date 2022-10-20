@@ -1,3 +1,10 @@
+<!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
+
+# cynkrathis 0.3.4 (2022-10-20)
+
+- Update snapshots
+- Use new cynkra pkgdown theme
+
 # cynkrathis 0.3.3 (2021-07-12)
 
 - `renv_downgrade()`: Account for packages from remote sources and CRAN's "recommended" packages
@@ -23,14 +30,14 @@
 
 # cynkrathis 0.2.0 (2021-03-04)
 
-- `init_renv()`: rewrite function: 
+- `init_renv()`: rewrite function:
   - Remove arguments `local_packages` and `additional_repos`
   - Rename argument `exclude_local` to `exclude`
   - Add argument `convenience_packages`
   - Use `renv::scaffold()` instead of `renv::init()`
-  
+
 - `renv_switch_r_version()`:
-   - remove arguments `snapshot` and `update` because these do not play well 
+   - remove arguments `snapshot` and `update` because these do not play well
      when changing an R version in the same session and are also troublesome
      after automatic restarts
 
