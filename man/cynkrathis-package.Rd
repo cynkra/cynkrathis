@@ -11,6 +11,7 @@ Opionionated {renv} helper package by cynkra GmbH.
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://cynkrathis.cynkra.com/}
   \item \url{https://github.com/cynkra/cynkrathis}
   \item Report bugs at \url{https://github.com/cynkra/cynkrathis/issues}
 }
