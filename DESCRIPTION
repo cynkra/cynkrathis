@@ -9,7 +9,7 @@ Authors@R: c(
   )
 Description: Opionionated {renv} helper package by cynkra GmbH.
 License: MIT + file LICENSE
-URL: https://github.com/cynkra/cynkrathis
+URL: https://cynkrathis.cynkra.com/, https://github.com/cynkra/cynkrathis
 BugReports: https://github.com/cynkra/cynkrathis/issues
 Imports:
     callr,
