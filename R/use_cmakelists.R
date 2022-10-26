@@ -18,11 +18,13 @@ use_cmakelists <- function(project = "NewProject") {
 
   fs::dir_create("src")
 
+  ext_files <- list.files(path = ".", pattern = '.*\\.(c|h|cpp)$')
+
   new_cmakelist_src <- usethis::use_template(
     "CMakeLists-src.txt",
     "src/CMakeLists.txt",
     package = "cynkrathis",
-    data = list(project = project),
+    data = list(project = project, ext_files = ext_files),
     ignore = TRUE
   )
   if (!new_cmakelist_src) {

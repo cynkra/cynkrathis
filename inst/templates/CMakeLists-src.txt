@@ -1,7 +1,5 @@
 add_library({{{project}}}
- *.c
- *.h
- *.cpp
+ {{{ext_files}}}
 
 )
 
