@@ -1,10 +1,11 @@
 #'
 #'
-#'@export
+#' @export
 use_cmakelists <- function(project = NULL) {
   writeLines(
-    c("cmake_minimum_required(VERSION 3.0.0)",
-      paste0("project(", project," VERSION 0.1.0)"),
+    c(
+      "cmake_minimum_required(VERSION 3.0.0)",
+      paste0("project(", project, " VERSION 0.1.0)"),
       "set(CMAKE_EXPORT_COMPILE_COMMANDS ON)",
       "include(CTest)",
       "enable_testing()",
@@ -14,13 +15,14 @@ use_cmakelists <- function(project = NULL) {
       "set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})",
       "include(CPack)",
       "set(CMAKE_EXPORT_COMPILE_COMMANDS ON)"
-      ), "CMakeLists.txt"
+    ), "CMakeLists.txt"
   )
 
   fs::dir_create("src")
 
   writeLines(
-    c(paste0("add_library(", project),
+    c(
+      paste0("add_library(", project),
       "  connection.cpp",
       "  DbColumn.cpp",
       "  DbColumnDataSource.cpp",
