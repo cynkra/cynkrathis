@@ -17,7 +17,7 @@ use_cmakelists <- function(project = NULL) {
       ), "CMakeLists.txt"
   )
 
-  if (!fs::dir_exists("src")) fs::dir_create("src")
+  fs::dir_create("src")
 
   writeLines(
     c(paste0("add_library(", project),
