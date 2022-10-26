@@ -1,7 +1,6 @@
 #'
 #' @export
 use_gitpod <- function() {
-
   new_gitpod_dockerfile <- usethis::use_template(
     "gitpod.Dockerfile",
     ".gitpod.Dockerfile",
@@ -25,5 +24,4 @@ use_gitpod <- function() {
   }
 
   invisible(TRUE)
-
 }
