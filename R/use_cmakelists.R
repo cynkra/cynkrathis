@@ -30,7 +30,7 @@ use_cmakelists <- function(project = "NewProject") {
 
   fs::dir_create("src")
 
-  ext_files <- list.files(path = ".", pattern = '.*\\.(c|h|cpp)$')
+  ext_files <- list.files(path = ".", pattern = ".*\\.(c|h|cpp)$")
 
   new_cmakelist_src <- usethis::use_template(
     "CMakeLists-src.txt",
