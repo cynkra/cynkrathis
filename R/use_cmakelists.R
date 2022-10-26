@@ -2,7 +2,6 @@
 #' @importFrom fs dir_create
 #' @export
 use_cmakelists <- function(project = "NewProject") {
-
   new_cmakelist <- usethis::use_template(
     "CMakeLists.txt",
     "CMakeLists.txt",
