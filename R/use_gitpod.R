@@ -1,55 +1,29 @@
 #'
 #' @export
 use_gitpod <- function() {
-  writeLines(
-    c(
-      "# You can find the new timestamped tags here: https://hub.docker.com/r/gitpod/workspace-base/tags",
-      "FROM gitpod/workspace-base:2022-05-08-14-31-53",
-      "",
-      "# Install R and ccache",
-      "RUN sudo apt update",
-      "RUN sudo apt install -y \\",
-      "  r-base \\",
-      "  ccache \\",
-      "  cmake \\",
-      "  # Install dependencies for rlang packet",
-      "  libharfbuzz-dev libfribidi-dev"
-    ), "gitpod.Dockerfile"
+
+  new_gitpod_dockerfile <- usethis::use_template(
+    "gitpod.Dockerfile",
+    ".gitpod.Dockerfile",
+    package = "cynkrathis",
+    ignore = TRUE
   )
+  if (!new_gitpod_dockerfile) {
+    return(invisible(FALSE))
+  }
 
-  writeLines(
-    "image:
-  file: .gitpod.Dockerfile
-tasks:
-  - name: dependencies
-    init: |
-      # Scriptlets, with custom Git config
-      mv ~/.gitconfig ~/.gitconfig.gitpod
-      curl -s https://raw.githubusercontent.com/krlmlr/scriptlets/master/bootstrap | sh
-      echo -e \"[credential]\n\thelper = /usr/bin/gp credential-helper\" >> ~/.gitconfig
+  invisible(TRUE)
 
-      # .editorconfig
-      ln -s ~/.editorconfig ..
-      # Set up ccache
-      ln -s /usr/lib/ccache/* ~/bin/
-
-      # Set up Makevars
-      mkdir -p ~/.R
-      echo -e \"MAKEFLAGS = -j8\\nCXXFLAGS = -O0 -g\" > ~/.R/Makevars
-
-      # Install R packages
-      echo 'options(repos = \"https://packagemanager.rstudio.com/all/__linux__/'$(cat /etc/lsb-release | sed  -n '/DISTRIB_CODENAME=/ {s///;p}')'/latest\")' > ~/.Rprofile
-      mkdir -p ~/R/x86_64-pc-linux-gnu-library/$(Rscript -e 'writeLines(gsub(\"[.][^.]+$\", \"\", as.character(getRversion())))')
-      ## Install pak in R
-      R -q -e 'install.packages(\"pak\", repos = sprintf(\"https://r-lib.github.io/p/pak/stable/%s/%s/%s\", .Platform$pkgType, R.Version()$os, R.Version()$arch))'
-      ## Install devtools and R dependencies
-      R -q -e 'pak::pak(c(\"devtools\", \"deps::.\"))'
-vscode:
-  extensions:
-    - ms-vscode.cpptools-extension-pack
-    - go2sh.cmake-integration-vscode
-    - EditorConfig.EditorConfig
-    ",
-    "gitpod.yml"
+  new_gitpod_yml <- usethis::use_template(
+    "gitpod.yml",
+    ".gitpod.yml",
+    package = "cynkrathis",
+    ignore = TRUE
   )
+  if (!new_gitpod_yml) {
+    return(invisible(FALSE))
+  }
+
+  invisible(TRUE)
+
 }
