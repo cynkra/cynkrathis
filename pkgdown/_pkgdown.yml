@@ -31,3 +31,5 @@ reference:
   - init_tic
   - init_gitignore
   - init_lintr
+  - use_gitpod
+  - use_cmakelists
