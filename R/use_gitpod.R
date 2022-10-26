@@ -1,4 +1,14 @@
+#' Initialize gitpod configuration
 #'
+#' @description
+#' Initializes `.gitpod.Dockerfile` and `.gitpod.yml` at the working directory
+#' with the necessary gitpod configuration information
+#'
+#' @examples
+#' \dontrun{
+#' use_gitpod()
+#' }
+#' @importFrom usethis use_template
 #' @export
 use_gitpod <- function() {
   new_gitpod_dockerfile <- usethis::use_template(

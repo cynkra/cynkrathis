@@ -1,4 +1,17 @@
+#' Initialize CMakeLists configuration
 #'
+#' @description
+#' Initializes a `CMakeLists.txt` at the current working directory and at the `src/`
+#' folder with the necessary configuration information
+#'
+#' @param project `[character]`\cr
+#'   The name of the R project
+#'
+#' @examples
+#' \dontrun{
+#' use_cmakelists("Your_Project_Name")
+#' }
+#' @importFrom usethis use_template
 #' @importFrom fs dir_create
 #' @export
 use_cmakelists <- function(project = "NewProject") {
