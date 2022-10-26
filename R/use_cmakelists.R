@@ -1,5 +1,5 @@
 #'
-#'
+#' @importFrom fs dir_create
 #' @export
 use_cmakelists <- function(project = NULL) {
   writeLines(

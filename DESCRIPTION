@@ -15,6 +15,7 @@ Imports:
     callr,
     checkmate,
     cli,
+    fs,
     gh,
     glue,
     jsonlite,
