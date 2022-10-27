@@ -4,7 +4,7 @@
 \alias{use_cmakelists}
 \title{Initialize CMakeLists configuration}
 \usage{
-use_cmakelists(project = "NewProject")
+use_cmakelists(project = NULL)
 }
 \arguments{
 \item{project}{\verb{[character]}\cr

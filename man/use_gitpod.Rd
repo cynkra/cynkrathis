@@ -4,7 +4,12 @@
 \alias{use_gitpod}
 \title{Initialize gitpod configuration}
 \usage{
-use_gitpod()
+use_gitpod(apt_packages = NULL, user_code = NULL)
+}
+\arguments{
+\item{apt_packages}{Additional \code{apt} packages to install in the Docker image.}
+
+\item{user_code}{User code to configure in \code{.gitpod.yml}}
 }
 \description{
 Initializes \code{.gitpod.Dockerfile} and \code{.gitpod.yml} at the working directory
