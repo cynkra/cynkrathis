@@ -81,17 +81,17 @@
 <p>cynkra makes use of certain RStudio Package Manager (RSPM) snapshots across projects. Usually each R Version is tied to a snapshot near it’s release date. If a snapshot is considered unstable due to certain R package version clashes, additional snapshots for specific R versions can be listed.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">cynkrathis</span><span class="fu">::</span><span class="fu"><a href="reference/get_snapshots.html">get_snapshots</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">10</span><span class="op">)</span></span>
-<span><span class="co">#&gt;         id r_version r_release_date       date        type                                note</span></span>
-<span><span class="co">#&gt; 23      NA     4.1.3     2022-03-10 2022-03-10 recommended                                    </span></span>
-<span><span class="co">#&gt; 22      NA     4.1.2     2021-11-01 2022-02-07             pillar 1.7.0, rlang 1.0.1, dm 0.2.7</span></span>
-<span><span class="co">#&gt; 21      NA     4.1.2     2021-11-01 2022-01-27                                    pillar 1.6.5</span></span>
-<span><span class="co">#&gt; 20      NA     4.1.2     2021-11-01 2021-12-22                            before CRAN vacation</span></span>
-<span><span class="co">#&gt; 19      NA     4.1.2     2021-11-01 2021-11-01 recommended                                    </span></span>
-<span><span class="co">#&gt; 18      NA     4.1.1     2021-08-10 2021-10-01                                        dm 0.2.4</span></span>
-<span><span class="co">#&gt; 17 4804401     4.1.1     2021-08-10 2021-08-30                     RSQLite 2.2.8, tibble 3.1.4</span></span>
-<span><span class="co">#&gt; 16 4520552     4.1.1     2021-08-10 2021-08-10 recommended                                    </span></span>
-<span><span class="co">#&gt; 15 4392527     4.1.0     2021-05-18 2021-07-29                                    pillar 1.6.2</span></span>
-<span><span class="co">#&gt; 14 3656918     4.1.0     2021-05-18 2021-06-21                                        dm 0.2.3</span></span></code></pre></div>
+<span><span class="co">#&gt;    id r_version r_release_date       date        type                                note</span></span>
+<span><span class="co">#&gt; 31 NA     4.2.1     2022-06-23 2022-08-26                                    pillar 1.8.1</span></span>
+<span><span class="co">#&gt; 30 NA     4.2.1     2022-06-23 2022-08-10                                        dm 1.0.1</span></span>
+<span><span class="co">#&gt; 29 NA     4.2.1     2022-06-23 2022-06-23 recommended                                    </span></span>
+<span><span class="co">#&gt; 28 NA     4.2.0     2022-04-22 2022-06-21                                  RMariaDB 1.2.2</span></span>
+<span><span class="co">#&gt; 27 NA     4.2.0     2022-04-22 2022-06-07                                    dbplyr 2.2.0</span></span>
+<span><span class="co">#&gt; 26 NA     4.2.0     2022-04-22 2022-05-20                                     dplyr 1.0.9</span></span>
+<span><span class="co">#&gt; 25 NA     4.2.0     2022-04-22 2022-04-22 recommended                                    </span></span>
+<span><span class="co">#&gt; 24 NA     4.1.3     2022-03-10 2022-04-15                           vctrs 0.4.1, dm 0.2.8</span></span>
+<span><span class="co">#&gt; 23 NA     4.1.3     2022-03-10 2022-03-10 recommended                                    </span></span>
+<span><span class="co">#&gt; 22 NA     4.1.2     2021-11-01 2022-02-07             pillar 1.7.0, rlang 1.0.1, dm 0.2.7</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="initialize-renv-with-a-given-rspm-snapshot">Initialize {renv} with a given RSPM snapshot<a class="anchor" aria-label="anchor" href="#initialize-renv-with-a-given-rspm-snapshot"></a>
