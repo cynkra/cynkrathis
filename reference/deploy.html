@@ -91,7 +91,7 @@ the git repository via "Import from git".
 Changes (i.e. new package versions) are picked up automatically.</p>
 <p>This is an alternative to hosting and using a private instance of
 <a href="https://www.rstudio.com/products/package-manager/" class="external-link">RStudio Package Manager</a>.</p>
-<p>The function executes the following tasks:</p><ul><li><p>Build a tarball of the package via <code><a href="https://rdrr.io/pkg/pkgbuild/man/build.html" class="external-link">pkgbuild::build()</a></code>.</p></li>
+<p>The function executes the following tasks:</p><ul><li><p>Build a tarball of the package via <code><a href="https://r-lib.github.io/pkgbuild/reference/build.html" class="external-link">pkgbuild::build()</a></code>.</p></li>
 <li><p>Add the built package in a CRAN like structure to a temporary git clone of the upstream git repository via <span class="pkg">drat</span>. ``</p></li>
 <li><p>Render (and create if missing) the <span class="pkg">drat</span> package website.</p></li>
 <li><p>Commit and push the changes to the git repository.</p></li>
