@@ -19,18 +19,6 @@ use_gitpod <- function(apt_packages = NULL, user_code = NULL) {
   deparsed_user_code <- prepend(user_code, "      ")
   deparsed_call <- prepend(capture_call(sys.call()), "# ")
 
-  new_gitpod_dockerfile <- usethis::use_template(
-    "gitpod.Dockerfile",
-    ".gitpod.Dockerfile",
-    data = list(
-      generator = generator,
-      apt_packages = deparsed_apt_packages,
-      call = deparsed_call
-    ),
-    package = "cynkrathis",
-    ignore = TRUE
-  )
-
   new_gitpod_yml <- usethis::use_template(
     "gitpod.yml",
     ".gitpod.yml",
@@ -43,7 +31,7 @@ use_gitpod <- function(apt_packages = NULL, user_code = NULL) {
     ignore = TRUE
   )
 
-  invisible(new_gitpod_dockerfile || new_gitpod_yml)
+  invisible(new_gitpod_yml)
 }
 
 prepend <- function(x, prefix) {
