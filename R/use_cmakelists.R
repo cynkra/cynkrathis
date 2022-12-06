@@ -39,6 +39,10 @@ use_cmakelists <- function(project = NULL) {
   ext_files <- list.files(path = "src", pattern = "\\.(c|h|cpp)$")
   ext_files <- withr::with_collate("C", prepend(sort(ext_files), "  "))
 
+  deps <- desc::desc_get_deps()
+  linking_to_deps <- deps$package[deps$type == "LinkingTo"]
+  linking_to_deps <- withr::with_collate("C", paste0(sort(linking_to_deps), collapse = " "))
+
   new_cmakelist_src <- usethis::use_template(
     "CMakeLists-src.txt",
     "src/CMakeLists.txt",
@@ -47,7 +51,8 @@ use_cmakelists <- function(project = NULL) {
       generator = generator,
       call = deparsed_call,
       project = project,
-      ext_files = ext_files
+      ext_files = ext_files,
+      linking_to_deps = linking_to_deps
     ),
     ignore = FALSE
   )
