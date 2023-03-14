@@ -26,17 +26,17 @@ can be listed.
 
 ``` r
 head(cynkrathis::get_snapshots(), 10)
-#>         id r_version r_release_date       date        type                                note
-#> 23      NA     4.1.3     2022-03-10 2022-03-10 recommended                                    
-#> 22      NA     4.1.2     2021-11-01 2022-02-07             pillar 1.7.0, rlang 1.0.1, dm 0.2.7
-#> 21      NA     4.1.2     2021-11-01 2022-01-27                                    pillar 1.6.5
-#> 20      NA     4.1.2     2021-11-01 2021-12-22                            before CRAN vacation
-#> 19      NA     4.1.2     2021-11-01 2021-11-01 recommended                                    
-#> 18      NA     4.1.1     2021-08-10 2021-10-01                                        dm 0.2.4
-#> 17 4804401     4.1.1     2021-08-10 2021-08-30                     RSQLite 2.2.8, tibble 3.1.4
-#> 16 4520552     4.1.1     2021-08-10 2021-08-10 recommended                                    
-#> 15 4392527     4.1.0     2021-05-18 2021-07-29                                    pillar 1.6.2
-#> 14 3656918     4.1.0     2021-05-18 2021-06-21                                        dm 0.2.3
+#>    id r_version r_release_date       date        type                                note
+#> 31 NA     4.2.1     2022-06-23 2022-08-26                                    pillar 1.8.1
+#> 30 NA     4.2.1     2022-06-23 2022-08-10                                        dm 1.0.1
+#> 29 NA     4.2.1     2022-06-23 2022-06-23 recommended                                    
+#> 28 NA     4.2.0     2022-04-22 2022-06-21                                  RMariaDB 1.2.2
+#> 27 NA     4.2.0     2022-04-22 2022-06-07                                    dbplyr 2.2.0
+#> 26 NA     4.2.0     2022-04-22 2022-05-20                                     dplyr 1.0.9
+#> 25 NA     4.2.0     2022-04-22 2022-04-22 recommended                                    
+#> 24 NA     4.1.3     2022-03-10 2022-04-15                           vctrs 0.4.1, dm 0.2.8
+#> 23 NA     4.1.3     2022-03-10 2022-03-10 recommended                                    
+#> 22 NA     4.1.2     2021-11-01 2022-02-07             pillar 1.7.0, rlang 1.0.1, dm 0.2.7
 ```
 
 ## Initialize {renv} with a given RSPM snapshot
