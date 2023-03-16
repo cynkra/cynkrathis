@@ -241,5 +241,12 @@
     "date": "2022-10-31",
     "type": "recommended",
     "note": ""
+  },
+  {
+    "r_version": "4.2.3",
+    "r_release_date": "2023-03-15",
+    "date": "2023-03-15",
+    "type": "recommended",
+    "note": ""
   }
 ]
