@@ -246,6 +246,13 @@
     "r_version": "4.2.3",
     "r_release_date": "2023-03-15",
     "date": "2023-03-15",
+    "type": "",
+    "note": ""
+  },
+  {
+    "r_version": "4.2.3",
+    "r_release_date": "2023-03-15",
+    "date": "2023-03-19",
     "type": "recommended",
     "note": ""
   }
