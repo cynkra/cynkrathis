@@ -17,7 +17,7 @@ foreach(PKG_NAME IN LISTS R_DEPENDENCIES)
 endforeach()
 message("${R_PKG_INCLUDE_LIST}")
 
-target_include_directories(RSQLite PUBLIC
+target_include_directories({{{project}}} PUBLIC
   ${R_PKG_INCLUDE_LIST}
   ${R_INCLUDE}
   # Included by default
@@ -25,7 +25,7 @@ target_include_directories(RSQLite PUBLIC
   "vendor"
 )
 
-get_target_property(include_dirs RSQLite INTERFACE_INCLUDE_DIRECTORIES)
+get_target_property(include_dirs {{{project}}} INTERFACE_INCLUDE_DIRECTORIES)
 message("${include_dirs}")
 
 include(./custom.cmake OPTIONAL)
