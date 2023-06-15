@@ -65,9 +65,9 @@ Installing the package from the cache location via renv::install().
 
     <div class="ref-description section level2">
     <p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="figures/lifecycle-experimental.svg" alt="[Experimental]"></a></p>
-<p>This is a wrapper around <code><a href="https://r-lib.github.io/pkgbuild/reference/build.html" class="external-link">pkgbuild::build()</a></code> and <code><a href="https://rstudio.github.io/renv/reference/install.html" class="external-link">renv::install()</a></code> to more
+<p>This is a wrapper around <code><a href="https://pkgbuild.r-lib.org/reference/build.html" class="external-link">pkgbuild::build()</a></code> and <code><a href="https://rstudio.github.io/renv/reference/install.html" class="external-link">renv::install()</a></code> to more
 easily make local packages available within <span class="pkg">renv</span> projects.</p>
-<p>The following steps are performed:</p><ol><li><p>Building the package found at argument <code>path</code> via <code><a href="https://r-lib.github.io/pkgbuild/reference/build.html" class="external-link">pkgbuild::build()</a></code>.</p></li>
+<p>The following steps are performed:</p><ol><li><p>Building the package found at argument <code>path</code> via <code><a href="https://pkgbuild.r-lib.org/reference/build.html" class="external-link">pkgbuild::build()</a></code>.</p></li>
 <li><p>Moving the built source into the <span class="pkg">renv</span> cache. The cache location is
 determined by <code>Sys.getenv("RENV_PATHS_LOCAL")</code>.</p></li>
 <li><p>Installing the package from the cache location via <code><a href="https://rstudio.github.io/renv/reference/install.html" class="external-link">renv::install()</a></code>.</p></li>
@@ -92,7 +92,7 @@ Whether to suppress console output.</p></dd>
 
 <dt>...</dt>
 <dd><p><br>
-Passed down to <code><a href="https://r-lib.github.io/pkgbuild/reference/build.html" class="external-link">pkgbuild::build()</a></code>.</p></dd>
+Passed down to <code><a href="https://pkgbuild.r-lib.org/reference/build.html" class="external-link">pkgbuild::build()</a></code>.</p></dd>
 
 </dl></div>
 
