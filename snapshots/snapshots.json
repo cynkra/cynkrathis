@@ -269,5 +269,12 @@
     "date": "2023-05-25",
     "type": "",
     "note": "data upgrade"
+  },
+  {
+    "r_version": "4.3.1",
+    "r_release_date": "2023-06-16",
+    "date": "2023-06-16",
+    "type": "recommended",
+    "note": ""
   }
 ]
