@@ -276,5 +276,12 @@
     "date": "2023-06-16",
     "type": "recommended",
     "note": ""
+  },
+  {
+    "r_version": "4.3.2",
+    "r_release_date": "2023-10-31",
+    "date": "2023-10-31",
+    "type": "recommended",
+    "note": ""
   }
 ]
