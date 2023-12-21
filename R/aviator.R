@@ -12,9 +12,13 @@
 use_aviator <- function() {
   # FIXME: Check default branch, borrow from fledge
   stopifnot(gert::git_branch() == "main")
+  stopifnot(nrow(gert::git_status(c(".aviator/config.yml", ".Rbuildignore"))) == 0)
+  stopifnot(nrow(gert::git_status(staged = TRUE)) == 0)
 
   path <- usethis::proj_get()
   dir.create(file.path(path, ".aviator"), recursive = TRUE, showWarnings = FALSE)
+
+  unlink(".aviator/config.yml", force = TRUE)
 
   # To install app, use the equivalent of:
   # gh api -X PUT /user/installations/$(gh api '/orgs/{owner}/installations' -q '.installations[] | select(.app_slug == "aviator-app") | .id')/repositories/$(gh api '/repos/{owner}/{repo}' -q .id)
@@ -27,7 +31,10 @@ use_aviator <- function() {
   )
 
   cli::cli_alert("Pushing configuration to GitHub")
-  gert::git_add(c(".aviator/config.yml", ".Rbuildignore"))
-  gert::git_commit("chore: Add Aviator configuration")
-  gert::git_push()
+  if (nrow(gert::git_status(c(".aviator/config.yml", ".Rbuildignore"))) > 0) {
+    gert::git_add(c(".aviator/config.yml", ".Rbuildignore"))
+    gert::git_commit("chore: Add Aviator configuration")
+    gert::git_push()
+  }
+  invisible()
 }
