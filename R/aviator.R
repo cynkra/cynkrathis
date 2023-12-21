@@ -30,8 +30,8 @@ use_aviator <- function() {
     package = "cynkrathis"
   )
 
-  cli::cli_alert("Pushing configuration to GitHub")
   if (nrow(gert::git_status(c(".aviator/config.yml", ".Rbuildignore"))) > 0) {
+    cli::cli_alert("Pushing configuration to GitHub")
     gert::git_add(c(".aviator/config.yml", ".Rbuildignore"))
     gert::git_commit("chore: Add Aviator configuration")
     gert::git_push()
