@@ -12,7 +12,7 @@
 use_aviator <- function() {
   # FIXME: Check default branch, borrow from fledge
   stopifnot(gert::git_branch() == "main")
-  stopifnot(nrow(gert::git_status(c(".aviator/config.yml", ".Rbuildignore"))) == 0)
+  stopifnot(nrow(gert::git_status(pathspec = c(".aviator/config.yml", ".Rbuildignore"))) == 0)
   stopifnot(nrow(gert::git_status(staged = TRUE)) == 0)
 
   path <- usethis::proj_get()
