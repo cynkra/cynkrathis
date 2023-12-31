@@ -19,3 +19,4 @@ README.html
 ^\.pre-commit-config\.yaml$
 ^\.meta$
 ^\.aviator/config\.yml$
+renovate.json
