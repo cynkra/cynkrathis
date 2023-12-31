@@ -18,3 +18,4 @@ README.html
 ^\.lintr$
 ^\.pre-commit-config\.yaml$
 ^\.meta$
+^\.aviator/config\.yml$
