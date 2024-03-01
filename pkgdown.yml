@@ -2,7 +2,7 @@ pandoc: 3.1.11
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles: {}
-last_built: 2024-02-29T13:50Z
+last_built: 2024-03-01T04:13Z
 urls:
   reference: https://cynkrathis.cynkra.com/reference
   article: https://cynkrathis.cynkra.com/articles
