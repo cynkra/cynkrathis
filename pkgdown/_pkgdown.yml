@@ -1,6 +1,7 @@
 url: https://cynkrathis.cynkra.com
 template:
   package: cynkratemplate
+  bootstrap: 5
 development:
   mode: auto
 destination: docs
