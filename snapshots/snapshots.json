@@ -290,5 +290,12 @@
     "date": "2024-02-29",
     "type": "recommended",
     "note": ""
+  },
+  {
+    "r_version": "4.4.0",
+    "r_release_date": "2024-04-24",
+    "date": "2024-04-24",
+    "type": "recommended",
+    "note": ""
   }
 ]
