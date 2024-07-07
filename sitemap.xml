@@ -1,69 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://cynkrathis.cynkra.com/404.html</loc>
-  </url>
-  <url>
-    <loc>https://cynkrathis.cynkra.com/CODE_OF_CONDUCT.html</loc>
-  </url>
-  <url>
-    <loc>https://cynkrathis.cynkra.com/CONTRIBUTING.html</loc>
-  </url>
-  <url>
-    <loc>https://cynkrathis.cynkra.com/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://cynkrathis.cynkra.com/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://cynkrathis.cynkra.com/SUPPORT.html</loc>
-  </url>
-  <url>
-    <loc>https://cynkrathis.cynkra.com/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://cynkrathis.cynkra.com/index.html</loc>
-  </url>
-  <url>
-    <loc>https://cynkrathis.cynkra.com/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://cynkrathis.cynkra.com/reference/cynkrathis-package.html</loc>
-  </url>
-  <url>
-    <loc>https://cynkrathis.cynkra.com/reference/deploy.html</loc>
-  </url>
-  <url>
-    <loc>https://cynkrathis.cynkra.com/reference/get_snapshots.html</loc>
-  </url>
-  <url>
-    <loc>https://cynkrathis.cynkra.com/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://cynkrathis.cynkra.com/reference/init_gitignore.html</loc>
-  </url>
-  <url>
-    <loc>https://cynkrathis.cynkra.com/reference/init_lintr.html</loc>
-  </url>
-  <url>
-    <loc>https://cynkrathis.cynkra.com/reference/init_precommit.html</loc>
-  </url>
-  <url>
-    <loc>https://cynkrathis.cynkra.com/reference/init_renv.html</loc>
-  </url>
-  <url>
-    <loc>https://cynkrathis.cynkra.com/reference/init_tic.html</loc>
-  </url>
-  <url>
-    <loc>https://cynkrathis.cynkra.com/reference/renv_downgrade.html</loc>
-  </url>
-  <url>
-    <loc>https://cynkrathis.cynkra.com/reference/renv_install_local.html</loc>
-  </url>
-  <url>
-    <loc>https://cynkrathis.cynkra.com/reference/renv_switch_r_version.html</loc>
-  </url>
-  <url>
-    <loc>https://cynkrathis.cynkra.com/reference/use_aviator.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://cynkrathis.cynkra.com/404.html</loc></url>
+<url><loc>https://cynkrathis.cynkra.com/CODE_OF_CONDUCT.html</loc></url>
+<url><loc>https://cynkrathis.cynkra.com/CONTRIBUTING.html</loc></url>
+<url><loc>https://cynkrathis.cynkra.com/LICENSE-text.html</loc></url>
+<url><loc>https://cynkrathis.cynkra.com/LICENSE.html</loc></url>
+<url><loc>https://cynkrathis.cynkra.com/SUPPORT.html</loc></url>
+<url><loc>https://cynkrathis.cynkra.com/authors.html</loc></url>
+<url><loc>https://cynkrathis.cynkra.com/index.html</loc></url>
+<url><loc>https://cynkrathis.cynkra.com/news/index.html</loc></url>
+<url><loc>https://cynkrathis.cynkra.com/reference/cynkrathis-package.html</loc></url>
+<url><loc>https://cynkrathis.cynkra.com/reference/deploy.html</loc></url>
+<url><loc>https://cynkrathis.cynkra.com/reference/get_snapshots.html</loc></url>
+<url><loc>https://cynkrathis.cynkra.com/reference/index.html</loc></url>
+<url><loc>https://cynkrathis.cynkra.com/reference/init_gitignore.html</loc></url>
+<url><loc>https://cynkrathis.cynkra.com/reference/init_lintr.html</loc></url>
+<url><loc>https://cynkrathis.cynkra.com/reference/init_precommit.html</loc></url>
+<url><loc>https://cynkrathis.cynkra.com/reference/init_renv.html</loc></url>
+<url><loc>https://cynkrathis.cynkra.com/reference/init_tic.html</loc></url>
+<url><loc>https://cynkrathis.cynkra.com/reference/renv_downgrade.html</loc></url>
+<url><loc>https://cynkrathis.cynkra.com/reference/renv_install_local.html</loc></url>
+<url><loc>https://cynkrathis.cynkra.com/reference/renv_switch_r_version.html</loc></url>
+<url><loc>https://cynkrathis.cynkra.com/reference/use_aviator.html</loc></url>
 </urlset>
+
