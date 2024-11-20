@@ -297,5 +297,19 @@
     "date": "2024-04-24",
     "type": "recommended",
     "note": ""
+  },
+  {
+    "r_version": "4.4.1",
+    "r_release_date": "2024-06-15",
+    "date": "2024-06-15",
+    "type": "recommended",
+    "note": ""
+  },
+  {
+    "r_version": "4.4.2",
+    "r_release_date": "2024-11-01",
+    "date": "2024-11-01",
+    "type": "recommended",
+    "note": ""
   }
 ]
