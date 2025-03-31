@@ -33,3 +33,4 @@ reference:
   - init_gitignore
   - init_lintr
   - use_aviator
+  - register_cynkra
