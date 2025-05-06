@@ -311,5 +311,19 @@
     "date": "2024-11-01",
     "type": "recommended",
     "note": ""
+  },
+  {
+    "r_version": "4.4.3",
+    "r_release_date": "2025-03-01",
+    "date": "2025-03-01",
+    "type": "recommended",
+    "note": ""
+  },
+  {
+    "r_version": "4.5.0",
+    "r_release_date": "2025-04-11",
+    "date": "2025-04-11",
+    "type": "recommended",
+    "note": ""
   }
 ]
