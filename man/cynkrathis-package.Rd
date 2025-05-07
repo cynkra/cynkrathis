@@ -25,5 +25,10 @@ Authors:
   \item Kirill Müller \email{krlmlr+r@mailbox.org} (\href{https://orcid.org/0000-0002-1416-3412}{ORCID})
 }
 
+Other contributors:
+\itemize{
+  \item cynkra GmbH \email{mail@cynkra.com} (0335t7e62) [funder]
+}
+
 }
 \keyword{internal}
