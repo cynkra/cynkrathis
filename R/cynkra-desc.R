@@ -3,7 +3,7 @@
 #' @param role Role to add to cynkra. See `utils:::MARC_relator_db_codes_used_with_R`.
 #' @rdname cynkra-desc
 #' @export
-register_cynkra <- function(role = "fnd") {
+register_cynkra <- function(role = c("fnd", "cph")) {
   desc::desc_add_author(
     "cynkra GmbH",
     role = role,
