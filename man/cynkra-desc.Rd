@@ -5,7 +5,7 @@
 \alias{add_cynkra_ror}
 \title{Register cynkra in \code{DESCRIPTION}}
 \usage{
-register_cynkra(role = "fnd")
+register_cynkra(role = c("fnd", "cph"))
 
 add_cynkra_ror()
 }
