@@ -5,7 +5,9 @@ Authors@R: c(
     person("Patrick", "Schratz", , "patrick.schratz@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-0748-6624")),
     person("Kirill", "Müller", , "krlmlr+r@mailbox.org", role = "aut",
-           comment = c(ORCID = "0000-0002-1416-3412"))
+           comment = c(ORCID = "0000-0002-1416-3412")),
+    person("cynkra GmbH", , , "mail@cynkra.com", role = "fnd",
+           comment = c(ROR = "0335t7e62"))
   )
 Description: Opionionated {renv} helper package by cynkra GmbH.
 License: MIT + file LICENSE
@@ -15,6 +17,7 @@ Imports:
     callr,
     checkmate,
     cli,
+    desc,
     gh,
     glue,
     jsonlite,
@@ -26,7 +29,6 @@ Imports:
     utils
 Suggests:
     covr,
-    desc,
     drat (>= 0.2.0),
     gert,
     gitignore,
@@ -46,4 +48,4 @@ Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2.9000
