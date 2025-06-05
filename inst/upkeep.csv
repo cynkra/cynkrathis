@@ -1,0 +1,40 @@
+Section,Title,Description
+Mise en Place,Maintainer to set up access rights,For repositories under a personal account refer to https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-user-account-settings/permission-levels-for-a-personal-account-repository#collaborator-access-for-a-repository-owned-by-a-personal-account and for repositories under an organization account refer to https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization (Write Access)
+Mise en Place,"`pak::pak(""r-lib/usethis"")`",Install the development version of usethis which has the Air setup function.
+Mise en Place,"`pak::pak(""cynkra/cynkradown"")`",Install our pkgdown template that has a function to set up its usage.
+Mise en Place,"`pak::pak(""cynkra/cynkrathis"")`",Install our utils package 
+Quick Wins,"`pr_init(""upkeep-2025-06"")`",Create a branch for this spring cleaning work
+Quick Wins,`usethis::use_readme_rmd()`,"If you didn't use a Rmd README, switch to one and port the content from README.md. If you did, please make sure it has the ""<!-- badges: start -->"" and ""<!-- badges: end -->"" comments."
+Quick Wins,`usethis::use_roxygen_md()`,Activate the usage of Markdown in roxygen2 comments https://roxygen2.r-lib.org/articles/rd-formatting.html
+Quick Wins,`usethis::use_github_links()`,Register the GitHub links in DESCRIPTION
+Quick Wins,`usethis::use_pkgdown_github_pages()`,Implement the GitHub setup needed to automatically publish your pkgdown site to GitHub pages
+Quick Wins,`usethis::use_tidy_github_labels()`,"Create ""tidy"" issue labels https://usethis.r-lib.org/reference/use_github_labels.html#tidyverse-label-usage You might need to update the labelling of open issues."
+Quick Wins,`urlchecker::url_check()`,Check whether URLs are valid. Use https://urlchecker.r-lib.org/reference/url_update.html for automatic fixing of some broken URLs.
+Quick Wins,`usethis::use_package_doc()`,Create a package level manual page. Also use it to store imports useful for the whole page.
+Quick Wins,`usethis::use_testthat(3)`,Activate testthat's third edition. https://testthat.r-lib.org/articles/third-edition.html
+Quick Wins,Remove check environments section from `cran-comments.md`,In case you had submitted your package to CRAN
+Quick Wins,Handle and close any still-open `master` --> `main` PRs,https://www.tidyverse.org/blog/2021/10/renaming-default-branch/
+Quick Wins,`usethis::git_default_branch_rename()`,https://www.tidyverse.org/blog/2021/10/renaming-default-branch/
+Quick Wins,Update lifecycle badges with more accessible SVGs: `usethis::use_lifecycle()`,If you already use lifecycle for communicating changes in your package.
+Quick Wins,"Use `pak::pak(""{{pkg}}"")` in README",Better way to install packages than devtools these days.
+Quick Wins,Use R-universe installation instructions,"For instance install.packages('blockr.ui', repos = c('https://cynkra.r-universe.dev', 'https://cloud.r-project.org'))"
+Quick Wins,"`usethis::use_mit_license()` : if there are external contributors, see deep dives",https://www.tidyverse.org/blog/2021/12/relicensing-packages/
+Quick Wins,"`usethis::use_package(""R"", ""Depends"", ""4.0"")`",Who wants to live in the past?!
+Quick Wins,`usethis::use_tidy_description()`,Clean up the formatting of DESCRIPTION
+Quick Wins,"`usethis::use_github_action(""check-standard"")`","GHA workflow for R CMD check, will also add a badge."
+Quick Wins,"`usethis::use_github_action(""test-coverage"")`"," GHA workflow for test coverage uploaded on codecov.io, will also add a badge."
+Quick Wins,Delete any outdated CI configuration file,"Travis, Appveyor, old GitHub Actions workflows. Also check README badges!"
+Quick Wins,`devtools::build_readme()`,Build the README.Rmd with a temporary installation of the package
+cynkra Quick Wins,`cynkratemplate::use_cynkra_pkgdown()`,Register the use of our awesome pkgdown template.
+cynkra Quick Wins,`cynkrathis::register_cynkra()` if cynkra is not in authors yet,
+cynkra Quick Wins,`cynkrathis:: add_cynkra_ror()` if cynkra was already in authors,
+Deep Dives,"Before usethis::use_mit_license(), ask external contributors if it's ok",
+Deep Dives,Align the names of R/ files and test/ files,https://www.tidyverse.org/blog/2022/02/upkeep-testthat-3/#corresponding-files-in-r-and-teststestthat
+Deep Dives,Use lifecycle instead of artisanal deprecation messages,https://lifecycle.r-lib.org/articles/communicate.html
+Deep Dives,Use cli for messages,https://blog.r-hub.io/2023/11/30/cliff-notes-about-cli/
+Deep Dives,"Add alt-text to pictures, plots, etc; see posit.co/blog/knitr-fig-alt for examples",
+Deep Dives,Place all @import and @importFrom in the pkg doc file,Follow a nice newish convention to find them when you look for them.
+Deep Dives,"If checks show notes for global variables, use `.data` and `.env` in tidyverse style functions, then if globals remain, use `roxyglobals::use_roxyglobals()`","https://dplyr.tidyverse.org/articles/programming.html, https://tidyr.tidyverse.org/articles/programming.html, https://github.com/anthonynorth/roxyglobals"
+Wrap Up,`desc::add_me()`,Register yourself as ctb in `DESCRIPTION`
+Wrap Up,Maintainer to review and merge PR,
+Wrap Up,Maintainer to clean up access rights,
