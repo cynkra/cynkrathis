@@ -5,7 +5,7 @@ use_cynkra_upkeep <- function(repo = NULL) {
     title = "Spring cleaning @ cynkra dev day :soap:",
     body = upkeep_text()
   )
-  browseURL(issue[["html_url"]])
+  utils::browseURL(issue[["html_url"]])
 }
 
 gh_repo <- function() {
