@@ -4,7 +4,7 @@ Mise en Place,"`pak::pak(""r-lib/usethis"")`",Install the development version of
 Mise en Place,"`pak::pak(""cynkra/cynkradown"")`",Install our pkgdown template that has a function to set up its usage.
 Mise en Place,"`pak::pak(""cynkra/cynkrathis"")`",Install our utils package 
 Quick Wins,"`pr_init(""upkeep-2025-06"")`",Create a branch for this spring cleaning work
-Quick Wins,`usethis::use_readme_rmd()`,"If you didn't use a Rmd README, switch to one and port the content from README.md. If you did, please make sure it has the ""<!-- badges: start -->"" and ""<!-- badges: end -->"" comments."
+Quick Wins,`usethis::use_readme_rmd()`,"If you didn't use a Rmd README, switch to one and port the content from README.md. If you did, please make sure it has the `<!-- badges: start -->` and `<!-- badges: end -->` comments."
 Quick Wins,`usethis::use_roxygen_md()`,Activate the usage of Markdown in roxygen2 comments https://roxygen2.r-lib.org/articles/rd-formatting.html
 Quick Wins,`usethis::use_github_links()`,Register the GitHub links in DESCRIPTION
 Quick Wins,`usethis::use_pkgdown_github_pages()`,Implement the GitHub setup needed to automatically publish your pkgdown site to GitHub pages
