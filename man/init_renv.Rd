@@ -2,7 +2,7 @@
 % Please edit documentation in R/renv.R
 \name{init_renv}
 \alias{init_renv}
-\title{Initialize {renv} infrastructure (cynkra way)}
+\title{Initialize renv infrastructure (cynkra way)}
 \usage{
 init_renv(snapshot_date = NULL, exclude = NULL, convenience_pkgs = FALSE)
 }
@@ -31,12 +31,12 @@ The following packages would be installed:
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 
-Initializes {renv} setup by setting a predefined RStudio Package
+Initializes renv setup by setting a predefined RStudio Package
 Manager (RSPM) snapshot.
 Custom RSPM Snapshots can be configured via \code{snapshot_date}.
 }
 \details{
-During the process, the latest CRAN version of {renv} will be installed,
+During the process, the latest CRAN version of renv will be installed,
 regardless of the chosen snapshot ID.
 
 The heuristic for setting the correct RSPM binary repo currently only supports

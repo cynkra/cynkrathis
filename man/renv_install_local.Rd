@@ -20,12 +20,12 @@ Passed down to \code{pkgbuild::build()}.}
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 
 This is a wrapper around \code{pkgbuild::build()} and \code{renv::install()} to more
-easily make local packages available within \pkg{renv} projects.
+easily make local packages available within \pkgrenv projects.
 
 The following steps are performed:
 \enumerate{
 \item Building the package found at argument \code{path} via \code{pkgbuild::build()}.
-\item Moving the built source into the \pkg{renv} cache. The cache location is
+\item Moving the built source into the \pkgrenv cache. The cache location is
 determined by \code{Sys.getenv("RENV_PATHS_LOCAL")}.
 \item Installing the package from the cache location via \code{renv::install()}.
 }

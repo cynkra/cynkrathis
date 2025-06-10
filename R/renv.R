@@ -1,9 +1,9 @@
-#' Initialize {renv} infrastructure (cynkra way)
+#' Initialize renv infrastructure (cynkra way)
 #'
 #' @description
 #' `r lifecycle::badge('experimental')`
 #'
-#' Initializes {renv} setup by setting a predefined RStudio Package
+#' Initializes renv setup by setting a predefined RStudio Package
 #' Manager (RSPM) snapshot.
 #' Custom RSPM Snapshots can be configured via `snapshot_date`.
 #'
@@ -26,7 +26,7 @@
 #'   - krlmlr/fledge
 #'
 #' @details
-#' During the process, the latest CRAN version of {renv} will be installed,
+#' During the process, the latest CRAN version of renv will be installed,
 #' regardless of the chosen snapshot ID.
 #'
 #' The heuristic for setting the correct RSPM binary repo currently only supports
@@ -42,9 +42,11 @@
 #' init_renv()
 #' }
 #' @export
-init_renv <- function(snapshot_date = NULL,
-                      exclude = NULL,
-                      convenience_pkgs = FALSE) {
+init_renv <- function(
+  snapshot_date = NULL,
+  exclude = NULL,
+  convenience_pkgs = FALSE
+) {
   # clean any leftover renv artifacts (and .RProfile)
   unlink(c(".RProfile", "renv.lock", ".Renviron"))
   unlink("renv/", recursive = TRUE)
@@ -57,14 +59,18 @@ init_renv <- function(snapshot_date = NULL,
   if (is.null(snapshot_date)) {
     # get R version from current session
     r_version <- paste(R.Version()$major, R.Version()$minor, sep = ".")
-    snapshot_date <- snapshots[snapshots$r_version == r_version &
-      snapshots$type == "recommended", "date"]
+    snapshot_date <- snapshots[
+      snapshots$r_version == r_version &
+        snapshots$type == "recommended",
+      "date"
+    ]
   }
 
   # assertions -----------------------------------------------------------------
 
   checkmate::assert_subset(as.character(snapshot_date), valid_dates)
-  checkmate::assert_character(as.character(snapshot_date),
+  checkmate::assert_character(
+    as.character(snapshot_date),
     len = 1,
     pattern = "[0-9]{4}-[0-9]{2}-[0-9]{2}"
   )
@@ -77,11 +83,15 @@ init_renv <- function(snapshot_date = NULL,
 
   if (Sys.info()[["sysname"]] != "Linux") {
     repos <- c(
-      CRAN = glue::glue("https://packagemanager.rstudio.com/cran/{snapshot_date}") # nolint
+      CRAN = glue::glue(
+        "https://packagemanager.rstudio.com/cran/{snapshot_date}"
+      ) # nolint
     )
   } else {
     repos <- c(
-      CRAN = glue::glue("https://packagemanager.rstudio.com/cran/__linux__/focal/{snapshot_date}") # nolint
+      CRAN = glue::glue(
+        "https://packagemanager.rstudio.com/cran/__linux__/focal/{snapshot_date}"
+      ) # nolint
     )
   }
 
@@ -89,7 +99,9 @@ init_renv <- function(snapshot_date = NULL,
   local_remove_renv_envvars()
 
   # always install latest renv version
-  av_pkgs <- utils::available.packages(repos = "https://packagemanager.rstudio.com/cran/latest") # nolint
+  av_pkgs <- utils::available.packages(
+    repos = "https://packagemanager.rstudio.com/cran/latest"
+  ) # nolint
   renv_latest <- av_pkgs[rownames(av_pkgs) == "renv", "Version"]
 
   cli::cli_alert_info("Scaffolding with repos = {.url {repos}}") # nolint
@@ -98,16 +110,26 @@ init_renv <- function(snapshot_date = NULL,
   # Install the correct renv version in a new session
   cli::cli_alert_info("Starting R session to bootstrap {.package renv}") # nolint
   # https://github.com/r-lib/callr/issues/194
-  callr::r_vanilla(user_profile = FALSE, show = TRUE, install_github_renv, args = list(
-    renv_latest = renv_latest
-  ))
+  callr::r_vanilla(
+    user_profile = FALSE,
+    show = TRUE,
+    install_github_renv,
+    args = list(
+      renv_latest = renv_latest
+    )
+  )
 
   cli::cli_alert_info("Finalizing initialization of renv") # nolint
-  callr::r_vanilla(user_profile = FALSE, show = TRUE, finish_init_renv, args = list(
-    exclude = exclude,
-    convenience_pkgs = convenience_pkgs,
-    renv_latest = renv_latest
-  ))
+  callr::r_vanilla(
+    user_profile = FALSE,
+    show = TRUE,
+    finish_init_renv,
+    args = list(
+      exclude = exclude,
+      convenience_pkgs = convenience_pkgs,
+      renv_latest = renv_latest
+    )
+  )
 
   if (Sys.getenv("RSTUDIO") == 1) {
     rstudioapi::restartSession()
@@ -132,7 +154,6 @@ finish_init_renv <- function(exclude, convenience_pkgs, renv_latest) {
   # unlink(renv_dir, recursive = TRUE)
   # dir.create(renv_dir, recursive = TRUE, showWarnings = FALSE)
 
-
   # check if any .Rmd files exist to detect dependencies in .Rmd files via renv
   if (length(list.files(pattern = ".Rmd", recursive = TRUE) > 0)) {
     # Can't use cli here
@@ -145,7 +166,10 @@ finish_init_renv <- function(exclude, convenience_pkgs, renv_latest) {
   deps <- renv::dependencies(errors = "reported", dev = TRUE)$Package
   unavailable <- setdiff(deps, rownames(available.packages()))
   if (!all(unavailable %in% exclude)) {
-    message("Also excluding unavailable packages: ", paste0(setdiff(unavailable, exclude), collapse = ", "))
+    message(
+      "Also excluding unavailable packages: ",
+      paste0(setdiff(unavailable, exclude), collapse = ", ")
+    )
     exclude <- unique(c(exclude, unavailable))
   }
 
@@ -213,7 +237,7 @@ local_remove_renv_envvars <- function(.local_envir = parent.frame()) {
 #  to a specific RSPM snapshot.
 #  This should be a niche case anyhow and it is unclear if this will ever be
 #  supported.
-#  Note that this is different from restoring packages with {renv} per se for
+#  Note that this is different from restoring packages with renv per se for
 #  which `renv::restore()` should be used.
 #'
 #' @seealso get_snapshots
@@ -223,12 +247,14 @@ local_remove_renv_envvars <- function(.local_envir = parent.frame()) {
 #' \dontrun{
 #' renv_switch_r_version("4.0.4")
 #' }
-renv_switch_r_version <- function(version = NULL
-                                  # update_packages = FALSE,
-                                  # snapshot = FALSE
+renv_switch_r_version <- function(
+  version = NULL
+  # update_packages = FALSE,
+  # snapshot = FALSE
 ) {
   # assertions
-  checkmate::assert_character(version,
+  checkmate::assert_character(
+    version,
     len = 1,
     pattern = "[0-9][.][0-9][.][0-9]"
   )
@@ -247,12 +273,15 @@ renv_switch_r_version <- function(version = NULL
 
   # check if renv.lock exists
   if (!file.exists("renv.lock")) {
-    cli::cli_alert_danger("We could not find an {.file renv.lock} file in the
+    cli::cli_alert_danger(
+      "We could not find an {.file renv.lock} file in the
     current working directory:
 
     {.file {getwd()}}
 
-    Is this project using 'renv'?", wrap = TRUE)
+    Is this project using 'renv'?",
+      wrap = TRUE
+    )
     stop("No renv.lock found.")
   }
 
@@ -264,8 +293,11 @@ renv_switch_r_version <- function(version = NULL
   renvlock[3] <- sprintf("    \"Version\": \"%s\",", version)
 
   snapshots <- get_snapshots()
-  new_snapshot <- as.character(snapshots[snapshots$r_version == version &
-    snapshots$type == "recommended", c("date")])
+  new_snapshot <- as.character(snapshots[
+    snapshots$r_version == version &
+      snapshots$type == "recommended",
+    c("date")
+  ])
   # replace RSPM snapshot
   renvlock[6:7] <- c(
     "        \"Name\": \"CRAN\",",
@@ -320,12 +352,12 @@ renv_switch_r_version <- function(version = NULL
 #' `r lifecycle::badge('experimental')`
 #'
 #' This is a wrapper around `pkgbuild::build()` and `renv::install()` to more
-#' easily make local packages available within \pkg{renv} projects.
+#' easily make local packages available within \pkgrenv projects.
 #'
 #' The following steps are performed:
 #'
 #' 1. Building the package found at argument `path` via `pkgbuild::build()`.
-#' 2. Moving the built source into the \pkg{renv} cache. The cache location is
+#' 2. Moving the built source into the \pkgrenv cache. The cache location is
 #' determined by `Sys.getenv("RENV_PATHS_LOCAL")`.
 #' 3. Installing the package from the cache location via `renv::install()`.
 #' @param path `[character]`\cr
@@ -350,11 +382,16 @@ renv_install_local <- function(path = ".", quiet = FALSE, ...) {
   pkg_name <- desc::desc_get_field("Package")
 
   if (quiet) {
-    cli::cli_alert_info("Building package {.field {pkg_name}} and
-      installing into {.field {renv_local}}.", wrap = TRUE)
+    cli::cli_alert_info(
+      "Building package {.field {pkg_name}} and
+      installing into {.field {renv_local}}.",
+      wrap = TRUE
+    )
   }
-  pkg_source <- pkgbuild::build(path,
-    dest_path = renv_local, quiet = quiet,
+  pkg_source <- pkgbuild::build(
+    path,
+    dest_path = renv_local,
+    quiet = quiet,
     ...
   )
 
@@ -423,10 +460,15 @@ renv_downgrade <- function() {
   # e.g. if a recommended package version does not align with the RSPM
   # snapshot on RSC
   pkgs_to_install <- setdiff(
-    c(installed_pkgs, names(which(available.packages(
-      repos =
-        c(CRAN = "https://cran.r-project.org")
-    )[, "Priority"] == "recommended", ))),
+    c(
+      installed_pkgs,
+      names(which(
+        available.packages(
+          repos = c(CRAN = "https://cran.r-project.org")
+        )[, "Priority"] ==
+          "recommended",
+      ))
+    ),
     non_avail
   )
 
@@ -434,13 +476,22 @@ renv_downgrade <- function() {
     readLines("renv.lock", n = 7)[7],
     "[0-9]{4}-[0-9]{2}-[0-9]{2}"
   )
-  cli::cli_alert_info("Reinstalling all packages using RSPM snapshot
-    {.field {snapshot_date}}.", wrap = TRUE)
+  cli::cli_alert_info(
+    "Reinstalling all packages using RSPM snapshot
+    {.field {snapshot_date}}.",
+    wrap = TRUE
+  )
 
   renv::install(pkgs_to_install)
 
-  cli::cli_alert_success("Successfully rebased all packages to RSPM snapshot
-    {.field {snapshot_date}}.", wrap = TRUE)
-  cli::cli_alert("Now call {.fun renv::snapshot} to record the new package
-    versions in {.file renv.lock}.", wrap = TRUE)
+  cli::cli_alert_success(
+    "Successfully rebased all packages to RSPM snapshot
+    {.field {snapshot_date}}.",
+    wrap = TRUE
+  )
+  cli::cli_alert(
+    "Now call {.fun renv::snapshot} to record the new package
+    versions in {.file renv.lock}.",
+    wrap = TRUE
+  )
 }
