@@ -26,7 +26,7 @@ gh_repo <- function() {
 }
 
 upkeep_text <- function() {
-  todos <- read.csv(system.file("upkeep.csv", package = "cynkrathis"))
+  todos <- utils::read.csv(system.file("upkeep.csv", package = "cynkrathis"))
   sections_in_order <- unique(todos[["Section"]])
   todos <- split(todos, todos[["Section"]])
   todos <- todos[sections_in_order]
