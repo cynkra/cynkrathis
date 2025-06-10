@@ -1,9 +1,12 @@
 use_cynkra_upkeep <- function(repo = NULL) {
   repo <- repo %||% gh_repo()
+
+  upkeep_text <- gsub("pkg-repo", repo, upkeep_text())
+
   issue <- gh::gh(
     sprintf("POST /repos/%s/issues", repo),
     title = "Spring cleaning @ cynkra dev day :soap:",
-    body = upkeep_text()
+    body = upkeep_text
   )
   utils::browseURL(issue[["html_url"]])
 }
