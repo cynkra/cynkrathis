@@ -6,7 +6,7 @@
 \alias{cynkrathis-package}
 \title{cynkrathis: Simplify Project Scaffolding and Common 'renv' Related Tasks}
 \description{
-Opionionated {renv} helper package by cynkra GmbH.
+Opionionated renv helper package by cynkra GmbH.
 }
 \seealso{
 Useful links:

@@ -9,7 +9,7 @@ Authors@R: c(
     person("cynkra GmbH", , , "mail@cynkra.com", role = "fnd",
            comment = c(ROR = "0335t7e62"))
   )
-Description: Opionionated {renv} helper package by cynkra GmbH.
+Description: Opionionated renv helper package by cynkra GmbH.
 License: MIT + file LICENSE
 URL: https://cynkrathis.cynkra.com/, https://github.com/cynkra/cynkrathis
 BugReports: https://github.com/cynkra/cynkrathis/issues
