@@ -18,6 +18,7 @@ Imports:
     checkmate,
     cli,
     desc,
+    gert,
     gh,
     glue,
     jsonlite,
@@ -30,7 +31,6 @@ Imports:
 Suggests:
     covr,
     drat (>= 0.2.0),
-    gert,
     gitignore,
     lintr,
     pkgbuild,
