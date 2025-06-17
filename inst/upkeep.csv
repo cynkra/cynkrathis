@@ -22,6 +22,7 @@ Quick Wins,`usethis::use_tidy_description()`,Clean up the formatting of DESCRIPT
 Quick Wins,"`usethis::use_github_action(""check-standard"")`","GHA workflow for R CMD check, will also add a badge."
 Quick Wins,"`usethis::use_github_action(""test-coverage"")`"," GHA workflow for test coverage uploaded on codecov.io, will also add a badge."
 Quick Wins,Delete any outdated CI configuration file,"Travis, Appveyor, old GitHub Actions workflows. Also check README badges!"
+Quick Wins,`usethis::use_air()`,You can also reformat files with Air
 Quick Wins,`devtools::build_readme()`,Build the README.Rmd with a temporary installation of the package
 cynkra Quick Wins,`cynkratemplate::use_cynkra_pkgdown()`,Register the use of our awesome pkgdown template.
 cynkra Quick Wins,`cynkrathis::register_cynkra()` if cynkra is not in authors yet,
