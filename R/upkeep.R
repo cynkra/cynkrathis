@@ -1,4 +1,16 @@
-use_cynkra_upkeep <- function(repo = NULL) {
+#' Create an issue containing a checklist of upkeep tasks
+#'
+#' Bring your package up to current cynkra development standards.
+#'
+#' @param repo GitHub repository, e.g. "cynkra/cynkrathis". By default,
+#'   the repository associated to the current folder.
+#'
+#' @returns Nothing, used for its side-effect.
+#'
+#' @export
+#' @examplesIf interactive()
+#' use_cynkra_upkeep_issue()
+use_cynkra_upkeep_issue <- function(repo = NULL) {
   repo <- repo %||% gh_repo()
 
   upkeep_text <- gsub("pkg-repo", repo, upkeep_text())
