@@ -1,8 +1,7 @@
 Section,Title,Description
-Mise en Place,Maintainer to set up access rights,For repositories under a personal account refer to https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-user-account-settings/permission-levels-for-a-personal-account-repository#collaborator-access-for-a-repository-owned-by-a-personal-account and for repositories under an organization account refer to https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization (Write Access)
+Mise en Place,Ask maintainer to set up access rights,(if acceptable -- for smoother workflow; and necessary for a few items) For repositories under a personal account refer to https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-user-account-settings/permission-levels-for-a-personal-account-repository#collaborator-access-for-a-repository-owned-by-a-personal-account and for repositories under an organization account refer to https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization (Write Access)
 Mise en Place,"`pak::pak(""r-lib/usethis"")`",Install the development version of usethis which has the Air setup function.
 Mise en Place,"`pak::pak(""cynkra/cynkradown"")`",Install our pkgdown template that has a function to set up its usage.
-Mise en Place,"`pak::pak(""cynkra/cynkrathis"")`",Install our utils package 
 Quick Wins,"`pr_init(""upkeep-2025-06"")`",Create a branch for this spring cleaning work
 Quick Wins,`usethis::use_readme_rmd()`,"If you didn't use a Rmd README, switch to one and port the content from README.md. If you did, please make sure it has the `<!-- badges: start -->` and `<!-- badges: end -->` comments."
 Quick Wins,`usethis::use_roxygen_md()`,Activate the usage of Markdown in roxygen2 comments https://roxygen2.r-lib.org/articles/rd-formatting.html
@@ -35,5 +34,4 @@ Deep Dives,"Add alt-text to pictures, plots, etc; see posit.co/blog/knitr-fig-al
 Deep Dives,Place all @import and @importFrom in the pkg doc file,Follow a nice newish convention to find them when you look for them.
 Deep Dives,"If checks show notes for global variables, use `.data` and `.env` in tidyverse style functions, then if globals remain, use `roxyglobals::use_roxyglobals()`","https://dplyr.tidyverse.org/articles/programming.html, https://tidyr.tidyverse.org/articles/programming.html, https://github.com/anthonynorth/roxyglobals"
 Wrap Up,`desc::add_me()`,Register yourself as ctb in `DESCRIPTION`
-Wrap Up,Maintainer to review and merge PR,
-Wrap Up,Maintainer to clean up access rights,
+Wrap Up,Ask maintainer to review PR + merge + and cleanup access rights of relevant,,
