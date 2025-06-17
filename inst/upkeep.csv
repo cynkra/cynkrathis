@@ -19,7 +19,6 @@ Quick Wins,Update lifecycle badges with more accessible SVGs: `usethis::use_life
 Quick Wins,"Use `pak::pak(""pkg-repo"")` in README",Better way to install packages than devtools these days.
 Quick Wins,Use R-universe installation instructions,"For instance install.packages('blockr.ui', repos = c('https://cynkra.r-universe.dev', 'https://cloud.r-project.org'))"
 Quick Wins,"`usethis::use_mit_license()` : if there are external contributors, see deep dives",https://www.tidyverse.org/blog/2021/12/relicensing-packages/
-Quick Wins,"`usethis::use_package(""R"", ""Depends"", ""4.0"")`",Who wants to live in the past?!
 Quick Wins,`usethis::use_tidy_description()`,Clean up the formatting of DESCRIPTION
 Quick Wins,"`usethis::use_github_action(""check-standard"")`","GHA workflow for R CMD check, will also add a badge."
 Quick Wins,"`usethis::use_github_action(""test-coverage"")`"," GHA workflow for test coverage uploaded on codecov.io, will also add a badge."
