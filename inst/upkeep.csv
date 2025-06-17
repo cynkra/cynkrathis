@@ -25,7 +25,7 @@ Quick Wins,Delete any outdated CI configuration file,"Travis, Appveyor, old GitH
 Quick Wins,`devtools::build_readme()`,Build the README.Rmd with a temporary installation of the package
 cynkra Quick Wins,`cynkratemplate::use_cynkra_pkgdown()`,Register the use of our awesome pkgdown template.
 cynkra Quick Wins,`cynkrathis::register_cynkra()` if cynkra is not in authors yet,
-cynkra Quick Wins,`cynkrathis:: add_cynkra_ror()` if cynkra was already in authors,
+cynkra Quick Wins,`cynkrathis:: add_cynkra_ror()` if cynkra was already in authors,https://ropensci.org/blog/2025/05/09/ror/
 Deep Dives,"Before usethis::use_mit_license(), ask external contributors if it's ok",
 Deep Dives,Align the names of R/ files and test/ files,https://www.tidyverse.org/blog/2022/02/upkeep-testthat-3/#corresponding-files-in-r-and-teststestthat
 Deep Dives,Use lifecycle instead of artisanal deprecation messages,https://lifecycle.r-lib.org/articles/communicate.html
