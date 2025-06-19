@@ -17,7 +17,9 @@ Nothing, used for its side-effect.
 Bring your package up to current cynkra development standards.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 use_cynkra_upkeep_issue()
+# if using HTTPS or a fork
+use_cynkra_upkeep_issue("tidyverse/tibble")
 \dontshow{\}) # examplesIf}
 }

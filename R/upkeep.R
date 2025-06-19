@@ -10,6 +10,8 @@
 #' @export
 #' @examplesIf interactive()
 #' use_cynkra_upkeep_issue()
+#' # if using HTTPS or a fork
+#' use_cynkra_upkeep_issue("tidyverse/tibble")
 use_cynkra_upkeep_issue <- function(repo = NULL) {
   repo <- repo %||% gh_repo()
 
