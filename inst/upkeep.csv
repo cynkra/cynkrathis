@@ -11,10 +11,8 @@ Quick Wins,`usethis::use_tidy_github_labels()`,"Create ""tidy"" issue labels htt
 Quick Wins,`urlchecker::url_check()`,Check whether URLs are valid. Use https://urlchecker.r-lib.org/reference/url_update.html for automatic fixing of some broken URLs.
 Quick Wins,`usethis::use_package_doc()`,Create a package level manual page. Also use it to store imports useful for the whole page.
 Quick Wins,`usethis::use_testthat(3)`,Activate testthat's third edition. https://testthat.r-lib.org/articles/third-edition.html
-Quick Wins,Remove check environments section from `cran-comments.md`,In case you had submitted your package to CRAN
 Quick Wins,Handle and close any still-open `master` --> `main` PRs,https://www.tidyverse.org/blog/2021/10/renaming-default-branch/
 Quick Wins,`usethis::git_default_branch_rename()`,https://www.tidyverse.org/blog/2021/10/renaming-default-branch/
-Quick Wins,Update lifecycle badges with more accessible SVGs: `usethis::use_lifecycle()`,If you already use lifecycle for communicating changes in your package.
 Quick Wins,"Use `pak::pak(""pkg-repo"")` in README",Better way to install packages than devtools these days.
 Quick Wins,Use R-universe installation instructions,"For instance install.packages('blockr.ui', repos = c('https://cynkra.r-universe.dev', 'https://cloud.r-project.org'))"
 Quick Wins,"`usethis::use_mit_license()` : if there are external contributors, see deep dives",https://www.tidyverse.org/blog/2021/12/relicensing-packages/
