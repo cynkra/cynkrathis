@@ -325,5 +325,12 @@
     "date": "2025-04-11",
     "type": "recommended",
     "note": ""
+  },
+  {
+    "r_version": "4.5.1",
+    "r_release_date": "2025-06-13",
+    "date": "2025-06-13",
+    "type": "recommended",
+    "note": ""
   }
 ]
