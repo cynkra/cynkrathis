@@ -43,9 +43,10 @@
 #' }
 #' @export
 init_renv <- function(
-    snapshot_date = NULL,
-    exclude = NULL,
-    convenience_pkgs = FALSE) {
+  snapshot_date = NULL,
+  exclude = NULL,
+  convenience_pkgs = FALSE
+) {
   # clean any leftover renv artifacts (and .RProfile)
   unlink(c(".RProfile", "renv.lock", ".Renviron"))
   unlink("renv/", recursive = TRUE)
@@ -247,10 +248,10 @@ local_remove_renv_envvars <- function(.local_envir = parent.frame()) {
 #' renv_switch_r_version("4.0.4")
 #' }
 renv_switch_r_version <- function(
-    version = NULL
-    # update_packages = FALSE,
-    # snapshot = FALSE
-    ) {
+  version = NULL
+  # update_packages = FALSE,
+  # snapshot = FALSE
+) {
   # assertions
   checkmate::assert_character(
     version,
