@@ -339,5 +339,12 @@
     "date": "2025-11-01",
     "type": "recommended",
     "note": ""
+  },
+    {
+    "r_version": "4.5.3",
+    "r_release_date": "2026-03-12",
+    "date": "2026-03-12",
+    "type": "recommended",
+    "note": ""
   }
 ]
