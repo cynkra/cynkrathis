@@ -1,7 +1,7 @@
 Section,Title,Description
 Mise en Place,Ask maintainer to set up access rights,(if acceptable -- for smoother workflow; and necessary for a few items) For repositories under a personal account refer to https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-user-account-settings/permission-levels-for-a-personal-account-repository#collaborator-access-for-a-repository-owned-by-a-personal-account and for repositories under an organization account refer to https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization (Write Access)
 Mise en Place,"`pak::pak(""r-lib/usethis"")`",Install the development version of usethis which has the Air setup function.
-Mise en Place,"`pak::pak(""cynkra/cynkradown"")`",Install our pkgdown template that has a function to set up its usage.
+Mise en Place,"`pak::pak(""cynkra/cynkratemplate"")`",Install our pkgdown template that has a function to set up its usage.
 Quick Wins,"`pr_init(""upkeep-2025-06"")`",Create a branch for this spring cleaning work
 Quick Wins,`usethis::use_readme_rmd()`,"If you didn't use a Rmd README, switch to one and port the content from README.md. If you did, please make sure it has the `<!-- badges: start -->` and `<!-- badges: end -->` comments."
 Quick Wins,`usethis::use_roxygen_md()`,Activate the usage of Markdown in roxygen2 comments https://roxygen2.r-lib.org/articles/rd-formatting.html
@@ -22,7 +22,7 @@ Quick Wins,"`usethis::use_github_action(""test-coverage"")`"," GHA workflow for 
 Quick Wins,Delete any outdated CI configuration file,"Travis, Appveyor, old GitHub Actions workflows. Also check README badges!"
 Quick Wins,`usethis::use_air()`,You can also reformat files with Air
 Quick Wins,`devtools::build_readme()`,Build the README.Rmd with a temporary installation of the package
-cynkra Quick Wins,`cynkratemplate::use_cynkra_pkgdown()`,Register the use of our awesome pkgdown template.
+cynkra Quick Wins,`cynkratemplate::use_cynkra_pkgdown()`,"Register the use of our awesome pkgdown template. The template ships the cynkra favicon, so delete any local `pkgdown/favicon/` folder."
 cynkra Quick Wins,`cynkrathis::register_cynkra()` if cynkra is not in authors yet,
 cynkra Quick Wins,`cynkrathis:: add_cynkra_ror()` if cynkra was already in authors,https://ropensci.org/blog/2025/05/09/ror/
 Deep Dives,"Before usethis::use_mit_license(), ask external contributors if it's ok",
