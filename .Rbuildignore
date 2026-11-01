@@ -16,7 +16,6 @@ README.html
 ^logo\.svg$
 ^codecov\.yml$
 ^\.lintr$
-^\.pre-commit-config\.yaml$
 ^\.meta$
 ^\.aviator/config\.yml$
 renovate.json
