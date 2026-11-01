@@ -22,8 +22,12 @@ importFrom(lifecycle,deprecated)
 importFrom(renv,install)
 importFrom(rlang,"%||%")
 importFrom(rstudioapi,restartSession)
-importFrom(usethis,use_package)
-importFrom(usethis,use_tidy_description)
-importFrom(utils,available.packages)
-importFrom(utils,download.file)
-importFrom(utils,tail)
+importFrom(usethis,
+  use_package,
+  use_tidy_description
+)
+importFrom(utils,
+  available.packages,
+  download.file,
+  tail
+)
