@@ -8,7 +8,6 @@
 ^\.github$
 ^snapshots$
 ^\.ccache$
-^tic\.R$
 ^man-roxygen$
 ^pkgdown$
 ^docs$
