@@ -1,4 +1,75 @@
-<!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
+<!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
+
+# cynkrathis 0.3.4.9000 (2026-11-01)
+
+## Bug fixes
+
+- Rm useless items.
+
+## Features
+
+- Export function.
+
+- Add function for creating spring cleaning issue (#70).
+
+- Add functions to register cynkra's metadata in `DESCRIPTION` (#68).
+
+## Chore
+
+- Drop the local favicon copy, the template ships it (#80).
+
+- Add air @moodymudskipper.
+
+- Edits by @moodymudskipper.
+
+- Rm the R version item @moodymudskipper.
+
+### deps
+
+- Update peter-evans/create-pull-request action to v6.
+
+### deps
+
+- Update actions/cache action to v4 (#64).
+
+- Config update.
+
+### deps
+
+- Update actions/checkout action to v4 (#55).
+
+### deps
+
+- Update peter-evans/create-pull-request action to v5 (#56).
+
+## Continuous integration
+
+- Use the workflows from cynkratemplate (#81).
+
+## Documentation
+
+- Improve docs.
+
+- Add ror link.
+
+- Fix my mistake.
+
+- Fix other occurrence of curly braces.
+
+- Fix formatting that makes R CMD Check angry.
+
+- Set BS version explicitly for now.
+
+  https://github.com/cynkra/cynkratemplate/issues/53
+
+- List pkgdown URL in DESCRIPTION (#49).
+
+## Uncategorized
+
+- Merge branch 'main' of github.com:cynkra/cynkrathis.
+
+- Merge branch 'main' of github.com:cynkra/cynkrathis.
+
 
 # cynkrathis 0.3.4 (2022-10-20)
 
