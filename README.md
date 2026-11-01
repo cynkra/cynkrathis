@@ -2,7 +2,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- badges: start -->
 
-[![tic](https://github.com/cynkra/cynkrathis/workflows/tic/badge.svg?branch=master)](https://github.com/cynkra/cynkrathis/actions)
+[![R-CMD-check](https://github.com/cynkra/cynkrathis/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/cynkra/cynkrathis/actions/workflows/R-CMD-check.yaml)
 [![Coverage
 status](https://codecov.io/gh/cynkra/cynkrathis/branch/main/graph/badge.svg)](https://codecov.io/github/cynkra/cynkrathis?branch=main)
 [![CRAN
