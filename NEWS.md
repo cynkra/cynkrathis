@@ -1,5 +1,14 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# cynkrathis 0.3.4.9001 (2026-11-02)
+
+## Chore
+
+- Auto-update from GitHub Actions.
+
+  Run: https://github.com/cynkra/cynkrathis/actions/runs/41371719503
+
+
 # cynkrathis 0.3.4.9000 (2026-11-01)
 
 ## Bug fixes
