@@ -17,7 +17,7 @@ Imports:
     callr,
     checkmate,
     cli,
-    desc,
+    desc (>= 1.4.3.9000),
     gert,
     gh,
     glue,
@@ -43,6 +43,7 @@ Suggests:
     tic,
     withr
 Remotes:
+    r-lib/desc,
     ropensci/tic
 Config/testthat/edition: 3
 Config/testthat/parallel: true
