@@ -25,9 +25,14 @@ add_cynkra_ror <- function() {
 }
 
 check_desc_ror <- function() {
+  # Only the development version of desc supports ROR identifiers,
+  # so install it from r-universe rather than from CRAN.
   rlang::check_installed(
     "desc",
     version = "1.4.3.9000",
-    reason = "to add a ROR identifier to `DESCRIPTION`."
+    reason = "(the development version from r-lib/desc) to add a ROR identifier to `DESCRIPTION`.",
+    action = function(pkg, ...) {
+      utils::install.packages(pkg, repos = "https://r-lib.r-universe.dev")
+    }
   )
 }
