@@ -1,4 +1,10 @@
 test_that("deploy_minicran_package()", {
+  skip_if_not_installed("drat")
+  skip_if_not_installed("pkgbuild")
+  skip_if_not_installed("rmarkdown")
+  skip_if_not_installed("roxygen2")
+  skip_if_not_installed("rsconnect")
+  skip_if_not(rmarkdown::pandoc_available(), "pandoc is not available")
   withr::local_options(usethis.quiet = TRUE)
 
   # A temporary local git repository stands in for the remote drat repository

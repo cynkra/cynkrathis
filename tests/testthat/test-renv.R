@@ -1,4 +1,5 @@
 test_that("renv_install_local works", {
+  skip_if_not_installed("pkgbuild")
   withr::local_options(usethis.quiet = TRUE)
 
   # Keep the built tarball and the installed package out of the user's
