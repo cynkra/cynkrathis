@@ -47,6 +47,55 @@ test_that("register_cynkra() requires a role", {
   expect_error(register_cynkra(role = character(), file = dir), "at least one role")
 })
 
+test_that("register_cynkra() rejects invalid roles", {
+  dir <- local_description(
+    'person("Jane", "Doe", , "jane@example.com", role = c("aut", "cre"))'
+  )
+  before <- readLines(file.path(dir, "DESCRIPTION"))
+
+  expect_error(register_cynkra(role = "xyz", file = dir), "valid roles")
+  expect_error(register_cynkra(role = c("fnd", "xyz"), file = dir), "valid roles")
+  expect_equal(readLines(file.path(dir, "DESCRIPTION")), before)
+})
+
+test_that("register_cynkra() requires Authors@R", {
+  dir <- local_description(NULL)
+  cat(
+    "Author: Jane Doe\nMaintainer: Jane Doe <jane@example.com>\n",
+    file = file.path(dir, "DESCRIPTION"),
+    append = TRUE
+  )
+  before <- readLines(file.path(dir, "DESCRIPTION"))
+
+  expect_error(register_cynkra(file = dir), "no .*Authors@R")
+  expect_equal(readLines(file.path(dir, "DESCRIPTION")), before)
+})
+
+test_that("register_cynkra() finds cynkra listed by family name", {
+  dir <- local_description('person(family = "cynkra GmbH", role = "fnd")')
+
+  expect_error(register_cynkra(file = dir), "already an author")
+})
+
+test_that("add_cynkra_ror() adds the ROR to cynkra listed by family name", {
+  dir <- local_description('person(family = "cynkra GmbH", role = "fnd")')
+
+  add_cynkra_ror(file = dir)
+
+  expect_equal(get_authors(dir)[[1]]$comment, c(ROR = "0335t7e62"))
+})
+
+test_that("add_cynkra_ror() treats a lowercase ror comment as the ROR", {
+  dir <- local_description(
+    'person("cynkra GmbH", role = "fnd", comment = c(ror = "0335t7e62"))'
+  )
+  before <- readLines(file.path(dir, "DESCRIPTION"))
+
+  add_cynkra_ror(file = dir)
+
+  expect_equal(readLines(file.path(dir, "DESCRIPTION")), before)
+})
+
 test_that("add_cynkra_ror() adds the ROR and keeps other comments", {
   dir <- local_description(
     'c(person("Jane", "Doe", , "jane@example.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-1416-3412")), person("cynkra GmbH", , , "mail@cynkra.com", role = "fnd", comment = "Funder"))'

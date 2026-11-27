@@ -5,13 +5,27 @@
 #' @rdname cynkra-desc
 #' @export
 register_cynkra <- function(role = c("fnd", "cph"), file = ".") {
-  if (length(role) == 0) {
+  if (!is.character(role) || length(role) == 0) {
     cli::cli_abort("{.arg role} must name at least one role.")
   }
+  checked <- tryCatch(
+    utils::person("cynkra GmbH", role = role)$role,
+    warning = function(w) NULL
+  )
+  if (length(checked) != length(role)) {
+    cli::cli_abort(c(
+      "{.arg role} must contain only valid roles, not {.val {role}}.",
+      i = "See {.code utils:::MARC_relator_db_codes_used_with_R}."
+    ))
+  }
+  role <- checked
 
   path <- description_path(file)
   desc <- desc::description$new(path)
-  if (desc$has_fields("Authors@R") && length(find_cynkra(desc)) > 0) {
+  if (!desc$has_fields("Authors@R")) {
+    cli::cli_abort("{.file {path}} has no {.field Authors@R} field.")
+  }
+  if (length(find_cynkra(desc)) > 0) {
     cli::cli_abort(c(
       "cynkra is already an author in {.file {path}}.",
       i = "Use {.fn add_cynkra_ror} to add its ROR identifier."
@@ -51,7 +65,7 @@ add_cynkra_ror <- function(file = ".") {
 
   authors <- unclass(desc$get_authors())
   comment <- authors[[idx]]$comment
-  ror <- comment[names(comment) %in% "ROR"]
+  ror <- comment[toupper(names(comment)) %in% "ROR"]
   if (length(ror) > 0) {
     if (!identical(unname(ror), cynkra_ror)) {
       cli::cli_abort(
@@ -81,10 +95,10 @@ description_path <- function(file) {
 }
 
 find_cynkra <- function(desc) {
-  given <- vapply(
+  name <- vapply(
     unclass(desc$get_authors()),
-    function(author) paste(author$given, collapse = " "),
+    function(author) paste(c(author$given, author$family), collapse = " "),
     character(1)
   )
-  which(grepl("^cynkra", given, ignore.case = TRUE))
+  which(grepl("^cynkra", name, ignore.case = TRUE))
 }
