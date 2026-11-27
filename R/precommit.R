@@ -7,11 +7,7 @@ init_precommit <- function(commit = TRUE) {
     cli::cli_abort("Please install {.pkg precommit}.")
   }
 
-  # Not `precommit::use_precommit()`: R CMD check would load precommit,
-  # whose R.cache dependency then creates a cache directory in the home
-  # directory and triggers a NOTE.
-  use_precommit <- getExportedValue("precommit", "use_precommit")
-  use_precommit()
+  precommit::use_precommit()
 
   if (commit == TRUE) {
     gert::git_add(c(".pre-commit-config.yaml", ".Rbuildignore"))
