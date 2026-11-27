@@ -28,7 +28,7 @@ Authors:
 
 Other contributors:
 \itemize{
-  \item cynkra GmbH \email{mail@cynkra.com} (\href{https://ror.org/0335t7e62}{ROR}) [funder]
+  \item cynkra GmbH \email{mail@cynkra.com} (ROR: 0335t7e62, \verb{https://ror.org/0335t7e62}) [funder]
 }
 
 }
