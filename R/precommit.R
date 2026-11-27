@@ -4,10 +4,7 @@
 #' @export
 init_precommit <- function(commit = TRUE) {
   if (!requireNamespace("precommit", quietly = TRUE)) {
-    stop("Please install 'precommit'.")
-  }
-  if (!requireNamespace("gert", quietly = TRUE)) {
-    stop("Please install 'gert'.")
+    cli::cli_abort("Please install {.pkg precommit}.")
   }
 
   precommit::use_precommit()

@@ -378,7 +378,7 @@ renv_install_local <- function(path = ".", quiet = FALSE, ...) {
 
   dir.create(renv_local, showWarnings = FALSE, recursive = TRUE)
 
-  pkg_name <- desc::desc_get_field("Package")
+  pkg_name <- desc::desc_get_field("Package", file = path)
 
   if (quiet) {
     cli::cli_alert_info(

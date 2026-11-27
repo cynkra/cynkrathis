@@ -1,0 +1,18 @@
+name: 'Custom steps to run after R packages are installed'
+
+runs:
+  using: "composite"
+  steps:
+    # R CMD check loads precommit for init_precommit()'s `precommit::` reference,
+    # and precommit loads R.cache, which creates its cache directory on first load.
+    # Created during the check, that directory is reported as a new file in another
+    # directory, a NOTE; creating it here, before the check, keeps the check clean.
+    - name: Warm up the R.cache directory
+      run: |
+        if (!requireNamespace("R.cache", quietly = TRUE)) {
+          install.packages("R.cache")
+        }
+        path <- R.cache::getCacheRootPath()
+        stopifnot(dir.exists(path))
+        message("R.cache directory: ", path)
+      shell: Rscript {0}

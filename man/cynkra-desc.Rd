@@ -5,12 +5,14 @@
 \alias{add_cynkra_ror}
 \title{Register cynkra in \code{DESCRIPTION}}
 \usage{
-register_cynkra(role = c("fnd", "cph"))
+register_cynkra(role = c("fnd", "cph"), file = ".")
 
-add_cynkra_ror()
+add_cynkra_ror(file = ".")
 }
 \arguments{
 \item{role}{Role to add to cynkra. See \code{utils:::MARC_relator_db_codes_used_with_R}.}
+
+\item{file}{Path to the \code{DESCRIPTION} file or to the package directory.}
 }
 \description{
 Add cynkra metadata to the package

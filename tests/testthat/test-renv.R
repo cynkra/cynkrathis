@@ -1,17 +1,20 @@
 test_that("renv_install_local works", {
-  tmp <- tempdir()
-  options(usethis.quiet = TRUE)
-  usethis::create_package(tmp, open = FALSE)
+  skip_if_not_installed("pkgbuild")
+  withr::local_options(usethis.quiet = TRUE)
 
-  cap <- capture.output(suppressMessages(renv_install_local(tmp)))
+  # Keep the built tarball and the installed package out of the user's
+  # renv root and library
+  withr::local_envvar(RENV_PATHS_ROOT = withr::local_tempdir(pattern = "renv-"))
+  withr::local_libpaths(withr::local_tempdir(pattern = "lib-"), action = "prefix")
+
+  pkg <- file.path(withr::local_tempdir(), "testpkg")
+  usethis::create_package(pkg, open = FALSE)
+
+  cap <- capture.output(suppressMessages(renv_install_local(pkg)))
   rm(cap)
 
-  renv_local <- renv::paths$root()
-
-  out <- list.files(renv_local, pattern = basename(tmp), full.names = TRUE)
   expect_match(
-    list.files(renv_local, pattern = basename(tmp)),
-    basename(tmp)
+    list.files(renv::paths$root(), pattern = "testpkg"),
+    "testpkg"
   )
-  unlink(out, force = TRUE)
 })
