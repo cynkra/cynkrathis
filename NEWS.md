@@ -1,5 +1,18 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# cynkrathis 0.3.4.9002 (2026-11-27)
+
+## Chore
+
+- Auto-update from GitHub Actions.
+
+  Run: https://github.com/cynkra/cynkrathis/actions/runs/45921723504
+
+## Testing
+
+- Test `deploy_minicran_package()` against a temporary local repository (#82).
+
+
 # cynkrathis 0.3.4.9001 (2026-11-02)
 
 ## Chore
